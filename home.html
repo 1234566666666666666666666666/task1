@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coldbird Blog</title>
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background: #fff;
+      color: #222;
+    }
+
+    a {
+      color: #1d78ff;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Top bar */
+    .topbar {
+      background-color: #0052cc;
+      color: #fff;
+      font-size: 0.875rem;
+      line-height: 1.3;
+      padding: 4px 15px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .topbar a {
+      color: #abd2ff;
+      text-decoration: none;
+      margin-left: 4px;
+      margin-right: 4px;
+      font-weight: 500;
+    }
+
+    .topbar a:hover,
+    .topbar a:focus {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid #eee;
+      background: #fff;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Site logo */
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #222;
+      user-select: none;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: #222;
+      font-weight: 600;
+      padding: 6px 0;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus,
+    nav a.active {
+      border-bottom-color: #1d78ff;
+      color: #1d78ff;
+    }
+
+    /* Main content */
+    main {
+      display: flex;
+      max-width: 1200px;
+      margin: 30px auto 100px;
+      padding: 0 15px;
+      gap: 30px;
+    }
+
+    /* Left blog post list */
+    .blog-list {
+      flex: 1 1 720px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 25px 25px;
+    }
+
+    /* Individual blog item */
+    .blog-item {
+      background: #fff;
+      border: 1px solid #e3e6f0;
+      padding: 15px 18px 22px;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      box-shadow: 0 1px 6px rgb(0 0 0 / 0.07);
+      border-radius: 4px;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .blog-item:hover,
+    .blog-item:focus-within {
+      box-shadow: 0 3px 20px rgb(29 120 255 / 0.35);
+      outline: none;
+    }
+
+    /* Blog item image placeholder with fallback */
+    .blog-image {
+      flex-shrink: 0;
+      width: 100%;
+      max-height: 160px;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      background-color: #dce4fe;
+      position: relative;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Blog content */
+    .blog-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Blog title */
+    .blog-item h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 7px 0;
+      line-height: 1.25;
+    }
+
+    /* Blog metadata */
+    .blog-meta {
+      font-size: 0.8rem;
+      color: #5a5a5a;
+      margin-bottom: 6px;
+    }
+
+    .blog-meta span {
+      margin-right: 12px;
+    }
+
+    /* Blog excerpt */
+    .blog-excerpt {
+      font-size: 0.9rem;
+      color: #3a3a3a;
+      margin-bottom: 15px;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    /* Read more button */
+    .btn-readmore {
+      background-color: #1d78ff;
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      align-self: flex-start;
+      text-align: center;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .btn-readmore:hover,
+    .btn-readmore:focus {
+      background-color: #0e4dc4;
+      outline: none;
+    }
+
+    /* Sidebar */
+    aside {
+      flex: 0 0 300px;
+      max-width: 300px;
+    }
+
+    /* Sidebar About Author */
+    .about-author {
+      border: 1px solid #eee;
+      padding: 18px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .about-author p {
+      margin: 0 0 10px 0;
+    }
+
+    /* Sidebar social follow */
+    .social-follow {
+      margin-bottom: 20px;
+    }
+
+    .social-follow h3 {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #222;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      background-color: #eee;
+      border-radius: 4px;
+      color: #666;
+      font-size: 1.2rem;
+      text-align: center;
+      line-height: 34px;
+      border: 1px solid transparent;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .social-icons a:hover,
+    .social-icons a:focus {
+      background-color: #1d78ff;
+      color: #fff;
+      border-color: #0e4dc4;
+      outline: none;
+    }
+
+    /* Small posts list in sidebar */
+    .sidebar-posts {
+      border: 1px solid #eee;
+      padding: 15px 15px 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-posts h3 {
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #222;
+      user-select: none;
+    }
+
+    .sidebar-posts ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar-posts li {
+      margin-bottom: 14px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 5px;
+    }
+
+    .sidebar-posts a {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1d78ff;
+      user-select: text;
+    }
+
+    .sidebar-posts a:hover,
+    .sidebar-posts a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Sidebar promotional banners */
+    .promo-box {
+      margin-bottom: 22px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #fafafa;
+      box-shadow: 0 0 5px rgb(0 0 0 / 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .promo-box:hover,
+    .promo-box:focus-within {
+      box-shadow: 0 0 12px rgb(29 120 255 / 0.4);
+      outline: none;
+    }
+
+    .promo-box img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 130px;
+    }
+
+    /* Pagination */
+    .pagination {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto 60px;
+      padding: 0 15px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .pagination a {
+      padding: 7px 11px;
+      border: 1px solid #ddd;
+      color: #666;
+      border-radius: 3px;
+      user-select: none;
+      min-width: 32px;
+      font-weight: 600;
+      text-align: center;
+      display: inline-block;
+      line-height: 16px;
+      background: #fff;
+      transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .pagination a:hover,
+    .pagination a:focus {
+      border-color: #1d78ff;
+      color: #1d78ff;
+      outline: none;
+    }
+
+    .pagination a.active {
+      background-color: #1d78ff;
+      color: #fff;
+      border-color: #1d78ff;
+      cursor: default;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      main {
+        max-width: 940px;
+      }
+
+      .blog-list {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
+
+      aside {
+        flex: 0 0 270px;
+        max-width: 270px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+        width: 100%;
+        gap: 15px;
+        font-size: 0.9rem;
+      }
+
+      main {
+        flex-direction: column;
+        max-width: 620px;
+        margin: 30px auto 80px;
+      }
+
+      .blog-list {
+        grid-template-columns: 1fr;
+        gap: 22px 0;
+        margin-bottom: 30px;
+      }
+
+      aside {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .promo-box img {
+        max-height: 160px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 15px;
+      }
+
+      .btn-readmore {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 0.85rem;
+      }
+
+      .topbar {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top blue bar with a few links -->
+  <div class="topbar" role="banner" aria-label="Top announcement bar">
+    Learn more about Coldbird on
+    <a href="#" tabindex="0" aria-label="Twitter link">Twitter</a> or
+    <a href="#" tabindex="0" aria-label="Facebook link">Facebook</a>. Have questions? Go to our
+    <a href="#" tabindex="0" aria-label="Support link">support center</a>.
+  </div>
+
+  <!-- Main header with logo and navigation -->
+  <header role="banner" aria-label="Site header">
+    <div class="header-inner container">
+      <a href="#" class="logo" aria-label="Coldbird homepage">coldbird</a>
+      <nav role="navigation" aria-label="Primary navigation">
+        <a href="#" class="active" aria-current="page" tabindex="0">Home</a>
+        <a href="#" tabindex="0">Copper</a>
+        <a href="#" tabindex="0">Past</a>
+        <a href="#" tabindex="0">Ethereum</a>
+        <a href="#" tabindex="0">News</a>
+        <a href="#" tabindex="0">About</a>
+        <a href="#" tabindex="0">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main page content with blog articles and sidebar -->
+  <main role="main" class="container">
+    <!-- Blog articles list -->
+    <section class="blog-list" aria-label="Blog articles">
+      <!-- Single blog item template, repeated for each post -->
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77b23dac-1c53-4275-9c85-82e4b3a734e4.png"
+            alt="Red computer on blue and purple gradient background showing a website" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Red computer on a blue and purple gradient background showing a website'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>How to create a card menu website</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>July 2023</span>•
+            <span>By Daniel</span>•
+            <span> UI</span>
+          </div>
+          <p class="blog-excerpt">See how to build a minimalistic card menu for your website using HTML & CSS. Simple, clean, and easy to customize for any project.</p>
+          <button class="btn-readmore" aria-label="Read more about How to create a card menu website">Read more</button>
+        </div>
+      </article>
+
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5cb1bc20-4f1e-42b9-848a-7c5768a107f4.png" alt="E-mail verification notification UI in purple and white"
+            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: E-mail verification notification UI in purple and white'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>UI for new sign-in with email confirmation</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>Aug 2023</span>•
+            <span>By Daniel</span>•
+            <span>UI</span>
+          </div>
+          <p class="blog-excerpt">Nice and simple email confirmation user interface with a prompt message and confirm buttons to enhance user experience.</p>
+          <button class="btn-readmore" aria-label="Read more about UI for new sign-in with email confirmation">Read more</button>
+        </div>
+      </article>
+
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3c3fddcd-0d28-42ad-93e4-d2fb5b6a5445.png" alt="Photographer focusing a camera in warm natural light"
+            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Photographer focusing a camera in warm natural light'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>About photography and art</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>June 2023</span>•
+            <span>By Daniel</span>•
+            <span> Inspiration</span>
+          </div>
+          <p class="blog-excerpt">Photography is a way to capture moments and express emotions, it shows beauty in everyday things and tells stories visually.</p>
+          <button class="btn-readmore" aria-label="Read more about About photography and art">Read more</button>
+        </div>
+      </article>
+
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e8fb5c8-5343-4e87-bfed-a88b0c7995b6.png" alt="A workspace with books, notebooks and pen on a white wooden desk"
+            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Workspace with books, notebooks and pen on a white wooden desk'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>On Minimal Workspaces: Keeping it clean</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>May 2023</span>•
+            <span>By Daniel</span>•
+            <span> Productivity</span>
+          </div>
+          <p class="blog-excerpt">Learn how a minimal workspace helps improve focus and creativity by reducing clutter and distractions effectively.</p>
+          <button class="btn-readmore" aria-label="Read more about On Minimal Workspaces: Keeping it clean">Read more</button>
+        </div>
+      </article>
+
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73a61d60-9996-46c0-bfb5-7a17268a1751.png" alt="Computer screen showing analytics dashboard with charts and metrics in blue and white theme"
+            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Computer screen showing analytics dashboard with charts and metrics in blue and white theme'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>42 Case Study: PMA Dashboard on SaaS product</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>Apr 2023</span>•
+            <span>By Daniel</span>•
+            <span> Case Study</span>
+          </div>
+          <p class="blog-excerpt">An in-depth review of designing the PMA Dashboard for a SaaS company to improve data visualization and user experience.</p>
+          <button class="btn-readmore" aria-label="Read more about 42 Case Study: PMA Dashboard on SaaS product">Read more</button>
+        </div>
+      </article>
+
+      <article tabindex="0" class="blog-item">
+        <div class="blog-image">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/32584dc3-b729-4853-99f1-e1eea02d5492.png" alt="User interface design of a finance management app with graphs and budget controls"
+            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: User interface design of a finance management app with graphs and budget controls'; this.src='';" />
+        </div>
+        <div class="blog-content">
+          <h2>UI Case Study: Monthly Expense Tracker App</h2>
+          <div class="blog-meta" aria-label="Blog post metadata">
+            <span>Mar 2023</span>•
+            <span>By Daniel</span>•
+            <span> UX</span>
+          </div>
+          <p class="blog-excerpt">Exploration of a monthly expense tracker app interface focusing on usability, aesthetics, and clear data representation.</p>
+          <button class="btn-readmore" aria-label="Read more about UI Case Study: Monthly Expense Tracker App">Read more</button>
+        </div>
+      </article>
+
+      <!-- Add additional blog posts similarly with placeholders... -->
+
+    </section>
+
+    <!-- Sidebar with about, social, posts and banners -->
+    <aside aria-label="Sidebar with additional info">
+      <!-- About Author section -->
+      <section class="about-author" tabindex="0" aria-label="About the author">
+        <h3>About Daniel</h3>
+        <p>Daniel is a passionate UI/UX designer and blogger who shares insights on web design, productivity, and creativity.</p>
+      </section>
+
+      <!-- Social follow section -->
+      <section class="social-follow" tabindex="0" aria-label="Follow us on social media">
+        <h3>Follow us</h3>
+        <div class="social-icons" role="list">
+          <a href="#" aria-label="Follow on Twitter" role="listitem" tabindex="0" title="Twitter" rel="noopener" target="_blank">T</a>
+          <a href="#" aria-label="Follow on Facebook" role="listitem" tabindex="0" title="Facebook" rel="noopener" target="_blank">F</a>
+          <a href="#" aria-label="Follow on Instagram" role="listitem" tabindex="0" title="Instagram" rel="noopener" target="_blank">I</a>
+          <a href="#" aria-label="Follow on LinkedIn" role="listitem" tabindex="0" title="LinkedIn" rel="noopener" target="_blank">L</a>
+        </div>
+      </section>
+
+      <!-- Sidebar recent posts list -->
+      <section class="sidebar-posts" tabindex="0" aria-label="Recent blog posts">
+        <h3>Recent posts</h3>
+        <ul>
+          <li><a href="#" tabindex="0">Understanding CSS Grid for layout</a></li>
+          <li><a href="#" tabindex="0">What’s new in HTML5 in 2023</a></li>
+          <li><a href="#" tabindex="0">Best practices for responsive design</a></li>
+          <li><a href="#" tabindex="0">Accessibility tips for web developers</a></li>
+          <li><a href="#" tabindex="0">Building reusable components with JavaScript</a></li>
+        </ul>
+      </section>
+
+      <!-- Sidebar promotional banners -->
+      <section class="sidebar-promo" aria-label="Sidebar promotional banners">
+        <a href="#" class="promo-box" tabindex="0" aria-label="Promotional banner for Juvelin theme">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7a5d3873-223b-455a-9657-c1fa37ff6d5a.png" alt="Advertisement banner for Juvelin multipurpose WordPress theme in dark blue background with text and graphics" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Juvelin multipurpose WordPress theme'; this.src='';" />
+        </a>
+        <a href="#" class="promo-box" tabindex="0" aria-label="Promotional banner for Allon theme">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4804b4bc-1703-41c9-935c-eb3dc866cfd6.png" alt="Advertisement banner for Allon WordPress theme with a modern black and green design" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Allon WordPress theme'; this.src='';" />
+        </a>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Pagination navigation at the bottom of the page -->
+  <nav class="pagination" aria-label="Pagination navigation">
+    <a href="#" aria-label="Previous page" tabindex="0">‹</a>
+    <a href="#" class="active" aria-current="page" tabindex="0">1</a>
+    <a href="#" tabindex="0">2</a>
+    <a href="#" tabindex="0">3</a>
+    <a href="#" tabindex="0">4</a>
+    <a href="#" tabindex="0">5</a>
+    <a href="#" tabindex="0">...</a>
+    <a href="#" tabindex="0">22</a>
+    <a href="#" aria-label="Next page" tabindex="0">›</a>
+  </nav>
+</body>
+
+</html>
+

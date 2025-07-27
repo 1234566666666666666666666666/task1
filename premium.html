@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colorlib - Theme Collection</title>
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a {
+      color: #0047AB;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      font: inherit;
+    }
+    /* Scrollbar for main content if needed */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    /* Container */
+    .container {
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    /* Top horizontal menu bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0047AB;
+      padding: 0 15px;
+      height: 30px;
+      font-size: 12px;
+      color: #fff;
+      font-weight: 400;
+    }
+    .topbar .left, .topbar .right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .topbar a {
+      color: #68a1ff;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .topbar a:hover,
+    .topbar a:focus {
+      text-decoration: underline;
+      color: #aac9ff;
+    }
+    /* Topbar Icons (just placeholders) */
+    .icon {
+      width: 14px;
+      height: 14px;
+      background: transparent;
+      fill: #68a1ff;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Main header */
+    header {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 25px;
+      padding: 15px 0;
+    }
+    .header-container {
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #222;
+      text-decoration: none;
+      user-select: none;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      font-size: 14px;
+      color: #222;
+      user-select: none;
+    }
+    nav a {
+      color: #222;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: #0047AB;
+      text-decoration: underline;
+    }
+    /* Search input */
+    .search-container {
+      position: relative;
+      width: 220px;
+      max-width: 100%;
+    }
+    .search-container input[type="text"] {
+      width: 100%;
+      padding: 7px 32px 7px 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      color: #222;
+      transition: border-color 0.2s ease;
+    }
+    .search-container input[type="text"]:focus {
+      border-color: #0047AB;
+      outline: none;
+    }
+    .search-container button {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .search-container button:hover,
+    .search-container button:focus {
+      color: #0047AB;
+    }
+
+    /* Body main section */
+    main {
+      display: flex;
+      max-width: 1170px;
+      margin: 0 auto 50px;
+      padding: 0 15px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Left content */
+    .content-left {
+      flex: 1 1 750px;
+      max-width: 750px;
+    }
+
+    .page-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #222;
+      user-select: none;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .breadcrumb a {
+      color: #111;
+      font-weight: 400;
+    }
+    .breadcrumb a:hover,
+    .breadcrumb a:focus {
+      text-decoration: underline;
+    }
+    .breadcrumb-divider {
+      margin: 0 5px;
+      color: #999;
+    }
+
+    /* Intro paragraph with link */
+    .intro p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #444;
+      margin-bottom: 35px;
+    }
+    .intro p a {
+      color: #0047AB;
+      font-weight: 600;
+    }
+    .intro p a:hover,
+    .intro p a:focus {
+      text-decoration: underline;
+    }
+
+    /* Cards container */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+      gap: 30px 25px;
+    }
+    /* Each card */
+    article.card {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background-color: #fff;
+      box-shadow: 0 1px 1px rgb(0 0 0 / 0.05);
+      transition: box-shadow 0.15s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 100%;
+    }
+    article.card:hover,
+    article.card:focus-within {
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+    }
+    .card-image {
+      width: 100%;
+      height: 170px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #f0f0f0;
+    }
+    .card-image img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      object-position: center center;
+      border-bottom: 1px solid #ddd;
+    }
+    .card-content {
+      padding: 20px 15px 30px 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-meta-top {
+      font-size: 10.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      user-select: none;
+    }
+    .card-meta-top svg {
+      width: 12px;
+      height: 12px;
+      fill: #444;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin: 4px 0 7px 0;
+      line-height: 1.3;
+      color: #222;
+      user-select: text;
+    }
+    .card-title a {
+      color: #222;
+      font-weight: bold;
+    }
+    .card-title a:hover,
+    .card-title a:focus {
+      text-decoration: underline;
+      color: #0047AB;
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: #555;
+      margin-bottom: 18px;
+      line-height: 1.4;
+      overflow-wrap: break-word;
+    }
+
+    /* Button style */
+    button.blue-btn {
+      background-color: #0047ab;
+      color: #fff;
+      border-radius: 3px;
+      padding: 7px 22px;
+      border: none;
+      font-weight: 600;
+      font-size: 13.5px;
+      text-align: center;
+      user-select: none;
+      transition: background-color 0.15s ease;
+      align-self: flex-start;
+      box-shadow: none;
+      line-height: 1;
+    }
+    button.blue-btn:hover,
+    button.blue-btn:focus {
+      background-color: #003a92;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      width: 350px;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Sidebar sections */
+    .sidebar-section {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background-color: #fff;
+      padding: 12px 15px 15px 15px;
+    }
+    .sidebar-section h3 {
+      font-size: 15px;
+      margin: 0 0 14px 0;
+      font-weight: 700;
+      color: #222;
+      user-select: none;
+    }
+
+    /* Sidebar social icons with count (mock as text) */
+    .sidebar-social {
+      display: flex;
+      gap: 14px;
+    }
+    .sidebar-social a {
+      font-weight: 600;
+      font-size: 12px;
+      padding: 5px 11px;
+      background-color: #0077b5;
+      border-radius: 2px;
+      color: white;
+      text-align: center;
+      user-select: none;
+      display: inline-block;
+    }
+    .sidebar-social a.fb { background: #3b5998;}
+    .sidebar-social a.tw { background: #55acee;}
+    .sidebar-social a.insta {background: #c32aa3;}
+    .sidebar-social a.yt { background: #ff0000;}
+    /* Could add icons if needed but kept simple */
+
+    /* Advertisement boxes */
+    .ad-box {
+      position: relative;
+      background-color: #0066cc;
+      border-radius: 3px;
+      overflow: hidden;
+      padding: 15px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.3;
+      user-select: none;
+    }
+    .ad-box img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      max-width: 140px;
+      max-height: 110px;
+      object-fit: contain;
+      opacity: 0.7;
+      border-radius: 0 3px 3px 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .ad-box strong {
+      font-weight: 700;
+    }
+
+    /* Categories in sidebar */
+    .categories-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #222;
+      max-height: 210px;
+      overflow-y: auto;
+    }
+    .categories-list li {
+      margin: 0 0 10px 0;
+    }
+    .categories-list a {
+      user-select: text;
+      font-weight: 400;
+      color: #222;
+    }
+    .categories-list a:hover,
+    .categories-list a:focus {
+      color: #0047AB;
+      text-decoration: underline;
+    }
+    /* Scrollbar inside categories list */
+    .categories-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .categories-list::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Pagination */
+    .pagination {
+      margin: 40px 0 50px 0;
+      font-weight: 600;
+    }
+    .pagination button {
+      background-color: #0047ab;
+      color: white;
+      border-radius: 3px;
+      padding: 7px 22px;
+      font-size: 14px;
+      border: none;
+      user-select: none;
+      transition: background-color 0.15s ease;
+    }
+    .pagination button:hover,
+    .pagination button:focus {
+      background-color: #003a92;
+    }
+    /* Clearfix after main */
+    main::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #bbb;
+      font-size: 13px;
+      user-select: none;
+      padding: 20px 15px 50px 15px;
+    }
+    .footer-container {
+      max-width: 1170px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 45px;
+      flex-wrap: wrap;
+    }
+    footer .footer-links,
+    footer .footer-about {
+      flex: 1 1 300px;
+    }
+    footer h4 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+      font-size: 14px;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    footer ul li {
+      margin-bottom: 12px;
+    }
+    footer ul li a {
+      color: #bbb;
+      font-weight: 400;
+      text-decoration: none;
+    }
+    footer ul li a:hover,
+    footer ul li a:focus {
+      color: #fff;
+      text-decoration: underline;
+    }
+    /* Footer small text bottom */
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 17px;
+      margin-top: 25px;
+      color: #666;
+      font-size: 12px;
+      text-align: center;
+      user-select: none;
+    }
+    .footer-bottom a {
+      color: #666;
+      font-weight: 600;
+    }
+    .footer-bottom a:hover,
+    .footer-bottom a:focus {
+      color: #999;
+      text-decoration: underline;
+    }
+    /* Footer bottom right social icon */
+    .footer-bottom-right {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 30px;
+      height: 30px;
+      opacity: 0.7;
+      cursor: pointer;
+      /* no real icon - duplicate of the screenshot */
+      background-color: transparent;
+      border-radius: 50%;
+      border: 1px solid #bbb;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 960px) {
+      main {
+        flex-direction: column;
+        padding: 0 10px;
+        max-width: none;
+        margin-bottom: 25px;
+      }
+      .content-left {
+        max-width: none;
+        order: 2;
+      }
+      .sidebar {
+        width: 100%;
+        max-width: none;
+        order: 1;
+        margin-bottom: 30px;
+      }
+      .sidebar-section {
+        padding: 10px 12px 12px 12px;
+      }
+      .cards {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
+    }
+    @media screen and (max-width: 420px) {
+      .topbar {
+        font-size: 10px;
+        height: 26px;
+        padding: 0 8px;
+      }
+      .topbar .left, 
+      .topbar .right {
+        gap: 8px;
+      }
+      header {
+        padding: 12px 8px;
+      }
+      .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+      nav {
+        gap: 14px;
+        font-size: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        order: 2;
+      }
+      .logo {
+        order: 1;
+        font-size: 18px;
+        text-align: center;
+        width: 100%;
+      }
+      .search-container {
+        width: 100%;
+        max-width: 340px;
+        order: 3;
+        margin-top: 10px;
+      }
+      main {
+        padding: 0 8px;
+        margin-bottom: 20px;
+      }
+      .cards {
+        grid-template-columns: 100%;
+        gap: 20px;
+      }
+      aside.sidebar {
+        width: 100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Top horizontal rounded kind of bar on dark blue -->
+  <div class="topbar" role="navigation" aria-label="Secondary navigation">
+    <div class="left">
+      <a href="#" tabindex="0">+ Submit</a>
+      <a href="#" tabindex="0">Login</a>
+    </div>
+    <div class="right">
+      <a href="#" tabindex="0">Sign Up</a>
+      <a href="#" tabindex="0">Join</a>
+    </div>
+  </div>
+
+  <!-- Main header with logo, navigation and search input -->
+  <header role="banner" aria-label="Main header">
+    <div class="header-container">
+      <a href="#" class="logo" tabindex="0" aria-label="Colorlib homepage">colorlib.</a>
+      <nav role="navigation" aria-label="Primary navigation">
+        <a href="#" tabindex="0">Home</a>
+        <a href="#" tabindex="0">WordPress</a>
+        <a href="#" tabindex="0">Bootstrap</a>
+        <a href="#" tabindex="0">HTML</a>
+        <a href="#" tabindex="0">Pages</a>
+        <a href="#" tabindex="0">Support</a>
+      </nav>
+      <div class="search-container">
+        <input type="text" aria-label="Search themes" placeholder="Search themes" />
+        <button aria-label="Search"></button>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" aria-label="Main content area">
+    <section class="content-left" aria-label="Theme collection content">
+      <div class="breadcrumb" aria-label="Breadcrumb">
+        <a href="#" tabindex="0">Home</a><span class="breadcrumb-divider">›</span><a href="#" tabindex="0">Theme Collection</a>
+      </div>
+      <h1 class="page-title" tabindex="0">Theme Collection</h1>
+      <div class="intro">
+        <p tabindex="0">
+          The best Bootstrap themes, templates, and UI kits from around the web for front-end designers and developers. You can find premium, free, and open-source themes with design and code quality. Made with Bootstrap, HTML5, CSS3, and JavaScript. Browse and download now. 
+          <a href="#" tabindex="0">Find the best theme for your site.</a>
+        </p>
+      </div>
+
+      <section class="cards" aria-label="Theme cards">
+        <!-- Card 1 -->
+        <article class="card" tabindex="0" aria-label="Bootstrap 5 blog template with clean design for writing posts and articles">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cddfe7de-95f0-4b14-a448-81ab4c295a42.png" alt="Photo of a neat stack of notebooks and a cup on a wooden desk with natural daylight" loading="lazy" onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0f0b3da4-ec6a-4e30-bf1a-8fb7864bad66.png';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Bootstrap 5 Blog Template for Writing Posts and Articles</a></h2>
+            <p class="card-desc">A blog template that is clean, simple, and easy to customize. Perfect for personal blogs or corporate blogging websites.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Bootstrap 5 blog template">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" tabindex="0" aria-label="Clean Professional Bootstrap theme for business and portfolio">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fadfb910-d1c6-4224-93d4-82370b6b962d.png" alt="Screenshot of professional business website template with a dark grey background and call to action" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Clean Professional Bootstrap theme for Business and Portfolio</a></h2>
+            <p class="card-desc">A sleek and responsive Bootstrap 5 theme perfect for corporate sites and personal portfolios alike.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Clean Professional Bootstrap theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" tabindex="0" aria-label="Dark modern Bootstrap business site with call to action">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b64886af-a631-476e-a9ba-27cc6f027a53.png" alt="Dark urban city street photo with modern business website overlay" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Dark Modern Bootstrap Business Site with Call to Action</a></h2>
+            <p class="card-desc">A dark-themed modern business template styled to engage and convert visitors with calls to action.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Dark Modern Bootstrap Business Site">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="card" tabindex="0" aria-label="Elegant Bootstrap 5 wedding site template with romantic design">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a7af67c1-ae6b-47d4-a340-c503bb311e20.png" alt="Brown toned wedding web page theme with floral decorations and header" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Elegant Bootstrap 5 Wedding Site Template with Romantic Design</a></h2>
+            <p class="card-desc">A refined and elegant theme designed specifically for wedding invitations and event announcements.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Elegant Bootstrap 5 Wedding Site Template">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="card" tabindex="0" aria-label="bbPress forum theme for WordPress community websites">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a75d30a8-55c1-418a-85f1-d2f0999e0f63.png" alt="Typography logo of bbPress with a clean and nice WordPress forum interface" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> WordPress
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">bbPress Forum Theme for WordPress Community Websites</a></h2>
+            <p class="card-desc">A forum theme for WordPress integrating bbPress plugin, ideal for community and discussion sites.</p>
+            <button class="blue-btn" type="button" aria-label="Details about bbPress Forum Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="card" tabindex="0" aria-label="Colorful portfolio theme with bright shapes and informative sections">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/25bca46f-b779-43bc-b5d0-6cc724239aae.png" alt="Bright colorful theme portfolio image with shapes and multi-section layout" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Colorful Portfolio Theme with Bright Shapes and Informative Sections</a></h2>
+            <p class="card-desc">A visually striking portfolio template focusing on colorful shapes and a neat content layout.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Colorful Portfolio Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article class="card" tabindex="0" aria-label="Call to action landing page with safari background and bold text">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/87f109c3-11ea-45bb-a16c-ecb2a31299d9.png" alt="Elegant landing page with background of safari landscape and central call to action button" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Call to Action Landing Page with Safari Background and Bold Text</a></h2>
+            <p class="card-desc">A landing page template designed to catch attention with a safari background and a prominent call to action.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Call to Action Landing Page">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article class="card" tabindex="0" aria-label="Blue modern handmade product shop theme with crisp design">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/adf97be9-e994-4cdb-b2a6-993fe30ba25d.png" alt="Blue-themed modern website for handmade products with crisp typography and layout" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Blue Modern Handmade Product Shop Theme with Crisp Design</a></h2>
+            <p class="card-desc">An e-commerce style template focusing on handmade products with clear design and bright blue accents.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Blue Modern Handmade Product Shop Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 9 -->
+        <article class="card" tabindex="0" aria-label="Software landing page with big call to action and man image">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1bff58e-e467-47fa-a65d-f4426c731137.png" alt="Software landing page showing professional man on right side and call to action on left with form" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Software Landing Page with Big Call to Action and Man Image</a></h2>
+            <p class="card-desc">Focused landing page for software with image of a man and a prominent sign-up form to attract customers.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Software Landing Page">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 10 -->
+        <article class="card" tabindex="0" aria-label="Photography portfolio template with photo collage and overlay text">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9008ed46-d7ac-4eef-873c-fea110866c4b.png" alt="A clean photography portfolio sample with a collage of photos and text overlays" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Photography Portfolio Template with Photo Collage and Overlay Text</a></h2>
+            <p class="card-desc">Showcase photography work with a beautiful collage and minimalist design focused on images.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Photography Portfolio Template">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 11 -->
+        <article class="card" tabindex="0" aria-label="Green fitness and gym theme with workout image and program details">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dd7244f4-449d-4ceb-95ba-05d32e57dc36.png" alt="Fitness landing page with workout gym picture and details in green color scheme" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Green Fitness and Gym Theme with Workout Image and Program Details</a></h2>
+            <p class="card-desc">A vibrant gym template focusing on fitness programs and motivating visitors using a green palette.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Green Fitness and Gym Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 12 -->
+        <article class="card" tabindex="0" aria-label="Corporate business theme with login form and professional man image">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bb69c745-7b94-4aea-9dbe-5d2e87bef422.png" alt="Corporate business theme template showing login form on left and a professional man on right" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Corporate Business Theme with Login Form and Professional Man Image</a></h2>
+            <p class="card-desc">Designed for business sites needing a login interface with a professional image to build trust.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Corporate Business Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 13 -->
+        <article class="card" tabindex="0" aria-label="Wedding landing page with loving couple and simple call to action">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/12e5b4e3-77a1-4bb9-adaf-eff695d7be45.png" alt="Loving couple holding each other with soft focus and wedding invitation call to action" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Wedding Landing Page with Loving Couple and Simple Call to Action</a></h2>
+            <p class="card-desc">A soft romantic wedding landing page template, aimed at event invitations and announcements.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Wedding Landing Page">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 14 -->
+        <article class="card" tabindex="0" aria-label="Car repair shop theme with strong colors and booking section">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb562dc1-b022-4b0b-bd6c-03284a54411a.png" alt="Car repair shop theme with green and black colors complemented with booking interface" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Car Repair Shop Theme with Strong Colors and Booking Section</a></h2>
+            <p class="card-desc">A bold themed site for a car repair business, focusing on booking and service showcase.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Car Repair Shop Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 15 -->
+        <article class="card" tabindex="0" aria-label="Dark stylish ecommerce theme for musical products">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/adaa8301-4ccc-43c3-9fad-d5eb73ef6e5d.png" alt="Dark background ecommerce theme with headphones and musical elements" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Dark Stylish Ecommerce Theme for Musical Products</a></h2>
+            <p class="card-desc">A trendy ecommerce template for music products and accessories built on dark style and crisp design.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Dark Stylish Ecommerce Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 16 -->
+        <article class="card" tabindex="0" aria-label="Fashionable ecommerce site template with model photo">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ce83d0d4-240c-49f5-8921-452c1a227df2.png" alt="Fashion ecommerce template with a modern female model and minimalist style" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Fashionable Ecommerce Site Template with Model Photo</a></h2>
+            <p class="card-desc">A high-end ecommerce fashion template featuring a model and minimal design for product focus.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Fashionable Ecommerce Site Template">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 17 -->
+        <article class="card" tabindex="0" aria-label="Modern furniture site with home interior photo and booking form">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9782d576-7a2a-4161-b8cb-dfa7f83b2072.png" alt="Modern furniture website showing home interior photo and visible booking form" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Modern Furniture Site with Home Interior Photo and Booking Form</a></h2>
+            <p class="card-desc">A stylish furniture store template with an interior photo and intuitive booking interface.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Modern Furniture Site">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 18 -->
+        <article class="card" tabindex="0" aria-label="Help for cause charity site template with yellow banner and photo">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0a7ed263-a65d-458c-850e-129a771794ae.png" alt="Bright charity website theme with yellow banner offering help and people" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Help for Cause Charity Site Template with Yellow Banner and Photo</a></h2>
+            <p class="card-desc">A lively and uplifting charity template designed to engage visitors and encourage donations.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Charity Site Template">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 19 -->
+        <article class="card" tabindex="0" aria-label="Modern consulting firm theme with professional man and text">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3a837af5-dfdf-4550-848d-1e3c5df7471c.png" alt="Corporate consulting website with professional man image and business text" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Modern Consulting Firm Theme with Professional Man and Text</a></h2>
+            <p class="card-desc">A professional consulting firm website template with a clear layout and strong calls to action.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Consulting Firm Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 20 -->
+        <article class="card" tabindex="0" aria-label="Personal blog site with dark background and overlay image">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3dcb3e42-3bcb-4e66-956b-e90129c3a754.png" alt="Personal blog template with dark gray background and overlay image of cityscape" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Personal Blog Site with Dark Background and Overlay Image</a></h2>
+            <p class="card-desc">A moody and atmospheric template designed for personal bloggers who want a distinct dark theme.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Personal Blog Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 21 -->
+        <article class="card" tabindex="0" aria-label="Corporate business WordPress theme with clear call to action">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/48fbc7b5-5c35-447a-8853-c2cb38308b51.png" alt="Corporate business wordpress theme landing page with clear call to action" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> WordPress
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Corporate Business WordPress Theme with Clear Call to Action</a></h2>
+            <p class="card-desc">A sleek corporate WordPress theme designed for conversions, perfect for your business website.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Corporate WordPress Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 22 -->
+        <article class="card" tabindex="0" aria-label="Simple login and registration forms Bootstrap theme">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79db8321-4572-4337-9d2d-12b3ef8fde63.png" alt="Login and registration forms shown side by side with minimalist style" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Simple Login and Registration Forms Bootstrap Theme</a></h2>
+            <p class="card-desc">Clean and minimalist login and registration form templates built on Bootstrap 5 for easy customization.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Login and Registration Forms">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 23 -->
+        <article class="card" tabindex="0" aria-label="Mobile app promotion landing page with colorful sections and phone images">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/31f7ff23-c22d-4a4a-8f0f-6d6728d60d15.png" alt="Mobile app promotion landing page with colorful sections showing phone images" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Mobile App Promotion Landing Page with Colorful Sections and Phone Images</a></h2>
+            <p class="card-desc">An eye-catching landing page template for mobile applications with vibrant colors and visuals.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Mobile App Promotion Landing Page">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 24 -->
+        <article class="card" tabindex="0" aria-label="Creative design agency WordPress theme with modern layout and portfolio">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4cd35c9a-3289-4bc6-806d-bf3f6f2f1d61.png" alt="Creative design agency WordPress theme showing portfolio and modern layout" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> WordPress
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Creative Design Agency WordPress Theme with Modern Layout and Portfolio</a></h2>
+            <p class="card-desc">Showcase your creative agency projects with a stylish and modern WordPress theme.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Creative Design Agency WordPress Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 25 -->
+        <article class="card" tabindex="0" aria-label="Simple blog template with minimal style and easy navigation">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f8ecece0-3571-46b2-8859-e3244f6e0c08.png" alt="Simple blog template with clean minimal style and easy site navigation" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Simple Blog Template with Minimal Style and Easy Navigation</a></h2>
+            <p class="card-desc">Minimal blog template focusing on content and smooth user experience with simplified navigation.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Simple Blog Template">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 26 -->
+        <article class="card" tabindex="0" aria-label="Elegant newsletter landing page with simple subscription form and typography">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c53fc63f-058a-4b4b-9415-f516fe29c1ee.png" alt="Newsletter subscription landing page with elegant typography and minimalist form" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Elegant Newsletter Landing Page with Simple Subscription Form and Typography</a></h2>
+            <p class="card-desc">Clean and elegant template for newsletter subscription with strong focus on typography and usability.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Newsletter Landing Page">Read more</button>
+          </div>
+        </article>
+
+        <!-- Card 27 -->
+        <article class="card" tabindex="0" aria-label="Wildlife and nature photography theme with stunning animal photo">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b29e1ca8-e343-43d2-a847-a6f12e6ad4ba.png" alt="Wildlife and nature photography theme showing stunning animal photo of wild stag in nature" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Wildlife and Nature Photography Theme with Stunning Animal Photo</a></h2>
+            <p class="card-desc">A nature photography template featuring majestic wildlife images and an immersive layout.</p>
+            <button class="blue-btn" type="button" aria-label="Details about Wildlife and Nature Photography Theme">Details</button>
+          </div>
+        </article>
+
+        <!-- Card 28 -->
+        <article class="card" tabindex="0" aria-label="Restaurant and food business theme with menu and food images">
+          <div class="card-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7bf14190-b4d2-41e5-bd0e-a48ce662d19c.png" alt="Restaurant and food business website theme showing delicious dishes and menu sections" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/335x170?text=Image+not+available';" />
+          </div>
+          <div class="card-content">
+            <div class="card-meta-top" aria-label="Category and date">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg> Bootstrap 5
+            </div>
+            <h2 class="card-title"><a href="#" tabindex="0">Restaurant and Food Business Theme with Menu and Food Images</a></h2>
+            <p class="card-desc">A tasty website template for restaurants featuring menus, food photos and elegant touches.</p>
+            <button class="blue-btn" type="button" aria-label="Read more about Restaurant and Food Business Theme">Read more</button>
+          </div>
+        </article>
+
+        <!-- Add pagination after cards -->
+      </section>
+
+      <div class="pagination" role="navigation" aria-label="Pagination navigation">
+        <button type="button" aria-label="Load more themes">Load more</button>
+      </div>
+    </section>
+
+    <!-- Sidebar on right -->
+    <aside class="sidebar" aria-label="Sidebar with social, advertisement and categories">
+      <!-- Social widget -->
+      <section class="sidebar-section" aria-label="Social media links">
+        <h3 tabindex="0">Social</h3>
+        <div class="sidebar-social">
+          <a href="#" class="fb" tabindex="0" aria-label="Facebook social link">Facebook</a>
+          <a href="#" class="tw" tabindex="0" aria-label="Twitter social link">Twitter</a>
+          <a href="#" class="insta" tabindex="0" aria-label="Instagram social link">Instagram</a>
+          <a href="#" class="yt" tabindex="0" aria-label="YouTube social link">YouTube</a>
+        </div>
+      </section>
+
+      <!-- Advertisement widget 1 -->
+      <section class="sidebar-section" aria-label="Advertisement box">
+        <h3 tabindex="0">Advertisement</h3>
+        <div class="ad-box" tabindex="0">
+          <strong>Jewelin</strong><br />
+          Creative Multi Purpose Template<br />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/25515ff8-c638-4c82-a4cb-c07d449ef10b.png" alt="Jewelin multipurpose creative template promotion image with blue background and white text" loading="lazy" onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/067f159d-3fbc-4da1-8939-2f3890f3d164.png';" />
+        </div>
+      </section>
+
+      <!-- Call to action box -->
+      <section class="sidebar-section" aria-label="Call to Action box">
+        <h3 tabindex="0">Call to Action</h3>
+        <div class="ad-box" tabindex="0" style="background-color:#1a1a1a;">
+          Check this out and end your never ending search.<br />
+          <strong><a href="#" style="color:#3cbcff;">Click here</a></strong>
+        </div>
+      </section>
+
+      <!-- Categories Widget -->
+      <section class="sidebar-section" aria-label="Categories">
+        <h3 tabindex="0">Categories</h3>
+        <ul class="categories-list">
+          <li><a href="#" tabindex="0">Business</a></li>
+          <li><a href="#" tabindex="0">Creative</a></li>
+          <li><a href="#" tabindex="0">E-Commerce</a></li>
+          <li><a href="#" tabindex="0">Landing Pages</a></li>
+          <li><a href="#" tabindex="0">Portfolio</a></li>
+          <li><a href="#" tabindex="0">Personal</a></li>
+          <li><a href="#" tabindex="0">Photography</a></li>
+          <li><a href="#" tabindex="0">Magazine</a></li>
+          <li><a href="#" tabindex="0">One Page</a></li>
+          <li><a href="#" tabindex="0">Blog</a></li>
+          <li><a href="#" tabindex="0">Corporate</a></li>
+          <li><a href="#" tabindex="0">Health & Fitness</a></li>
+          <li><a href="#" tabindex="0">Charity</a></li>
+          <li><a href="#" tabindex="0">Creative Agency</a></li>
+          <li><a href="#" tabindex="0">Wedding</a></li>
+          <li><a href="#" tabindex="0">Software</a></li>
+          <li><a href="#" tabindex="0">Apps</a></li>
+          <li><a href="#" tabindex="0">Education</a></li>
+          <li><a href="#" tabindex="0">Nonprofit</a></li>
+          <li><a href="#" tabindex="0">Photography Portfolio</a></li>
+          <li><a href="#" tabindex="0">Marketing</a></li>
+          <li><a href="#" tabindex="0">Fashion</a></li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" aria-label="Footer">
+    <div class="footer-container">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <h4 tabindex="0">Links</h4>
+        <ul>
+          <li><a href="#" tabindex="0">About us</a></li>
+          <li><a href="#" tabindex="0">Contact us</a></li>
+          <li><a href="#" tabindex="0">Terms of Service</a></li>
+          <li><a href="#" tabindex="0">Privacy Policy</a></li>
+          <li><a href="#" tabindex="0">Help</a></li>
+          <li><a href="#" tabindex="0">FAQs</a></li>
+          <li><a href="#" tabindex="0">Blog</a></li>
+          <li><a href="#" tabindex="0">License</a></li>
+          <li><a href="#" tabindex="0">Portfolio</a></li>
+          <li><a href="#" tabindex="0">Support</a></li>
+          <li><a href="#" tabindex="0">Documentation</a></li>
+          <li><a href="#" tabindex="0">Terms & Conditions</a></li>
+        </ul>
+      </nav>
+      <section class="footer-about" aria-label="About Colorlib">
+        <h4 tabindex="0">About</h4>
+        <p tabindex="0" style="max-width: 320px; line-height: 1.4;">
+          Colorlib is a library of the best free and premium website templates, themes, and UI kits for web developers and designers. We provide clean, modern, and responsive themes to help you build a beautiful website quickly.
+        </p>
+      </section>
+    </div>
+    <div class="footer-bottom" tabindex="0">
+      © Copyright 2024, Colorlib — 
+      <a href="#" tabindex="0">Build with Bootstrap 5</a>
+    </div>
+    <div class="footer-bottom-right" aria-hidden="true" tabindex="-1"></div>
+  </footer>
+</body>
+</html>
+

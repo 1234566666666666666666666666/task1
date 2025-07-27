@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colorlib Forum</title>
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #444;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+    a {
+      color: #26a369;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    strong {
+      font-weight: 600;
+    }
+
+    /* Scrollbar for latest discussions panel (optional for desktop) */
+    .latest-list {
+      scrollbar-width: thin;
+      scrollbar-color: #ccc transparent;
+    }
+    .latest-list::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    .latest-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .latest-list::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    /* Header Top bar */
+    header {
+      background-color: #0b84d6;
+      color: white;
+      padding: 8px 40px 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      user-select: none;
+    }
+    header nav {
+      display: flex;
+      gap: 24px;
+      font-weight: 600;
+    }
+    header nav a {
+      color: white;
+      font-weight: 600;
+      line-height: 1;
+    }
+    header nav a:first-child {
+      font-weight: 700;
+    }
+
+    /* Header right buttons container */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Sign Up and Log in buttons */
+    .btn-signup, .btn-login {
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 13px;
+      border: none;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .btn-signup {
+      background-color: #0d6efd;
+      color: white;
+    }
+    .btn-signup:hover, .btn-signup:focus {
+      background-color: #075ad4;
+      outline: none;
+    }
+    .btn-login {
+      background-color: #186cb0;
+      color: white;
+    }
+    .btn-login:hover, .btn-login:focus {
+      background-color: #0c4a7a;
+      outline: none;
+    }
+    /* Log in icon: user icon SVG */
+    .btn-login svg {
+      fill: white;
+      width: 15px;
+      height: 15px;
+      vertical-align: middle;
+    }
+
+    /* Search and hamburger icon container */
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: 12px;
+    }
+
+    /* Search icon container */
+    .search-icon {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      fill: white;
+      flex-shrink: 0;
+    }
+
+    /* Hamburger menu icon container */
+    .hamburger-icon {
+      width: 22px;
+      height: 16px;
+      cursor: pointer;
+      fill: white;
+      flex-shrink: 0;
+    }
+
+    /* Main content container */
+    main {
+      max-width: 1024px;
+      margin: 16px auto 40px;
+      padding: 0 20px;
+      font-size: 13px;
+      color: #666;
+      user-select: none;
+    }
+
+    /* Logo and top nav below header */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .logo {
+      height: 30px;
+      display: block;
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      user-select: none;
+    }
+    /* Green dot after colorlib */
+    .logo .dot {
+      color: #26a369;
+    }
+
+    /* Secondary navigation links beneath logo */
+    .secondary-nav {
+      margin-left: 16px;
+      display: flex;
+      gap: 28px;
+      font-weight: 500;
+      color: #666;
+      font-size: 14px;
+      user-select: none;
+    }
+    .secondary-nav a {
+      color: #26a369;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.2s ease;
+      font-weight: 500;
+    }
+    .secondary-nav a:first-child {
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      background: white;
+      color: #444;
+      padding: 5px 9px 4px;
+      font-weight: 600;
+      user-select: none;
+    }
+    .secondary-nav a:nth-child(2) {
+      border-bottom: 2px solid #26a369;
+      color: #26a369;
+      font-weight: 700;
+      user-select: none;
+    }
+    .secondary-nav a:last-child {
+      color: #666;
+      font-weight: 400;
+      user-select: none;
+    }
+
+    /* Content below secondary nav: two columns layout */
+    .content-wrapper {
+      display: flex;
+      gap: 32px;
+    }
+
+    /* Categories panel on left */
+    .categories-panel {
+      flex: 1;
+      border-top: 1px solid #eee;
+      border-left: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      border-radius: 3px 0 0 3px;
+      background-color: #fcfcfc;
+      padding: 10px 20px 25px 16px;
+      color: #666;
+      font-size: 13px;
+      user-select: none;
+      max-width: 260px;
+      min-width: 260px;
+    }
+
+    /* Categories tabs at top */
+    .categories-tabs {
+      display: flex;
+      gap: 26px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #ddd;
+    }
+    .tab {
+      padding-bottom: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      color: #26a369;
+      border-bottom: 2px solid #26a369;
+      user-select: none;
+    }
+    .tab:first-child {
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      background: white;
+      color: #444;
+      padding: 6px 15px 5px;
+      font-weight: 600;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    /* Small arrow for categories tab */
+    .tab .arrow-down {
+      border: solid #333;
+      border-width: 0 2.5px 2.5px 0;
+      display: inline-block;
+      padding: 2.5px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      margin-left: 4px;
+      margin-bottom: 1px;
+    }
+    /* Non-active tabs styling */
+    .categories-tabs a {
+      text-decoration: none;
+      color: #26a369;
+    }
+    .categories-tabs a:hover {
+      text-decoration: underline;
+    }
+
+    /* Category list container */
+    .category-list {
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    /* Each category row */
+    .category-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #eee;
+      padding: 6px 2px 6px 0;
+      color: #555;
+      cursor: default;
+      user-select: none;
+    }
+    .category-row:first-child {
+      border-top: none;
+    }
+    /* Category name container with colored square */
+    .category-name {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 600;
+      color: #444;
+      user-select: none;
+    }
+    /* Colored square for category */
+    .color-box {
+      width: 11px;
+      height: 11px;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    /* Category topics count */
+    .topics-count {
+      color: #999;
+      font-weight: 600;
+      min-width: 38px;
+      text-align: right;
+      user-select: none;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+    /* Categories with subtext */
+    .category-subtext {
+      color: #999;
+      font-size: 11px;
+      margin-top: 2px;
+      font-weight: 400;
+      max-width: 220px;
+      user-select: none;
+    }
+    /* Subtext container for categories that have it */
+    .with-subtext {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Color squares by category name: exact match from screenshot */
+    /* Colors (taken visually from screenshot using approximate hex):
+      Activello - blue #2f8eef
+      Blaskan - brown #755831
+      Blesk - purple #7c368b
+      Bonkers - blue #2f8eef
+      Dazzling - green #4cb549
+      Illdy - blue #2f8eef
+      Newspaper X - pink #ff208a
+      Shapely - purple #673c8d
+      Sparkling - turquoise #3da69e
+      Travelify - red #cd2d27
+      Unite Theme - olive green #a5af2a
+      Pixova Lite - gray #7f7f7f
+      Pinbin - orange #ea6526
+      Portum - black #231f20
+      Tyche - black #231f20
+      Other - orange #ed7a1a
+      Website Templates - gray #7f7f7f
+      Site Feedback - gray #7f7f7f
+      Uncategorized - blue #2f8eef
+    */
+    .color-Activello { background-color: #2f8eef; }
+    .color-Blaskan { background-color: #755831; }
+    .color-Blesk { background-color: #7c368b; }
+    .color-Bonkers { background-color: #2f8eef; }
+    .color-Dazzling { background-color: #4cb549; }
+    .color-Illdy { background-color: #2f8eef; }
+    .color-NewspaperX { background-color: #ff208a; }
+    .color-Shapely { background-color: #673c8d; }
+    .color-Sparkling { background-color: #3da69e; }
+    .color-Travelify { background-color: #cd2d27; }
+    .color-UniteTheme { background-color: #a5af2a; }
+    .color-PixovaLite { background-color: #7f7f7f; }
+    .color-Pinbin { background-color: #ea6526; }
+    .color-Portum { background-color: #231f20; }
+    .color-Tyche { background-color: #231f20; }
+    .color-Other { background-color: #ed7a1a; }
+    .color-WebsiteTemplates { background-color: #7f7f7f; }
+    .color-SiteFeedback { background-color: #7f7f7f; }
+    .color-Uncategorized { background-color: #2f8eef; }
+
+    /* Latest discussions panel on right */
+    .latest-panel {
+      flex: 2;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      background-color: #fcfcfc;
+      padding: 8px 10px 8px 14px;
+      user-select: none;
+      max-width: 630px;
+      min-width: 630px;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      overflow-y: auto;
+      max-height: 930px;
+    }
+
+    /* Each item in latest discussions */
+    .latest-item {
+      display: flex;
+      gap: 12px;
+      cursor: default;
+      color: #444;
+    }
+
+    /* Circle avatar on left with letter or image inside */
+    .avatar-circle {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      user-select: none;
+      flex-shrink: 0;
+      line-height: 1;
+      overflow: hidden;
+    }
+    /* Colors for avatars from screenshot, reused category colors for the small category dot in latest item too */
+
+    .avatar-S { background-color: #d78ba8; }
+    .avatar-H { background-color: #5395bb; }
+    .avatar-J { background-color: #d67756; }
+    .avatar-M { background-color: #f2b19f; }
+    .avatar-N { background-color: #79a4aa; }
+    .avatar-E { background-color: #7f7f7f; }
+    .avatar-G { background-color: #97bf44; }
+    .avatar-R { background-color: #f3c56a; }
+    .avatar-C { background-color: #c5d54f; }
+    .avatar-A { background-color: #8ba87d; }
+    .avatar-S2 { background-color: #2f8eef; }
+
+    /* For avatar images with photos, round with cover and border on image */
+    .avatar-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+    /* newest listing item with emoji face (sad) - using placeholder with alt text */
+
+    /* Right content of latest items: flex 1 column */
+    .latest-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      user-select: text;
+    }
+
+    /* Title line with bold text */
+    .latest-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: #444;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* Subtitle line small gray category with category color dot */
+    .latest-subtitle {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #999;
+      font-weight: 600;
+      user-select: none;
+    }
+    .latest-subtitle .cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Right side info column with Replies and time */
+    .latest-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #bbb;
+      font-size: 11px;
+      font-weight: 600;
+      user-select: none;
+      min-width: 35px;
+      text-align: right;
+      line-height: 1;
+    }
+    .latest-info .replies {
+      color: #999;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .latest-info .time {
+      font-weight: 400;
+      color: #bbb;
+    }
+
+    /* More button */
+    .btn-more {
+      align-self: center;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 12px;
+      padding: 6px 17px;
+      border: 1px solid #bbb;
+      border-radius: 2px;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .btn-more:hover, .btn-more:focus {
+      background-color: #26a369;
+      border-color: #26a369;
+      color: white;
+      outline: none;
+    }
+
+    /* SVG icon styling for header icons */
+    svg {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER TOP BAR -->
+  <header role="banner" aria-label="Primary Navigation">
+    <nav aria-label="Main navigation links">
+      <a href="#" aria-current="page">Colorlib</a>
+      <a href="blog.html">Home</a>
+      <a href="freetheme.html">Free Themes</a>
+      <a href="premium.html">Premium Themes</a>
+      <a href="freewebsite.html">Website Templates</a>
+    </nav>
+    <div class="header-actions" role="group" aria-label="User options and search">
+      <button class="btn-signup" type="button" aria-label="Sign up">Sign Up</button>
+      <button class="btn-login" type="button" aria-label="Log in">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" >
+          <path d="M256 256c70.7 0 128-57.3 128-128S326.7 0 256 0 128 57.3 128 128s57.3 128 128 128zm0 32c-88 0-256 44-256 132v60h512v-60c0-88-168-132-256-132z"/>
+        </svg>
+        Log In
+      </button>
+      <svg class="search-icon" aria-hidden="true" focusable="false" viewBox="0 0 512 512" role="img" aria-label="Search icon">
+        <path d="M505 442.7L405.3 343a208 208 0 1 0-62.3 62.3L442.7 505a21.32 21.32 0 0 0 30.2-30.2zM208 368a160 160 0 1 1 0-320 160 160 0 0 1 0 320z" />
+      </svg>
+      <svg class="hamburger-icon" aria-hidden="true" focusable="false" viewBox="0 0 448 512" role="img" aria-label="Menu icon">
+        <path d="M16 132h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16H16C7.163 88 0 95.163 0 104v12c0 8.837 7.163 16 16 16zm416 104H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16zm0 140H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16z"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main role="main" aria-label="Forum content">
+    <!-- Logo and below nav -->
+    <div class="top-bar">
+      <a href="#" class="logo" aria-label="Go to homepage">
+        colorlib<span class="dot">.</span>
+      </a>
+      <nav class="secondary-nav" aria-label="Forum section navigation">
+        <a href="#">categories</a>
+        <a href="#" aria-current="page">Categories</a>
+        <a href="#">Latest</a>
+      </nav>
+    </div>
+
+    <div class="content-wrapper">
+      <!-- Left categories panel -->
+      <section class="categories-panel" aria-label="Forum categories">
+        <div class="categories-tabs" role="tablist" aria-orientation="horizontal">
+          <button role="tab" aria-selected="false" aria-controls="categories" id="tab-categories" class="tab" tabindex="-1">categories <span class="arrow-down" aria-hidden="true"></span></button>
+          <button role="tab" aria-selected="true" aria-controls="categories-list" id="tab-categories-list" class="tab">Categories</button>
+          <button role="tab" aria-selected="false" aria-controls="latest-list" id="tab-latest" class="tab" tabindex="-1">Latest</button>
+        </div>
+        <div id="categories-list" role="tabpanel" aria-labelledby="tab-categories-list" tabindex="0">
+
+          <div class="category-list" role="list" aria-label="List of forum categories">
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Activello" aria-hidden="true"></div>
+                <strong>Activello</strong>
+              </div>
+              <div class="topics-count">3.1k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Blaskan" aria-hidden="true"></div>
+                <strong>Blaskan</strong>
+              </div>
+              <div class="topics-count">90</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Blesk" aria-hidden="true"></div>
+                <strong>Blesk</strong>
+              </div>
+              <div class="topics-count">8</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Bonkers" aria-hidden="true"></div>
+                <strong>Bonkers</strong>
+              </div>
+              <div class="topics-count">0</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Dazzling" aria-hidden="true"></div>
+                <strong>Dazzling</strong>
+              </div>
+              <div class="topics-count">1.4k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Illdy" aria-hidden="true"></div>
+                <strong>Illdy</strong>
+              </div>
+              <div class="topics-count">4.0k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-NewspaperX" aria-hidden="true"></div>
+                <strong>Newspaper X</strong>
+              </div>
+              <div class="topics-count">484</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Shapely" aria-hidden="true"></div>
+                <strong>Shapely</strong>
+              </div>
+              <div class="topics-count">5.5k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Sparkling" aria-hidden="true"></div>
+                <strong>Sparkling</strong>
+              </div>
+              <div class="topics-count">3.4k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Travelify" aria-hidden="true"></div>
+                <strong>Travelify</strong>
+              </div>
+              <div class="topics-count">2.0k</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-UniteTheme" aria-hidden="true"></div>
+                <strong>Unite Theme</strong>
+              </div>
+              <div class="topics-count">727</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-PixovaLite" aria-hidden="true"></div>
+                <strong>Pixova Lite</strong>
+              </div>
+              <div class="topics-count">153</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Pinbin" aria-hidden="true"></div>
+                <strong>Pinbin</strong>
+              </div>
+              <div class="topics-count">166</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Portum" aria-hidden="true"></div>
+                <strong>Portum</strong>
+              </div>
+              <div class="topics-count">111</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Tyche" aria-hidden="true"></div>
+                <strong>Tyche</strong>
+              </div>
+              <div class="topics-count">455</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-Other" aria-hidden="true"></div>
+                <strong>Other</strong>
+              </div>
+              <div class="topics-count">638</div>
+            </div>
+
+            <div role="listitem" class="category-row">
+              <div class="category-name">
+                <div class="color-box color-WebsiteTemplates" aria-hidden="true"></div>
+                <strong>Website Templates</strong>
+              </div>
+              <div class="topics-count">920</div>
+            </div>
+
+            <div role="listitem" class="category-row with-subtext" aria-label="Category Site Feedback with description">
+              <div class="category-name" style="margin-bottom: 3px;">
+                <div class="color-box color-SiteFeedback" aria-hidden="true"></div>
+                <strong>Site Feedback</strong>
+              </div>
+              <div class="topics-count">39</div>
+              <div class="category-subtext">Discussion about this site, its organization, how it works, and how we can improve it.</div>
+            </div>
+
+            <div role="listitem" class="category-row with-subtext" aria-label="Category Uncategorized with description">
+              <div class="category-name" style="margin-bottom: 3px;">
+                <div class="color-box color-Uncategorized" aria-hidden="true"></div>
+                <strong>Uncategorized</strong>
+              </div>
+              <div class="topics-count">573</div>
+              <div class="category-subtext">Topics that don't need a category, or don't fit into any other existing category.</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Right latest discussions panel -->
+      <section class="latest-panel" aria-label="Latest discussions" tabindex="0">
+        <!-- Each latest-item: using visually matching colors and layout -->
+        <article class="latest-item" role="article" aria-labelledby="title1" aria-describedby="desc1 replies1 time1">
+          <div class="avatar-circle avatar-S" aria-label="User Initial S">S</div>
+          <div class="latest-content">
+            <h3 id="title1" class="latest-title">Download issue, Can not see download button</h3>
+            <div id="desc1" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies1" class="replies" aria-label="Replies count">0</span>
+            <span id="time1" class="time" aria-label="Posted 5 hours ago">5h</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title2" aria-describedby="desc2 replies2 time2">
+          <div class="avatar-circle avatar-H" aria-label="User Initial H">H</div>
+          <div class="latest-content">
+            <h3 id="title2" class="latest-title">Template has no Mobile Navigation</h3>
+            <div id="desc2" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies2" class="replies" aria-label="Replies count">0</span>
+            <span id="time2" class="time" aria-label="Posted 21 hours ago">21h</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title3" aria-describedby="desc3 replies3 time3">
+          <div class="avatar-circle avatar-J" aria-label="User Initial J">J</div>
+          <div class="latest-content">
+            <h3 id="title3" class="latest-title">Style.css is missing for remedic theme</h3>
+            <div id="desc3" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies3" class="replies" aria-label="Replies count">0</span>
+            <span id="time3" class="time" aria-label="Posted 1 day ago">1d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title4" aria-describedby="desc4 replies4 time4">
+          <div class="avatar-circle avatar-M" aria-label="User Initial M">M</div>
+          <div class="latest-content">
+            <h3 id="title4" class="latest-title">Unable to download demo content in Tyche</h3>
+            <div id="desc4" class="latest-subtitle">
+              <div class="cat-dot color-Tyche" aria-hidden="true"></div>
+              Tyche
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies4" class="replies" aria-label="Replies count">3</span>
+            <span id="time4" class="time" aria-label="Posted 8 days ago">8d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title5" aria-describedby="desc5 replies5 time5">
+          <div class="avatar-circle avatar-H" aria-label="User Initial H">H</div>
+          <div class="latest-content">
+            <h3 id="title5" class="latest-title">Install downloaded theme sample data</h3>
+            <div id="desc5" class="latest-subtitle">
+              <div class="cat-dot color-NewspaperX" aria-hidden="true"></div>
+              Newspaper X
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies5" class="replies" aria-label="Replies count">0</span>
+            <span id="time5" class="time" aria-label="Posted 9 days ago">9d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title6" aria-describedby="desc6 replies6 time6">
+          <div class="avatar-circle avatar-N" aria-label="User Initial N">N</div>
+          <div class="latest-content">
+            <h3 id="title6" class="latest-title">Mobile menu broken</h3>
+            <div id="desc6" class="latest-subtitle">
+              <div class="cat-dot color-Dazzling" aria-hidden="true"></div>
+              Dazzling
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies6" class="replies" aria-label="Replies count">7</span>
+            <span id="time6" class="time" aria-label="Posted 17 days ago">17d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title7" aria-describedby="desc7 replies7 time7">
+          <div class="avatar-circle avatar-E" aria-label="User Initial E">E</div>
+          <div class="latest-content">
+            <h3 id="title7" class="latest-title">Cannot upload Hostza to WordPress</h3>
+            <div id="desc7" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies7" class="replies" aria-label="Replies count">0</span>
+            <span id="time7" class="time" aria-label="Posted 20 days ago">20d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title8" aria-describedby="desc8 replies8 time8">
+          <div class="avatar-circle avatar-S" aria-label="User Initial S">S</div>
+          <div class="latest-content">
+            <h3 id="title8" class="latest-title">Edit the colours of the Jetpack blog subscriptions widget</h3>
+            <div id="desc8" class="latest-subtitle">
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies8" class="replies" aria-label="Replies count">10</span>
+            <span id="time8" class="time" aria-label="Posted 21 days ago">21d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title9" aria-describedby="desc9 replies9 time9">
+          <div class="avatar-circle avatar-S2" aria-label="User Initial S">S</div>
+          <div class="latest-content">
+            <h3 id="title9" class="latest-title">PHP 7.4 et + avec Illdy - v2.1.10</h3>
+            <div id="desc9" class="latest-subtitle">
+              <div class="cat-dot color-Illdy" aria-hidden="true"></div>
+              Illdy
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies9" class="replies" aria-label="Replies count">0</span>
+            <span id="time9" class="time" aria-label="Posted 23 days ago">23d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title10" aria-describedby="desc10 replies10 time10">
+          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
+            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0433371c-8a6c-4bfb-9e26-a910a4d5e3a3.png" alt="User avatar picture of a woman in a red shawl" onerror="this.style.display='none'" />
+            S
+          </div>
+          <div class="latest-content">
+            <h3 id="title10" class="latest-title">Can’t edit homepage - help!</h3>
+            <div id="desc10" class="latest-subtitle" >
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies10" class="replies" aria-label="Replies count">2</span>
+            <span id="time10" class="time" aria-label="Posted 26 days ago">26d</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title11" aria-describedby="desc11 replies11 time11">
+          <div class="avatar-circle avatar-G" aria-label="User Initial G">G</div>
+          <div class="latest-content">
+            <h3 id="title11" class="latest-title">Simple Custom Post Order Version 2.5.11 Does not Sort</h3>
+            <div id="desc11" class="latest-subtitle">
+              <div class="cat-dot color-Other" aria-hidden="true"></div>
+              Other
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies11" class="replies" aria-label="Replies count">0</span>
+            <span id="time11" class="time" aria-label="Posted June 25">Jun 25</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title12" aria-describedby="desc12 replies12 time12">
+          <div class="avatar-circle avatar-E" aria-label="User Initial E">S</div>
+          <div class="latest-content">
+            <h3 id="title12" class="latest-title">Template updates</h3>
+            <div id="desc12" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies12" class="replies" aria-label="Replies count">0</span>
+            <span id="time12" class="time" aria-label="Posted June 25">Jun 25</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title13" aria-describedby="desc13 replies13 time13">
+          <div class="avatar-circle avatar-S2" aria-label="User with avatar image">
+            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4a6f3d3f-03b4-4da4-82f7-7ae5c045c672.png" alt="User avatar picture of a man with beard" onerror="this.style.display='none'" />
+          </div>
+          <div class="latest-content">
+            <h3 id="title13" class="latest-title">Couldn’t import demo content</h3>
+            <div id="desc13" class="latest-subtitle">
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies13" class="replies" aria-label="Replies count">14</span>
+            <span id="time13" class="time" aria-label="Posted June 24">Jun 24</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title14" aria-describedby="desc14 replies14 time14">
+          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
+            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/637ec6e3-c28a-4d08-8a44-7ea16123ed2d.png" alt="User avatar picture of a woman in a red shawl" onerror="this.style.display='none'" />
+          </div>
+          <div class="latest-content">
+            <h3 id="title14" class="latest-title">I can’t seem to figure out how to edit my homepage</h3>
+            <div id="desc14" class="latest-subtitle">
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies14" class="replies" aria-label="Replies count">11</span>
+            <span id="time14" class="time" aria-label="Posted June 24">Jun 24</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title15" aria-describedby="desc15 replies15 time15">
+          <div class="avatar-circle avatar-R" aria-label="User Initial R">R</div>
+          <div class="latest-content">
+            <h3 id="title15" class="latest-title">Colorlib Contact form not working</h3>
+            <div id="desc15" class="latest-subtitle">
+              <div class="cat-dot color-Other" aria-hidden="true"></div>
+              Other
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies15" class="replies" aria-label="Replies count">4</span>
+            <span id="time15" class="time" aria-label="Posted June 19">Jun 19</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title16" aria-describedby="desc16 replies16 time16">
+          <div class="avatar-circle avatar-Illdy" aria-label="User avatar illustration">
+            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ebe3b2c-272f-48df-b25a-56c27b3fa094.png" alt="Sad face avatar illustration" onerror="this.style.display='none'" />
+          </div>
+          <div class="latest-content">
+            <h3 id="title16" class="latest-title">Trying to access widgets</h3>
+            <div id="desc16" class="latest-subtitle">
+              <div class="cat-dot color-Illdy" aria-hidden="true"></div>
+              Illdy
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies16" class="replies" aria-label="Replies count">0</span>
+            <span id="time16" class="time" aria-label="Posted June 17">Jun 17</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title17" aria-describedby="desc17 replies17 time17">
+          <div class="avatar-circle avatar-C" aria-label="User Initial C">C</div>
+          <div class="latest-content">
+            <h3 id="title17" class="latest-title">Parallax widget image not showing</h3>
+            <div id="desc17" class="latest-subtitle">
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies17" class="replies" aria-label="Replies count">2</span>
+            <span id="time17" class="time" aria-label="Posted June 16">Jun 16</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title18" aria-describedby="desc18 replies18 time18">
+          <div class="avatar-circle avatar-C" aria-label="User Initial C">C</div>
+          <div class="latest-content">
+            <h3 id="title18" class="latest-title">If the themes “Logis” included feedback</h3>
+            <div id="desc18" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies18" class="replies" aria-label="Replies count">0</span>
+            <span id="time18" class="time" aria-label="Posted June 13">Jun 13</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title19" aria-describedby="desc19 replies19 time19">
+          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
+            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7696a15c-e61b-4a49-a0c9-dbae5748d78d.png" alt="User avatar picture of a man with beard" onerror="this.style.display='none'" />
+          </div>
+          <div class="latest-content">
+            <h3 id="title19" class="latest-title">How to change the font on the site?</h3>
+            <div id="desc19" class="latest-subtitle">
+              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+              Shapely
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies19" class="replies" aria-label="Replies count">14</span>
+            <span id="time19" class="time" aria-label="Posted June 12">Jun 12</span>
+          </div>
+        </article>
+
+        <article class="latest-item" role="article" aria-labelledby="title20" aria-describedby="desc20 replies20 time20">
+          <div class="avatar-circle avatar-A" aria-label="User Initial A">A</div>
+          <div class="latest-content">
+            <h3 id="title20" class="latest-title">[Nitro Theme] - bug with adding and external link as menu element</h3>
+            <div id="desc20" class="latest-subtitle">
+              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+              Website Templates
+            </div>
+          </div>
+          <div class="latest-info">
+            <span id="replies20" class="replies" aria-label="Replies count">4</span>
+            <span id="time20" class="time" aria-label="Posted June 11">Jun 11</span>
+          </div>
+        </article>
+
+        <!-- More button -->
+        <button class="btn-more" type="button" aria-label="Load more discussions">More</button>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
+

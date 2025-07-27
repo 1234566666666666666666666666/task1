@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Colorlib</title>
+<style>
+  /* Reset and basic */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    color: #374151;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  a {
+    color: #2563eb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 20px 15px 50px 15px;
+  }
+
+  /* Header top links */
+  .topbar {
+    background-color: #2563eb;
+    color: white;
+    font-size: 13px;
+    padding: 9px 0;
+  }
+  .topbar .inner {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  .topbar a {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* Header with logo and nav */
+  header {
+    max-width: 1024px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 15px 15px 30px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    background-color: white;
+  }
+  header .logo {
+    font-weight: 700;
+    font-size: 20px;
+    color: #2563eb;
+    font-family: 'Arial Black', Arial, sans-serif;
+  }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 18px;
+  }
+  nav ul li a {
+    color: #374151;
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a.active {
+    background-color: #2563eb;
+    color: white;
+  }
+
+  /* Page title and breadcrumb */
+  .page-header {
+    max-width: 1024px;
+    margin: 36px auto 15px auto;
+    padding: 0 15px;
+  }
+  .page-header h1 {
+    margin: 0 0 7px 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  .breadcrumb {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+  .breadcrumb a {
+    color: #2563eb;
+    font-weight: 600;
+  }
+  .breadcrumb span {
+    margin: 0 5px;
+  }
+
+  /* Description text */
+  .description {
+    max-width: 1024px;
+    margin: 0 auto 40px auto;
+    padding: 0 15px;
+    color: #4b5563;
+    font-size: 14.3px;
+  }
+  .description p {
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+  }
+
+  /* Categories filter */
+  .categories-wrapper {
+    max-width: 1024px;
+    margin: 0 auto 40px auto;
+    padding: 0 15px;
+  }
+  .categories-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 8px;
+  }
+  .category-btn {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #6b7280;
+    background-color: white;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+  .category-btn.active,
+  .category-btn:hover {
+    border-color: #2563eb;
+    background-color: #2563eb;
+    color: white;
+  }
+  .category-btn:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+  /* Plus symbol button */
+  .category-plus-button {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #6b7280;
+    border-radius: 6px;
+    background-color: white;
+    color: #6b7280;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+  .category-plus-button:hover,
+  .category-plus-button:focus {
+    border-color: #2563eb;
+    background-color: #2563eb;
+    color: white;
+    outline: none;
+  }
+
+  /* Templates grid */
+  .templates {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 15px 30px 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+    gap: 20px 18px;
+  }
+  .template-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 2px rgb(0 0 0 / 0.05);
+  }
+  .template-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #f3f4f6;
+    overflow: hidden;
+  }
+  .template-thumb img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .template-body {
+    padding: 8px 11px 12px 11px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .template-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 7px 0;
+    min-height: 35px; /* To keep equal height for titles */
+  }
+  .template-btn {
+    background-color: #2563eb;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 6px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: background-color 0.2s ease;
+  }
+  .template-btn:hover,
+  .template-btn:focus {
+    background-color: #1d4ed8;
+    outline: none;
+  }
+
+  /* Footer links (last row with category tags) */
+  .footer-categories {
+    max-width: 1024px;
+    margin: 45px auto 70px auto;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .footer-categories p {
+    margin: 0 0 12px 0;
+  }
+  .footer-categories .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 8px;
+  }
+  .footer-categories .tag {
+    background-color: transparent;
+    border: 1px solid #6b7280;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: default;
+    user-select: none;
+    color: #6b7280;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      padding: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    nav ul {
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .templates {
+      grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+      gap: 15px 15px;
+    }
+    .category-btn {
+      font-size: 13px;
+      padding: 5px 8px;
+    }
+  }
+  @media (max-width: 480px) {
+    body {
+      font-size: 15px;
+    }
+    .page-header h1 {
+      font-size: 24px;
+    }
+    .template-title {
+      font-size: 13px;
+      min-height: 30px;
+    }
+    .template-btn {
+      font-size: 13px;
+      padding: 5px 12px;
+    }
+    .templates {
+      grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+      gap: 12px 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Topbar with important navigation -->
+<div class="topbar" role="navigation" aria-label="Top bar quick links">
+  <div class="inner">
+    <a href="#" tabindex="0">Download*</a>
+    <a href="#" tabindex="0">Bootstrap Themes</a>
+    <a href="#" tabindex="0">WordPress Themes</a>
+    <a href="#" tabindex="0">Templates</a>
+    <a href="#" tabindex="0">Freebies</a>
+  </div>
+</div>
+
+<!-- Header with logo and main navigation -->
+<header role="banner">
+  <div class="logo" aria-label="Website logo">colorlib</div>
+  <nav role="navigation" aria-label="Primary menu">
+    <ul>
+      <li><a href="#" class="active" aria-current="page" tabindex="0">Bootstrap</a></li>
+      <li><a href="#" tabindex="0">WordPress</a></li>
+      <li><a href="#" tabindex="0">Site templates</a></li>
+      <li><a href="#" tabindex="0">Landing pages</a></li>
+      <li><a href="#" tabindex="0">Administration</a></li>
+      <li><a href="#" tabindex="0">E-commerce</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Page Title and Breadcrumb -->
+<section class="page-header" aria-labelledby="page-title">
+  <h1 id="page-title">HTML & CSS Website Templates</h1>
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <a href="#" tabindex="0">Home</a>
+    <span>/</span>
+    <a href="#" tabindex="0">Templates</a>
+    <span>/</span>
+    <span aria-current="page" tabindex="0">HTML & CSS Website Templates</span>
+  </nav>
+</section>
+
+<!-- Description Text -->
+<section class="description">
+  <p>Here are the latest HTML and CSS website templates for all industries and business types.</p>
+  <p>All free to use, customize and download right away.</p>
+</section>
+
+<!-- Categories Filter -->
+<section class="categories-wrapper" aria-label="Categories filter">
+  <div class="categories-label">Categories:</div>
+  <div class="categories" role="list">
+    <button class="category-btn active" type="button" role="listitem" tabindex="0">All</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Real Estate</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Restaurant</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Hosting</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Creative</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Portfolio</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Business</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Photography</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Spa</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Landing Page</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Shop</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">App</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Church</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Fitness</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Medical</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Education</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Architecture</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Lawyer</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Hotel</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Construction</button>
+    <button class="category-btn" type="button" role="listitem" tabindex="0">Technology</button>
+    <!-- Plus sign button (no functionality) -->
+    <button class="category-plus-button" type="button" aria-label="More categories" tabindex="0">+</button>
+  </div>
+</section>
+
+<!-- Templates grid -->
+<section class="templates" aria-label="Website templates catalog">
+
+  <!-- Each template card -->
+  <article class="template-card" tabindex="0" aria-label="Template Austin">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1b8ab1a5-b517-40e5-88f1-94dddc1277e9.png" alt="Black and white grid collage of urban buildings and cityscapes for Austin template" onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b9266bcd-0b97-4ccb-bd75-17ba51a4363e.png';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Austin</h2>
+      <button class="template-btn" aria-label="More info about Austin template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template FlatNuke">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1e260243-f168-4bb8-97a6-5225ea998c36.png" alt="Overhead view of restaurant interior with illuminated counter and cozy seating FlatNuke template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">FlatNuke</h2>
+      <button class="template-btn" aria-label="More info about FlatNuke template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Ecom Art">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97c19deb-76ed-4a07-bfba-616975df5449.png" alt="Colorful e-commerce site homepage with artwork and smiling woman Ecom Art template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Ecom Art</h2>
+      <button class="template-btn" aria-label="More info about Ecom Art template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Docs">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8122430d-03ce-466f-b43d-f0615b690267.png" alt="Modern clean document-focused website homepage with blue accents Template Docs" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Docs</h2>
+      <button class="template-btn" aria-label="More info about Docs template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Noir">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b48fcbf7-704b-4e09-b0a1-f710e56373a0.png" alt="Black and white minimalist photography portfolio homepage featuring portraits Noir template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Noir</h2>
+      <button class="template-btn" aria-label="More info about Noir template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Real Estate">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9ee7e632-2d0d-4dbf-b989-361013d1bcf6.png" alt="Homepage for real estate website showing houses and properties Real Estate template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Real Estate</h2>
+      <button class="template-btn" aria-label="More info about Real Estate template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Lawyer">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/843d96ce-2deb-4cca-b003-df97e7d81ad2.png" alt="Clean professional lawyer website homepage with business portrait Lawyer template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Lawyer</h2>
+      <button class="template-btn" aria-label="More info about Lawyer template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Hotel">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/05dbb14f-e717-46f6-9cbc-cfb81351c75f.png" alt="Hotel website homepage showing pool and resort Hotel template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Hotel</h2>
+      <button class="template-btn" aria-label="More info about Hotel template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Corporate">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7bd95e52-c153-4b13-83bd-a2607da16c4e.png" alt="Modern business corporate website homepage with executive portraits Corporate template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Corporate</h2>
+      <button class="template-btn" aria-label="More info about Corporate template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Modern Portfolio">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9cfb3059-721e-4749-a061-c6e14e86b217.png" alt="Clean modern personal portfolio website homepage showcasing creative work Modern Portfolio template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Modern Portfolio</h2>
+      <button class="template-btn" aria-label="More info about Modern Portfolio template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Cafe">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f07a4263-0139-4842-89d2-f9c2ead214f2.png" alt="Cozy cafe homepage with coffee cups and rustic decor Cafe template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Cafe</h2>
+      <button class="template-btn" aria-label="More info about Cafe template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Spa">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/222fd0a2-9f2f-4ea9-919d-d2f5434a7c8b.png" alt="Relaxing spa website homepage featuring green plants and calm atmosphere Spa template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Spa</h2>
+      <button class="template-btn" aria-label="More info about Spa template" type="button">Details</button>
+    </div>
+  </article>
+
+  <article class="template-card" tabindex="0" aria-label="Template Event">
+    <div class="template-thumb" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5784b037-1e39-4211-9bb6-085177de350c.png" alt="Event promotion homepage with speaker and stage event template" onerror="this.onerror=null;this.src='https://placehold.co/360x270?text=Image+not+available';" />
+    </div>
+    <div class="template-body">
+      <h2 class="template-title">Event</h2>
+      <button class="template-btn" aria-label="More info about Event template" type="button">Details</button>
+    </div>
+  </article>
+
+</section>
+
+<!-- Footer categories tags section -->
+<section class="footer-categories" aria-label="Footer categories">
+  <p>Free Website Templates You Love</p>
+  <div class="tags" role="list">
+    <span class="tag" role="listitem">Bootstrap</span>
+    <span class="tag" role="listitem">HTML5</span>
+    <span class="tag" role="listitem">CSS3</span>
+    <span class="tag" role="listitem">Responsive</span>
+    <span class="tag" role="listitem">Business</span>
+    <span class="tag" role="listitem">Portfolio</span>
+    <span class="tag" role="listitem">E-commerce</span>
+    <span class="tag" role="listitem">Real Estate</span>
+    <span class="tag" role="listitem">Restaurant</span>
+    <span class="tag" role="listitem">Corporate</span>
+    <span class="tag" role="listitem">Landing Page</span>
+    <span class="tag" role="listitem">App</span>
+    <span class="tag" role="listitem">Spa</span>
+    <span class="tag" role="listitem">Medical</span>
+    <span class="tag" role="listitem">Lawyer</span>
+  </div>
+</section>
+
+</body>
+</html>
+
