@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Colorlib Forum</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Colorlib Forum</title>
+<style>
     /* Reset and base */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -541,536 +542,511 @@
       display: block;
     }
   </style>
-</head>
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .container, .content, .wrapper {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+        .nav, .menu, .columns {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .sidebar, .aside {
+            display: none;
+        }
+    }
+    </style></head>
 <body>
-  <!-- HEADER TOP BAR -->
-  <header role="banner" aria-label="Primary Navigation">
-    <nav aria-label="Main navigation links">
-      <a href="#" aria-current="page">Colorlib</a>
-      <a href="blog.html">Home</a>
-      <a href="freetheme.html">Free Themes</a>
-      <a href="premium.html">Premium Themes</a>
-      <a href="freewebsite.html">Website Templates</a>
-    </nav>
-    <div class="header-actions" role="group" aria-label="User options and search">
-      <button class="btn-signup" type="button" aria-label="Sign up">Sign Up</button>
-      <button class="btn-login" type="button" aria-label="Log in">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" >
-          <path d="M256 256c70.7 0 128-57.3 128-128S326.7 0 256 0 128 57.3 128 128s57.3 128 128 128zm0 32c-88 0-256 44-256 132v60h512v-60c0-88-168-132-256-132z"/>
-        </svg>
+<!-- HEADER TOP BAR -->
+<header aria-label="Primary Navigation" role="banner">
+<nav aria-label="Main navigation links">
+<a aria-current="page" href="#">Colorlib</a>
+<a href="blog.html">Home</a>
+<a href="freetheme.html">Free Themes</a>
+<a href="premium.html">Premium Themes</a>
+<a href="freewebsite.html">Website Templates</a>
+</nav>
+<div aria-label="User options and search" class="header-actions" role="group">
+<button aria-label="Sign up" class="btn-signup" type="button">Sign Up</button>
+<button aria-label="Log in" class="btn-login" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 512 512">
+<path d="M256 256c70.7 0 128-57.3 128-128S326.7 0 256 0 128 57.3 128 128s57.3 128 128 128zm0 32c-88 0-256 44-256 132v60h512v-60c0-88-168-132-256-132z"></path>
+</svg>
         Log In
       </button>
-      <svg class="search-icon" aria-hidden="true" focusable="false" viewBox="0 0 512 512" role="img" aria-label="Search icon">
-        <path d="M505 442.7L405.3 343a208 208 0 1 0-62.3 62.3L442.7 505a21.32 21.32 0 0 0 30.2-30.2zM208 368a160 160 0 1 1 0-320 160 160 0 0 1 0 320z" />
-      </svg>
-      <svg class="hamburger-icon" aria-hidden="true" focusable="false" viewBox="0 0 448 512" role="img" aria-label="Menu icon">
-        <path d="M16 132h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16H16C7.163 88 0 95.163 0 104v12c0 8.837 7.163 16 16 16zm416 104H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16zm0 140H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16z"/>
-      </svg>
-    </div>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main role="main" aria-label="Forum content">
-    <!-- Logo and below nav -->
-    <div class="top-bar">
-      <a href="#" class="logo" aria-label="Go to homepage">
+<svg aria-hidden="true" aria-label="Search icon" class="search-icon" focusable="false" role="img" viewbox="0 0 512 512">
+<path d="M505 442.7L405.3 343a208 208 0 1 0-62.3 62.3L442.7 505a21.32 21.32 0 0 0 30.2-30.2zM208 368a160 160 0 1 1 0-320 160 160 0 0 1 0 320z"></path>
+</svg>
+<svg aria-hidden="true" aria-label="Menu icon" class="hamburger-icon" focusable="false" role="img" viewbox="0 0 448 512">
+<path d="M16 132h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16H16C7.163 88 0 95.163 0 104v12c0 8.837 7.163 16 16 16zm416 104H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16zm0 140H16c-8.837 0-16 7.163-16 16v12c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-12c0-8.837-7.163-16-16-16z"></path>
+</svg>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main aria-label="Forum content" role="main">
+<!-- Logo and below nav -->
+<div class="top-bar">
+<a aria-label="Go to homepage" class="logo" href="#">
         colorlib<span class="dot">.</span>
-      </a>
-      <nav class="secondary-nav" aria-label="Forum section navigation">
-        <a href="#">categories</a>
-        <a href="#" aria-current="page">Categories</a>
-        <a href="#">Latest</a>
-      </nav>
-    </div>
-
-    <div class="content-wrapper">
-      <!-- Left categories panel -->
-      <section class="categories-panel" aria-label="Forum categories">
-        <div class="categories-tabs" role="tablist" aria-orientation="horizontal">
-          <button role="tab" aria-selected="false" aria-controls="categories" id="tab-categories" class="tab" tabindex="-1">categories <span class="arrow-down" aria-hidden="true"></span></button>
-          <button role="tab" aria-selected="true" aria-controls="categories-list" id="tab-categories-list" class="tab">Categories</button>
-          <button role="tab" aria-selected="false" aria-controls="latest-list" id="tab-latest" class="tab" tabindex="-1">Latest</button>
-        </div>
-        <div id="categories-list" role="tabpanel" aria-labelledby="tab-categories-list" tabindex="0">
-
-          <div class="category-list" role="list" aria-label="List of forum categories">
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Activello" aria-hidden="true"></div>
-                <strong>Activello</strong>
-              </div>
-              <div class="topics-count">3.1k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Blaskan" aria-hidden="true"></div>
-                <strong>Blaskan</strong>
-              </div>
-              <div class="topics-count">90</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Blesk" aria-hidden="true"></div>
-                <strong>Blesk</strong>
-              </div>
-              <div class="topics-count">8</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Bonkers" aria-hidden="true"></div>
-                <strong>Bonkers</strong>
-              </div>
-              <div class="topics-count">0</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Dazzling" aria-hidden="true"></div>
-                <strong>Dazzling</strong>
-              </div>
-              <div class="topics-count">1.4k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Illdy" aria-hidden="true"></div>
-                <strong>Illdy</strong>
-              </div>
-              <div class="topics-count">4.0k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-NewspaperX" aria-hidden="true"></div>
-                <strong>Newspaper X</strong>
-              </div>
-              <div class="topics-count">484</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Shapely" aria-hidden="true"></div>
-                <strong>Shapely</strong>
-              </div>
-              <div class="topics-count">5.5k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Sparkling" aria-hidden="true"></div>
-                <strong>Sparkling</strong>
-              </div>
-              <div class="topics-count">3.4k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Travelify" aria-hidden="true"></div>
-                <strong>Travelify</strong>
-              </div>
-              <div class="topics-count">2.0k</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-UniteTheme" aria-hidden="true"></div>
-                <strong>Unite Theme</strong>
-              </div>
-              <div class="topics-count">727</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-PixovaLite" aria-hidden="true"></div>
-                <strong>Pixova Lite</strong>
-              </div>
-              <div class="topics-count">153</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Pinbin" aria-hidden="true"></div>
-                <strong>Pinbin</strong>
-              </div>
-              <div class="topics-count">166</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Portum" aria-hidden="true"></div>
-                <strong>Portum</strong>
-              </div>
-              <div class="topics-count">111</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Tyche" aria-hidden="true"></div>
-                <strong>Tyche</strong>
-              </div>
-              <div class="topics-count">455</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-Other" aria-hidden="true"></div>
-                <strong>Other</strong>
-              </div>
-              <div class="topics-count">638</div>
-            </div>
-
-            <div role="listitem" class="category-row">
-              <div class="category-name">
-                <div class="color-box color-WebsiteTemplates" aria-hidden="true"></div>
-                <strong>Website Templates</strong>
-              </div>
-              <div class="topics-count">920</div>
-            </div>
-
-            <div role="listitem" class="category-row with-subtext" aria-label="Category Site Feedback with description">
-              <div class="category-name" style="margin-bottom: 3px;">
-                <div class="color-box color-SiteFeedback" aria-hidden="true"></div>
-                <strong>Site Feedback</strong>
-              </div>
-              <div class="topics-count">39</div>
-              <div class="category-subtext">Discussion about this site, its organization, how it works, and how we can improve it.</div>
-            </div>
-
-            <div role="listitem" class="category-row with-subtext" aria-label="Category Uncategorized with description">
-              <div class="category-name" style="margin-bottom: 3px;">
-                <div class="color-box color-Uncategorized" aria-hidden="true"></div>
-                <strong>Uncategorized</strong>
-              </div>
-              <div class="topics-count">573</div>
-              <div class="category-subtext">Topics that don't need a category, or don't fit into any other existing category.</div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Right latest discussions panel -->
-      <section class="latest-panel" aria-label="Latest discussions" tabindex="0">
-        <!-- Each latest-item: using visually matching colors and layout -->
-        <article class="latest-item" role="article" aria-labelledby="title1" aria-describedby="desc1 replies1 time1">
-          <div class="avatar-circle avatar-S" aria-label="User Initial S">S</div>
-          <div class="latest-content">
-            <h3 id="title1" class="latest-title">Download issue, Can not see download button</h3>
-            <div id="desc1" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</a>
+<nav aria-label="Forum section navigation" class="secondary-nav">
+<a href="#">categories</a>
+<a aria-current="page" href="#">Categories</a>
+<a href="#">Latest</a>
+</nav>
+</div>
+<div class="content-wrapper">
+<!-- Left categories panel -->
+<section aria-label="Forum categories" class="categories-panel">
+<div aria-orientation="horizontal" class="categories-tabs" role="tablist">
+<button aria-controls="categories" aria-selected="false" class="tab" id="tab-categories" role="tab" tabindex="-1">categories <span aria-hidden="true" class="arrow-down"></span></button>
+<button aria-controls="categories-list" aria-selected="true" class="tab" id="tab-categories-list" role="tab">Categories</button>
+<button aria-controls="latest-list" aria-selected="false" class="tab" id="tab-latest" role="tab" tabindex="-1">Latest</button>
+</div>
+<div aria-labelledby="tab-categories-list" id="categories-list" role="tabpanel" tabindex="0">
+<div aria-label="List of forum categories" class="category-list" role="list">
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Activello"></div>
+<strong>Activello</strong>
+</div>
+<div class="topics-count">3.1k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Blaskan"></div>
+<strong>Blaskan</strong>
+</div>
+<div class="topics-count">90</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Blesk"></div>
+<strong>Blesk</strong>
+</div>
+<div class="topics-count">8</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Bonkers"></div>
+<strong>Bonkers</strong>
+</div>
+<div class="topics-count">0</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Dazzling"></div>
+<strong>Dazzling</strong>
+</div>
+<div class="topics-count">1.4k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Illdy"></div>
+<strong>Illdy</strong>
+</div>
+<div class="topics-count">4.0k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-NewspaperX"></div>
+<strong>Newspaper X</strong>
+</div>
+<div class="topics-count">484</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Shapely"></div>
+<strong>Shapely</strong>
+</div>
+<div class="topics-count">5.5k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Sparkling"></div>
+<strong>Sparkling</strong>
+</div>
+<div class="topics-count">3.4k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Travelify"></div>
+<strong>Travelify</strong>
+</div>
+<div class="topics-count">2.0k</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-UniteTheme"></div>
+<strong>Unite Theme</strong>
+</div>
+<div class="topics-count">727</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-PixovaLite"></div>
+<strong>Pixova Lite</strong>
+</div>
+<div class="topics-count">153</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Pinbin"></div>
+<strong>Pinbin</strong>
+</div>
+<div class="topics-count">166</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Portum"></div>
+<strong>Portum</strong>
+</div>
+<div class="topics-count">111</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Tyche"></div>
+<strong>Tyche</strong>
+</div>
+<div class="topics-count">455</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-Other"></div>
+<strong>Other</strong>
+</div>
+<div class="topics-count">638</div>
+</div>
+<div class="category-row" role="listitem">
+<div class="category-name">
+<div aria-hidden="true" class="color-box color-WebsiteTemplates"></div>
+<strong>Website Templates</strong>
+</div>
+<div class="topics-count">920</div>
+</div>
+<div aria-label="Category Site Feedback with description" class="category-row with-subtext" role="listitem">
+<div class="category-name" style="margin-bottom: 3px;">
+<div aria-hidden="true" class="color-box color-SiteFeedback"></div>
+<strong>Site Feedback</strong>
+</div>
+<div class="topics-count">39</div>
+<div class="category-subtext">Discussion about this site, its organization, how it works, and how we can improve it.</div>
+</div>
+<div aria-label="Category Uncategorized with description" class="category-row with-subtext" role="listitem">
+<div class="category-name" style="margin-bottom: 3px;">
+<div aria-hidden="true" class="color-box color-Uncategorized"></div>
+<strong>Uncategorized</strong>
+</div>
+<div class="topics-count">573</div>
+<div class="category-subtext">Topics that don't need a category, or don't fit into any other existing category.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right latest discussions panel -->
+<section aria-label="Latest discussions" class="latest-panel" tabindex="0">
+<!-- Each latest-item: using visually matching colors and layout -->
+<article aria-describedby="desc1 replies1 time1" aria-labelledby="title1" class="latest-item" role="article">
+<div aria-label="User Initial S" class="avatar-circle avatar-S">S</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title1">Download issue, Can not see download button</h3>
+<div class="latest-subtitle" id="desc1">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies1" class="replies" aria-label="Replies count">0</span>
-            <span id="time1" class="time" aria-label="Posted 5 hours ago">5h</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title2" aria-describedby="desc2 replies2 time2">
-          <div class="avatar-circle avatar-H" aria-label="User Initial H">H</div>
-          <div class="latest-content">
-            <h3 id="title2" class="latest-title">Template has no Mobile Navigation</h3>
-            <div id="desc2" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies1">0</span>
+<span aria-label="Posted 5 hours ago" class="time" id="time1">5h</span>
+</div>
+</article>
+<article aria-describedby="desc2 replies2 time2" aria-labelledby="title2" class="latest-item" role="article">
+<div aria-label="User Initial H" class="avatar-circle avatar-H">H</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title2">Template has no Mobile Navigation</h3>
+<div class="latest-subtitle" id="desc2">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies2" class="replies" aria-label="Replies count">0</span>
-            <span id="time2" class="time" aria-label="Posted 21 hours ago">21h</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title3" aria-describedby="desc3 replies3 time3">
-          <div class="avatar-circle avatar-J" aria-label="User Initial J">J</div>
-          <div class="latest-content">
-            <h3 id="title3" class="latest-title">Style.css is missing for remedic theme</h3>
-            <div id="desc3" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies2">0</span>
+<span aria-label="Posted 21 hours ago" class="time" id="time2">21h</span>
+</div>
+</article>
+<article aria-describedby="desc3 replies3 time3" aria-labelledby="title3" class="latest-item" role="article">
+<div aria-label="User Initial J" class="avatar-circle avatar-J">J</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title3">Style.css is missing for remedic theme</h3>
+<div class="latest-subtitle" id="desc3">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies3" class="replies" aria-label="Replies count">0</span>
-            <span id="time3" class="time" aria-label="Posted 1 day ago">1d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title4" aria-describedby="desc4 replies4 time4">
-          <div class="avatar-circle avatar-M" aria-label="User Initial M">M</div>
-          <div class="latest-content">
-            <h3 id="title4" class="latest-title">Unable to download demo content in Tyche</h3>
-            <div id="desc4" class="latest-subtitle">
-              <div class="cat-dot color-Tyche" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies3">0</span>
+<span aria-label="Posted 1 day ago" class="time" id="time3">1d</span>
+</div>
+</article>
+<article aria-describedby="desc4 replies4 time4" aria-labelledby="title4" class="latest-item" role="article">
+<div aria-label="User Initial M" class="avatar-circle avatar-M">M</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title4">Unable to download demo content in Tyche</h3>
+<div class="latest-subtitle" id="desc4">
+<div aria-hidden="true" class="cat-dot color-Tyche"></div>
               Tyche
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies4" class="replies" aria-label="Replies count">3</span>
-            <span id="time4" class="time" aria-label="Posted 8 days ago">8d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title5" aria-describedby="desc5 replies5 time5">
-          <div class="avatar-circle avatar-H" aria-label="User Initial H">H</div>
-          <div class="latest-content">
-            <h3 id="title5" class="latest-title">Install downloaded theme sample data</h3>
-            <div id="desc5" class="latest-subtitle">
-              <div class="cat-dot color-NewspaperX" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies4">3</span>
+<span aria-label="Posted 8 days ago" class="time" id="time4">8d</span>
+</div>
+</article>
+<article aria-describedby="desc5 replies5 time5" aria-labelledby="title5" class="latest-item" role="article">
+<div aria-label="User Initial H" class="avatar-circle avatar-H">H</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title5">Install downloaded theme sample data</h3>
+<div class="latest-subtitle" id="desc5">
+<div aria-hidden="true" class="cat-dot color-NewspaperX"></div>
               Newspaper X
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies5" class="replies" aria-label="Replies count">0</span>
-            <span id="time5" class="time" aria-label="Posted 9 days ago">9d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title6" aria-describedby="desc6 replies6 time6">
-          <div class="avatar-circle avatar-N" aria-label="User Initial N">N</div>
-          <div class="latest-content">
-            <h3 id="title6" class="latest-title">Mobile menu broken</h3>
-            <div id="desc6" class="latest-subtitle">
-              <div class="cat-dot color-Dazzling" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies5">0</span>
+<span aria-label="Posted 9 days ago" class="time" id="time5">9d</span>
+</div>
+</article>
+<article aria-describedby="desc6 replies6 time6" aria-labelledby="title6" class="latest-item" role="article">
+<div aria-label="User Initial N" class="avatar-circle avatar-N">N</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title6">Mobile menu broken</h3>
+<div class="latest-subtitle" id="desc6">
+<div aria-hidden="true" class="cat-dot color-Dazzling"></div>
               Dazzling
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies6" class="replies" aria-label="Replies count">7</span>
-            <span id="time6" class="time" aria-label="Posted 17 days ago">17d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title7" aria-describedby="desc7 replies7 time7">
-          <div class="avatar-circle avatar-E" aria-label="User Initial E">E</div>
-          <div class="latest-content">
-            <h3 id="title7" class="latest-title">Cannot upload Hostza to WordPress</h3>
-            <div id="desc7" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies6">7</span>
+<span aria-label="Posted 17 days ago" class="time" id="time6">17d</span>
+</div>
+</article>
+<article aria-describedby="desc7 replies7 time7" aria-labelledby="title7" class="latest-item" role="article">
+<div aria-label="User Initial E" class="avatar-circle avatar-E">E</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title7">Cannot upload Hostza to WordPress</h3>
+<div class="latest-subtitle" id="desc7">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies7" class="replies" aria-label="Replies count">0</span>
-            <span id="time7" class="time" aria-label="Posted 20 days ago">20d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title8" aria-describedby="desc8 replies8 time8">
-          <div class="avatar-circle avatar-S" aria-label="User Initial S">S</div>
-          <div class="latest-content">
-            <h3 id="title8" class="latest-title">Edit the colours of the Jetpack blog subscriptions widget</h3>
-            <div id="desc8" class="latest-subtitle">
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies7">0</span>
+<span aria-label="Posted 20 days ago" class="time" id="time7">20d</span>
+</div>
+</article>
+<article aria-describedby="desc8 replies8 time8" aria-labelledby="title8" class="latest-item" role="article">
+<div aria-label="User Initial S" class="avatar-circle avatar-S">S</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title8">Edit the colours of the Jetpack blog subscriptions widget</h3>
+<div class="latest-subtitle" id="desc8">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies8" class="replies" aria-label="Replies count">10</span>
-            <span id="time8" class="time" aria-label="Posted 21 days ago">21d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title9" aria-describedby="desc9 replies9 time9">
-          <div class="avatar-circle avatar-S2" aria-label="User Initial S">S</div>
-          <div class="latest-content">
-            <h3 id="title9" class="latest-title">PHP 7.4 et + avec Illdy - v2.1.10</h3>
-            <div id="desc9" class="latest-subtitle">
-              <div class="cat-dot color-Illdy" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies8">10</span>
+<span aria-label="Posted 21 days ago" class="time" id="time8">21d</span>
+</div>
+</article>
+<article aria-describedby="desc9 replies9 time9" aria-labelledby="title9" class="latest-item" role="article">
+<div aria-label="User Initial S" class="avatar-circle avatar-S2">S</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title9">PHP 7.4 et + avec Illdy - v2.1.10</h3>
+<div class="latest-subtitle" id="desc9">
+<div aria-hidden="true" class="cat-dot color-Illdy"></div>
               Illdy
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies9" class="replies" aria-label="Replies count">0</span>
-            <span id="time9" class="time" aria-label="Posted 23 days ago">23d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title10" aria-describedby="desc10 replies10 time10">
-          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
-            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0433371c-8a6c-4bfb-9e26-a910a4d5e3a3.png" alt="User avatar picture of a woman in a red shawl" onerror="this.style.display='none'" />
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies9">0</span>
+<span aria-label="Posted 23 days ago" class="time" id="time9">23d</span>
+</div>
+</article>
+<article aria-describedby="desc10 replies10 time10" aria-labelledby="title10" class="latest-item" role="article">
+<div aria-label="User with avatar image" class="avatar-circle avatar-S">
+<img alt="User avatar picture of a woman in a red shawl" class="avatar-image" onerror="this.style.display='none'" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0433371c-8a6c-4bfb-9e26-a910a4d5e3a3.png"/>
             S
           </div>
-          <div class="latest-content">
-            <h3 id="title10" class="latest-title">Can’t edit homepage - help!</h3>
-            <div id="desc10" class="latest-subtitle" >
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+<div class="latest-content">
+<h3 class="latest-title" id="title10">Can’t edit homepage - help!</h3>
+<div class="latest-subtitle" id="desc10">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies10" class="replies" aria-label="Replies count">2</span>
-            <span id="time10" class="time" aria-label="Posted 26 days ago">26d</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title11" aria-describedby="desc11 replies11 time11">
-          <div class="avatar-circle avatar-G" aria-label="User Initial G">G</div>
-          <div class="latest-content">
-            <h3 id="title11" class="latest-title">Simple Custom Post Order Version 2.5.11 Does not Sort</h3>
-            <div id="desc11" class="latest-subtitle">
-              <div class="cat-dot color-Other" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies10">2</span>
+<span aria-label="Posted 26 days ago" class="time" id="time10">26d</span>
+</div>
+</article>
+<article aria-describedby="desc11 replies11 time11" aria-labelledby="title11" class="latest-item" role="article">
+<div aria-label="User Initial G" class="avatar-circle avatar-G">G</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title11">Simple Custom Post Order Version 2.5.11 Does not Sort</h3>
+<div class="latest-subtitle" id="desc11">
+<div aria-hidden="true" class="cat-dot color-Other"></div>
               Other
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies11" class="replies" aria-label="Replies count">0</span>
-            <span id="time11" class="time" aria-label="Posted June 25">Jun 25</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title12" aria-describedby="desc12 replies12 time12">
-          <div class="avatar-circle avatar-E" aria-label="User Initial E">S</div>
-          <div class="latest-content">
-            <h3 id="title12" class="latest-title">Template updates</h3>
-            <div id="desc12" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies11">0</span>
+<span aria-label="Posted June 25" class="time" id="time11">Jun 25</span>
+</div>
+</article>
+<article aria-describedby="desc12 replies12 time12" aria-labelledby="title12" class="latest-item" role="article">
+<div aria-label="User Initial E" class="avatar-circle avatar-E">S</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title12">Template updates</h3>
+<div class="latest-subtitle" id="desc12">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies12" class="replies" aria-label="Replies count">0</span>
-            <span id="time12" class="time" aria-label="Posted June 25">Jun 25</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title13" aria-describedby="desc13 replies13 time13">
-          <div class="avatar-circle avatar-S2" aria-label="User with avatar image">
-            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4a6f3d3f-03b4-4da4-82f7-7ae5c045c672.png" alt="User avatar picture of a man with beard" onerror="this.style.display='none'" />
-          </div>
-          <div class="latest-content">
-            <h3 id="title13" class="latest-title">Couldn’t import demo content</h3>
-            <div id="desc13" class="latest-subtitle">
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies12">0</span>
+<span aria-label="Posted June 25" class="time" id="time12">Jun 25</span>
+</div>
+</article>
+<article aria-describedby="desc13 replies13 time13" aria-labelledby="title13" class="latest-item" role="article">
+<div aria-label="User with avatar image" class="avatar-circle avatar-S2">
+<img alt="User avatar picture of a man with beard" class="avatar-image" onerror="this.style.display='none'" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4a6f3d3f-03b4-4da4-82f7-7ae5c045c672.png"/>
+</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title13">Couldn’t import demo content</h3>
+<div class="latest-subtitle" id="desc13">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies13" class="replies" aria-label="Replies count">14</span>
-            <span id="time13" class="time" aria-label="Posted June 24">Jun 24</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title14" aria-describedby="desc14 replies14 time14">
-          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
-            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/637ec6e3-c28a-4d08-8a44-7ea16123ed2d.png" alt="User avatar picture of a woman in a red shawl" onerror="this.style.display='none'" />
-          </div>
-          <div class="latest-content">
-            <h3 id="title14" class="latest-title">I can’t seem to figure out how to edit my homepage</h3>
-            <div id="desc14" class="latest-subtitle">
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies13">14</span>
+<span aria-label="Posted June 24" class="time" id="time13">Jun 24</span>
+</div>
+</article>
+<article aria-describedby="desc14 replies14 time14" aria-labelledby="title14" class="latest-item" role="article">
+<div aria-label="User with avatar image" class="avatar-circle avatar-S">
+<img alt="User avatar picture of a woman in a red shawl" class="avatar-image" onerror="this.style.display='none'" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/637ec6e3-c28a-4d08-8a44-7ea16123ed2d.png"/>
+</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title14">I can’t seem to figure out how to edit my homepage</h3>
+<div class="latest-subtitle" id="desc14">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies14" class="replies" aria-label="Replies count">11</span>
-            <span id="time14" class="time" aria-label="Posted June 24">Jun 24</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title15" aria-describedby="desc15 replies15 time15">
-          <div class="avatar-circle avatar-R" aria-label="User Initial R">R</div>
-          <div class="latest-content">
-            <h3 id="title15" class="latest-title">Colorlib Contact form not working</h3>
-            <div id="desc15" class="latest-subtitle">
-              <div class="cat-dot color-Other" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies14">11</span>
+<span aria-label="Posted June 24" class="time" id="time14">Jun 24</span>
+</div>
+</article>
+<article aria-describedby="desc15 replies15 time15" aria-labelledby="title15" class="latest-item" role="article">
+<div aria-label="User Initial R" class="avatar-circle avatar-R">R</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title15">Colorlib Contact form not working</h3>
+<div class="latest-subtitle" id="desc15">
+<div aria-hidden="true" class="cat-dot color-Other"></div>
               Other
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies15" class="replies" aria-label="Replies count">4</span>
-            <span id="time15" class="time" aria-label="Posted June 19">Jun 19</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title16" aria-describedby="desc16 replies16 time16">
-          <div class="avatar-circle avatar-Illdy" aria-label="User avatar illustration">
-            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ebe3b2c-272f-48df-b25a-56c27b3fa094.png" alt="Sad face avatar illustration" onerror="this.style.display='none'" />
-          </div>
-          <div class="latest-content">
-            <h3 id="title16" class="latest-title">Trying to access widgets</h3>
-            <div id="desc16" class="latest-subtitle">
-              <div class="cat-dot color-Illdy" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies15">4</span>
+<span aria-label="Posted June 19" class="time" id="time15">Jun 19</span>
+</div>
+</article>
+<article aria-describedby="desc16 replies16 time16" aria-labelledby="title16" class="latest-item" role="article">
+<div aria-label="User avatar illustration" class="avatar-circle avatar-Illdy">
+<img alt="Sad face avatar illustration" class="avatar-image" onerror="this.style.display='none'" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ebe3b2c-272f-48df-b25a-56c27b3fa094.png"/>
+</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title16">Trying to access widgets</h3>
+<div class="latest-subtitle" id="desc16">
+<div aria-hidden="true" class="cat-dot color-Illdy"></div>
               Illdy
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies16" class="replies" aria-label="Replies count">0</span>
-            <span id="time16" class="time" aria-label="Posted June 17">Jun 17</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title17" aria-describedby="desc17 replies17 time17">
-          <div class="avatar-circle avatar-C" aria-label="User Initial C">C</div>
-          <div class="latest-content">
-            <h3 id="title17" class="latest-title">Parallax widget image not showing</h3>
-            <div id="desc17" class="latest-subtitle">
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies16">0</span>
+<span aria-label="Posted June 17" class="time" id="time16">Jun 17</span>
+</div>
+</article>
+<article aria-describedby="desc17 replies17 time17" aria-labelledby="title17" class="latest-item" role="article">
+<div aria-label="User Initial C" class="avatar-circle avatar-C">C</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title17">Parallax widget image not showing</h3>
+<div class="latest-subtitle" id="desc17">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies17" class="replies" aria-label="Replies count">2</span>
-            <span id="time17" class="time" aria-label="Posted June 16">Jun 16</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title18" aria-describedby="desc18 replies18 time18">
-          <div class="avatar-circle avatar-C" aria-label="User Initial C">C</div>
-          <div class="latest-content">
-            <h3 id="title18" class="latest-title">If the themes “Logis” included feedback</h3>
-            <div id="desc18" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies17">2</span>
+<span aria-label="Posted June 16" class="time" id="time17">Jun 16</span>
+</div>
+</article>
+<article aria-describedby="desc18 replies18 time18" aria-labelledby="title18" class="latest-item" role="article">
+<div aria-label="User Initial C" class="avatar-circle avatar-C">C</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title18">If the themes “Logis” included feedback</h3>
+<div class="latest-subtitle" id="desc18">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies18" class="replies" aria-label="Replies count">0</span>
-            <span id="time18" class="time" aria-label="Posted June 13">Jun 13</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title19" aria-describedby="desc19 replies19 time19">
-          <div class="avatar-circle avatar-S" aria-label="User with avatar image">
-            <img class="avatar-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7696a15c-e61b-4a49-a0c9-dbae5748d78d.png" alt="User avatar picture of a man with beard" onerror="this.style.display='none'" />
-          </div>
-          <div class="latest-content">
-            <h3 id="title19" class="latest-title">How to change the font on the site?</h3>
-            <div id="desc19" class="latest-subtitle">
-              <div class="cat-dot color-Shapely" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies18">0</span>
+<span aria-label="Posted June 13" class="time" id="time18">Jun 13</span>
+</div>
+</article>
+<article aria-describedby="desc19 replies19 time19" aria-labelledby="title19" class="latest-item" role="article">
+<div aria-label="User with avatar image" class="avatar-circle avatar-S">
+<img alt="User avatar picture of a man with beard" class="avatar-image" onerror="this.style.display='none'" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7696a15c-e61b-4a49-a0c9-dbae5748d78d.png"/>
+</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title19">How to change the font on the site?</h3>
+<div class="latest-subtitle" id="desc19">
+<div aria-hidden="true" class="cat-dot color-Shapely"></div>
               Shapely
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies19" class="replies" aria-label="Replies count">14</span>
-            <span id="time19" class="time" aria-label="Posted June 12">Jun 12</span>
-          </div>
-        </article>
-
-        <article class="latest-item" role="article" aria-labelledby="title20" aria-describedby="desc20 replies20 time20">
-          <div class="avatar-circle avatar-A" aria-label="User Initial A">A</div>
-          <div class="latest-content">
-            <h3 id="title20" class="latest-title">[Nitro Theme] - bug with adding and external link as menu element</h3>
-            <div id="desc20" class="latest-subtitle">
-              <div class="cat-dot color-WebsiteTemplates" aria-hidden="true"></div>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies19">14</span>
+<span aria-label="Posted June 12" class="time" id="time19">Jun 12</span>
+</div>
+</article>
+<article aria-describedby="desc20 replies20 time20" aria-labelledby="title20" class="latest-item" role="article">
+<div aria-label="User Initial A" class="avatar-circle avatar-A">A</div>
+<div class="latest-content">
+<h3 class="latest-title" id="title20">[Nitro Theme] - bug with adding and external link as menu element</h3>
+<div class="latest-subtitle" id="desc20">
+<div aria-hidden="true" class="cat-dot color-WebsiteTemplates"></div>
               Website Templates
             </div>
-          </div>
-          <div class="latest-info">
-            <span id="replies20" class="replies" aria-label="Replies count">4</span>
-            <span id="time20" class="time" aria-label="Posted June 11">Jun 11</span>
-          </div>
-        </article>
-
-        <!-- More button -->
-        <button class="btn-more" type="button" aria-label="Load more discussions">More</button>
-      </section>
-    </div>
-  </main>
+</div>
+<div class="latest-info">
+<span aria-label="Replies count" class="replies" id="replies20">4</span>
+<span aria-label="Posted June 11" class="time" id="time20">Jun 11</span>
+</div>
+</article>
+<!-- More button -->
+<button aria-label="Load more discussions" class="btn-more" type="button">More</button>
+</section>
+</div>
+</main>
 </body>
 </html>
-
