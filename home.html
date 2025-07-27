@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coldbird Blog</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Coldbird Blog</title>
+<style>
     /* Reset and base */
     *, *::before, *::after {
       box-sizing: border-box;
@@ -461,200 +461,196 @@
       }
     }
   </style>
-</head>
-
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .container, .content, .wrapper {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+        .nav, .menu, .columns {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .sidebar, .aside {
+            display: none;
+        }
+    }
+    </style></head>
 <body>
-  <!-- Top blue bar with a few links -->
-  <div class="topbar" role="banner" aria-label="Top announcement bar">
+<!-- Top blue bar with a few links -->
+<div aria-label="Top announcement bar" class="topbar" role="banner">
     Learn more about Coldbird on
-    <a href="#" tabindex="0" aria-label="Twitter link">Twitter</a> or
-    <a href="#" tabindex="0" aria-label="Facebook link">Facebook</a>. Have questions? Go to our
-    <a href="#" tabindex="0" aria-label="Support link">support center</a>.
+    <a aria-label="Twitter link" href="#" tabindex="0">Twitter</a> or
+    <a aria-label="Facebook link" href="#" tabindex="0">Facebook</a>. Have questions? Go to our
+    <a aria-label="Support link" href="#" tabindex="0">support center</a>.
   </div>
-
-  <!-- Main header with logo and navigation -->
-  <header role="banner" aria-label="Site header">
-    <div class="header-inner container">
-      <a href="#" class="logo" aria-label="Coldbird homepage">coldbird</a>
-      <nav role="navigation" aria-label="Primary navigation">
-        <a href="#" class="active" aria-current="page" tabindex="0">Home</a>
-        <a href="#" tabindex="0">Copper</a>
-        <a href="#" tabindex="0">Past</a>
-        <a href="#" tabindex="0">Ethereum</a>
-        <a href="#" tabindex="0">News</a>
-        <a href="#" tabindex="0">About</a>
-        <a href="#" tabindex="0">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main page content with blog articles and sidebar -->
-  <main role="main" class="container">
-    <!-- Blog articles list -->
-    <section class="blog-list" aria-label="Blog articles">
-      <!-- Single blog item template, repeated for each post -->
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77b23dac-1c53-4275-9c85-82e4b3a734e4.png"
-            alt="Red computer on blue and purple gradient background showing a website" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Red computer on a blue and purple gradient background showing a website'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>How to create a card menu website</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>July 2023</span>•
+<!-- Main header with logo and navigation -->
+<header aria-label="Site header" role="banner">
+<div class="header-inner container">
+<a aria-label="Coldbird homepage" class="logo" href="#">coldbird</a>
+<nav aria-label="Primary navigation" role="navigation">
+<a aria-current="page" class="active" href="#" tabindex="0">Home</a>
+<a href="#" tabindex="0">Copper</a>
+<a href="#" tabindex="0">Past</a>
+<a href="#" tabindex="0">Ethereum</a>
+<a href="#" tabindex="0">News</a>
+<a href="#" tabindex="0">About</a>
+<a href="#" tabindex="0">Contact</a>
+</nav>
+</div>
+</header>
+<!-- Main page content with blog articles and sidebar -->
+<main class="container" role="main">
+<!-- Blog articles list -->
+<section aria-label="Blog articles" class="blog-list">
+<!-- Single blog item template, repeated for each post -->
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="Red computer on blue and purple gradient background showing a website" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Red computer on a blue and purple gradient background showing a website'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77b23dac-1c53-4275-9c85-82e4b3a734e4.png"/>
+</div>
+<div class="blog-content">
+<h2>How to create a card menu website</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>July 2023</span>•
             <span>By Daniel</span>•
             <span> UI</span>
-          </div>
-          <p class="blog-excerpt">See how to build a minimalistic card menu for your website using HTML & CSS. Simple, clean, and easy to customize for any project.</p>
-          <button class="btn-readmore" aria-label="Read more about How to create a card menu website">Read more</button>
-        </div>
-      </article>
-
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5cb1bc20-4f1e-42b9-848a-7c5768a107f4.png" alt="E-mail verification notification UI in purple and white"
-            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: E-mail verification notification UI in purple and white'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>UI for new sign-in with email confirmation</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>Aug 2023</span>•
+</div>
+<p class="blog-excerpt">See how to build a minimalistic card menu for your website using HTML &amp; CSS. Simple, clean, and easy to customize for any project.</p>
+<button aria-label="Read more about How to create a card menu website" class="btn-readmore">Read more</button>
+</div>
+</article>
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="E-mail verification notification UI in purple and white" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: E-mail verification notification UI in purple and white'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5cb1bc20-4f1e-42b9-848a-7c5768a107f4.png"/>
+</div>
+<div class="blog-content">
+<h2>UI for new sign-in with email confirmation</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>Aug 2023</span>•
             <span>By Daniel</span>•
             <span>UI</span>
-          </div>
-          <p class="blog-excerpt">Nice and simple email confirmation user interface with a prompt message and confirm buttons to enhance user experience.</p>
-          <button class="btn-readmore" aria-label="Read more about UI for new sign-in with email confirmation">Read more</button>
-        </div>
-      </article>
-
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3c3fddcd-0d28-42ad-93e4-d2fb5b6a5445.png" alt="Photographer focusing a camera in warm natural light"
-            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Photographer focusing a camera in warm natural light'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>About photography and art</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>June 2023</span>•
+</div>
+<p class="blog-excerpt">Nice and simple email confirmation user interface with a prompt message and confirm buttons to enhance user experience.</p>
+<button aria-label="Read more about UI for new sign-in with email confirmation" class="btn-readmore">Read more</button>
+</div>
+</article>
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="Photographer focusing a camera in warm natural light" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Photographer focusing a camera in warm natural light'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3c3fddcd-0d28-42ad-93e4-d2fb5b6a5445.png"/>
+</div>
+<div class="blog-content">
+<h2>About photography and art</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>June 2023</span>•
             <span>By Daniel</span>•
             <span> Inspiration</span>
-          </div>
-          <p class="blog-excerpt">Photography is a way to capture moments and express emotions, it shows beauty in everyday things and tells stories visually.</p>
-          <button class="btn-readmore" aria-label="Read more about About photography and art">Read more</button>
-        </div>
-      </article>
-
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e8fb5c8-5343-4e87-bfed-a88b0c7995b6.png" alt="A workspace with books, notebooks and pen on a white wooden desk"
-            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Workspace with books, notebooks and pen on a white wooden desk'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>On Minimal Workspaces: Keeping it clean</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>May 2023</span>•
+</div>
+<p class="blog-excerpt">Photography is a way to capture moments and express emotions, it shows beauty in everyday things and tells stories visually.</p>
+<button aria-label="Read more about About photography and art" class="btn-readmore">Read more</button>
+</div>
+</article>
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="A workspace with books, notebooks and pen on a white wooden desk" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Workspace with books, notebooks and pen on a white wooden desk'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e8fb5c8-5343-4e87-bfed-a88b0c7995b6.png"/>
+</div>
+<div class="blog-content">
+<h2>On Minimal Workspaces: Keeping it clean</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>May 2023</span>•
             <span>By Daniel</span>•
             <span> Productivity</span>
-          </div>
-          <p class="blog-excerpt">Learn how a minimal workspace helps improve focus and creativity by reducing clutter and distractions effectively.</p>
-          <button class="btn-readmore" aria-label="Read more about On Minimal Workspaces: Keeping it clean">Read more</button>
-        </div>
-      </article>
-
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73a61d60-9996-46c0-bfb5-7a17268a1751.png" alt="Computer screen showing analytics dashboard with charts and metrics in blue and white theme"
-            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Computer screen showing analytics dashboard with charts and metrics in blue and white theme'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>42 Case Study: PMA Dashboard on SaaS product</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>Apr 2023</span>•
+</div>
+<p class="blog-excerpt">Learn how a minimal workspace helps improve focus and creativity by reducing clutter and distractions effectively.</p>
+<button aria-label="Read more about On Minimal Workspaces: Keeping it clean" class="btn-readmore">Read more</button>
+</div>
+</article>
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="Computer screen showing analytics dashboard with charts and metrics in blue and white theme" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: Computer screen showing analytics dashboard with charts and metrics in blue and white theme'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73a61d60-9996-46c0-bfb5-7a17268a1751.png"/>
+</div>
+<div class="blog-content">
+<h2>42 Case Study: PMA Dashboard on SaaS product</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>Apr 2023</span>•
             <span>By Daniel</span>•
             <span> Case Study</span>
-          </div>
-          <p class="blog-excerpt">An in-depth review of designing the PMA Dashboard for a SaaS company to improve data visualization and user experience.</p>
-          <button class="btn-readmore" aria-label="Read more about 42 Case Study: PMA Dashboard on SaaS product">Read more</button>
-        </div>
-      </article>
-
-      <article tabindex="0" class="blog-item">
-        <div class="blog-image">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/32584dc3-b729-4853-99f1-e1eea02d5492.png" alt="User interface design of a finance management app with graphs and budget controls"
-            onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: User interface design of a finance management app with graphs and budget controls'; this.src='';" />
-        </div>
-        <div class="blog-content">
-          <h2>UI Case Study: Monthly Expense Tracker App</h2>
-          <div class="blog-meta" aria-label="Blog post metadata">
-            <span>Mar 2023</span>•
+</div>
+<p class="blog-excerpt">An in-depth review of designing the PMA Dashboard for a SaaS company to improve data visualization and user experience.</p>
+<button aria-label="Read more about 42 Case Study: PMA Dashboard on SaaS product" class="btn-readmore">Read more</button>
+</div>
+</article>
+<article class="blog-item" tabindex="0">
+<div class="blog-image">
+<img alt="User interface design of a finance management app with graphs and budget controls" onerror="this.style.backgroundColor='#c0c0c0'; this.alt='Placeholder image: User interface design of a finance management app with graphs and budget controls'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/32584dc3-b729-4853-99f1-e1eea02d5492.png"/>
+</div>
+<div class="blog-content">
+<h2>UI Case Study: Monthly Expense Tracker App</h2>
+<div aria-label="Blog post metadata" class="blog-meta">
+<span>Mar 2023</span>•
             <span>By Daniel</span>•
             <span> UX</span>
-          </div>
-          <p class="blog-excerpt">Exploration of a monthly expense tracker app interface focusing on usability, aesthetics, and clear data representation.</p>
-          <button class="btn-readmore" aria-label="Read more about UI Case Study: Monthly Expense Tracker App">Read more</button>
-        </div>
-      </article>
-
-      <!-- Add additional blog posts similarly with placeholders... -->
-
-    </section>
-
-    <!-- Sidebar with about, social, posts and banners -->
-    <aside aria-label="Sidebar with additional info">
-      <!-- About Author section -->
-      <section class="about-author" tabindex="0" aria-label="About the author">
-        <h3>About Daniel</h3>
-        <p>Daniel is a passionate UI/UX designer and blogger who shares insights on web design, productivity, and creativity.</p>
-      </section>
-
-      <!-- Social follow section -->
-      <section class="social-follow" tabindex="0" aria-label="Follow us on social media">
-        <h3>Follow us</h3>
-        <div class="social-icons" role="list">
-          <a href="#" aria-label="Follow on Twitter" role="listitem" tabindex="0" title="Twitter" rel="noopener" target="_blank">T</a>
-          <a href="#" aria-label="Follow on Facebook" role="listitem" tabindex="0" title="Facebook" rel="noopener" target="_blank">F</a>
-          <a href="#" aria-label="Follow on Instagram" role="listitem" tabindex="0" title="Instagram" rel="noopener" target="_blank">I</a>
-          <a href="#" aria-label="Follow on LinkedIn" role="listitem" tabindex="0" title="LinkedIn" rel="noopener" target="_blank">L</a>
-        </div>
-      </section>
-
-      <!-- Sidebar recent posts list -->
-      <section class="sidebar-posts" tabindex="0" aria-label="Recent blog posts">
-        <h3>Recent posts</h3>
-        <ul>
-          <li><a href="#" tabindex="0">Understanding CSS Grid for layout</a></li>
-          <li><a href="#" tabindex="0">What’s new in HTML5 in 2023</a></li>
-          <li><a href="#" tabindex="0">Best practices for responsive design</a></li>
-          <li><a href="#" tabindex="0">Accessibility tips for web developers</a></li>
-          <li><a href="#" tabindex="0">Building reusable components with JavaScript</a></li>
-        </ul>
-      </section>
-
-      <!-- Sidebar promotional banners -->
-      <section class="sidebar-promo" aria-label="Sidebar promotional banners">
-        <a href="#" class="promo-box" tabindex="0" aria-label="Promotional banner for Juvelin theme">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7a5d3873-223b-455a-9657-c1fa37ff6d5a.png" alt="Advertisement banner for Juvelin multipurpose WordPress theme in dark blue background with text and graphics" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Juvelin multipurpose WordPress theme'; this.src='';" />
-        </a>
-        <a href="#" class="promo-box" tabindex="0" aria-label="Promotional banner for Allon theme">
-          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4804b4bc-1703-41c9-935c-eb3dc866cfd6.png" alt="Advertisement banner for Allon WordPress theme with a modern black and green design" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Allon WordPress theme'; this.src='';" />
-        </a>
-      </section>
-    </aside>
-  </main>
-
-  <!-- Pagination navigation at the bottom of the page -->
-  <nav class="pagination" aria-label="Pagination navigation">
-    <a href="#" aria-label="Previous page" tabindex="0">‹</a>
-    <a href="#" class="active" aria-current="page" tabindex="0">1</a>
-    <a href="#" tabindex="0">2</a>
-    <a href="#" tabindex="0">3</a>
-    <a href="#" tabindex="0">4</a>
-    <a href="#" tabindex="0">5</a>
-    <a href="#" tabindex="0">...</a>
-    <a href="#" tabindex="0">22</a>
-    <a href="#" aria-label="Next page" tabindex="0">›</a>
-  </nav>
+</div>
+<p class="blog-excerpt">Exploration of a monthly expense tracker app interface focusing on usability, aesthetics, and clear data representation.</p>
+<button aria-label="Read more about UI Case Study: Monthly Expense Tracker App" class="btn-readmore">Read more</button>
+</div>
+</article>
+<!-- Add additional blog posts similarly with placeholders... -->
+</section>
+<!-- Sidebar with about, social, posts and banners -->
+<aside aria-label="Sidebar with additional info">
+<!-- About Author section -->
+<section aria-label="About the author" class="about-author" tabindex="0">
+<h3>About Daniel</h3>
+<p>Daniel is a passionate UI/UX designer and blogger who shares insights on web design, productivity, and creativity.</p>
+</section>
+<!-- Social follow section -->
+<section aria-label="Follow us on social media" class="social-follow" tabindex="0">
+<h3>Follow us</h3>
+<div class="social-icons" role="list">
+<a aria-label="Follow on Twitter" href="#" rel="noopener" role="listitem" tabindex="0" target="_blank" title="Twitter">T</a>
+<a aria-label="Follow on Facebook" href="#" rel="noopener" role="listitem" tabindex="0" target="_blank" title="Facebook">F</a>
+<a aria-label="Follow on Instagram" href="#" rel="noopener" role="listitem" tabindex="0" target="_blank" title="Instagram">I</a>
+<a aria-label="Follow on LinkedIn" href="#" rel="noopener" role="listitem" tabindex="0" target="_blank" title="LinkedIn">L</a>
+</div>
+</section>
+<!-- Sidebar recent posts list -->
+<section aria-label="Recent blog posts" class="sidebar-posts" tabindex="0">
+<h3>Recent posts</h3>
+<ul>
+<li><a href="#" tabindex="0">Understanding CSS Grid for layout</a></li>
+<li><a href="#" tabindex="0">What’s new in HTML5 in 2023</a></li>
+<li><a href="#" tabindex="0">Best practices for responsive design</a></li>
+<li><a href="#" tabindex="0">Accessibility tips for web developers</a></li>
+<li><a href="#" tabindex="0">Building reusable components with JavaScript</a></li>
+</ul>
+</section>
+<!-- Sidebar promotional banners -->
+<section aria-label="Sidebar promotional banners" class="sidebar-promo">
+<a aria-label="Promotional banner for Juvelin theme" class="promo-box" href="#" tabindex="0">
+<img alt="Advertisement banner for Juvelin multipurpose WordPress theme in dark blue background with text and graphics" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Juvelin multipurpose WordPress theme'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7a5d3873-223b-455a-9657-c1fa37ff6d5a.png"/>
+</a>
+<a aria-label="Promotional banner for Allon theme" class="promo-box" href="#" tabindex="0">
+<img alt="Advertisement banner for Allon WordPress theme with a modern black and green design" onerror="this.style.backgroundColor = '#c0c0c0'; this.alt='Placeholder promotional image for Allon WordPress theme'; this.src='';" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4804b4bc-1703-41c9-935c-eb3dc866cfd6.png"/>
+</a>
+</section>
+</aside>
+</main>
+<!-- Pagination navigation at the bottom of the page -->
+<nav aria-label="Pagination navigation" class="pagination">
+<a aria-label="Previous page" href="#" tabindex="0">‹</a>
+<a aria-current="page" class="active" href="#" tabindex="0">1</a>
+<a href="#" tabindex="0">2</a>
+<a href="#" tabindex="0">3</a>
+<a href="#" tabindex="0">4</a>
+<a href="#" tabindex="0">5</a>
+<a href="#" tabindex="0">...</a>
+<a href="#" tabindex="0">22</a>
+<a aria-label="Next page" href="#" tabindex="0">›</a>
+</nav>
 </body>
-
 </html>
-
