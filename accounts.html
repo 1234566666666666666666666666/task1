@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Colorlib Account Login</title>
 <style>
   /* Reset and base */
@@ -301,64 +302,74 @@
     }
   }
 </style>
-</head>
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .container, .content, .wrapper {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+        .nav, .menu, .columns {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .sidebar, .aside {
+            display: none;
+        }
+    }
+    </style></head>
 <body>
 <header>
-  <div class="logo" aria-label="Site logo with text Colorlib">Colorlib</div>
-  <nav class="menu" aria-label="Primary site links">
-    <a href="#">BUY LICENSE</a>
-    <a href="#">HOSTING</a>
-    <a href="#">WORDPRESS THEMES</a>
-  </nav>
+<div aria-label="Site logo with text Colorlib" class="logo">Colorlib</div>
+<nav aria-label="Primary site links" class="menu">
+<a href="#">BUY LICENSE</a>
+<a href="#">HOSTING</a>
+<a href="#">WORDPRESS THEMES</a>
+</nav>
 </header>
-
 <div class="container">
-  <main>
-    <nav class="left-nav-links" aria-label="Account menu">
-      <div>Purchase History</div>
-      <div>Subscriptions</div>
-      <div><strong>Account Information</strong></div>
-    </nav>
-
-    <section class="account-info" aria-labelledby="account-info-label">
-      <h2 id="account-info-label">Account Information</h2>
-      <p>You need to log in to edit your profile.</p>
-      <p class="login-link"><a href="#">Log into Your Account</a></p>
-      <form autocomplete="off" aria-describedby="login-desc">
-        <label for="username-email">Username or Email</label>
-        <input type="text" id="username-email" name="username-email" autocomplete="username" aria-required="true" />
-
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" autocomplete="current-password" aria-required="true" />
-
-        <label class="remember-label" for="remember-me">Remember Me</label>
-        <input type="checkbox" id="remember-me" name="remember-me" style="margin-bottom: 19px; margin-left: 0;" aria-label="Remember me" />
-
-        <button type="submit" class="login-btn" aria-label="Log in to account">LOG IN</button>
-      </form>
-      <p class="lost-password"><a href="#">Lost Password?</a></p>
-    </section>
-
-    <section class="bottom-section" aria-label="Account status">
-      <div class="download-history" aria-labelledby="download-label">
-        <h3 id="download-label">Download History</h3>
-      </div>
-
-      <div class="login-status" aria-labelledby="login-status-label">
-        <h3 id="login-status-label">Login Status</h3>
-        <p>You are currently logged in as:</p>
-        <a href="#">LOG OUT?</a>
-      </div>
-    </section>
-  </main>
+<main>
+<nav aria-label="Account menu" class="left-nav-links">
+<div>Purchase History</div>
+<div>Subscriptions</div>
+<div><strong>Account Information</strong></div>
+</nav>
+<section aria-labelledby="account-info-label" class="account-info">
+<h2 id="account-info-label">Account Information</h2>
+<p>You need to log in to edit your profile.</p>
+<p class="login-link"><a href="#">Log into Your Account</a></p>
+<form aria-describedby="login-desc" autocomplete="off">
+<label for="username-email">Username or Email</label>
+<input aria-required="true" autocomplete="username" id="username-email" name="username-email" type="text"/>
+<label for="password">Password</label>
+<input aria-required="true" autocomplete="current-password" id="password" name="password" type="password"/>
+<label class="remember-label" for="remember-me">Remember Me</label>
+<input aria-label="Remember me" id="remember-me" name="remember-me" style="margin-bottom: 19px; margin-left: 0;" type="checkbox"/>
+<button aria-label="Log in to account" class="login-btn" type="submit">LOG IN</button>
+</form>
+<p class="lost-password"><a href="#">Lost Password?</a></p>
+</section>
+<section aria-label="Account status" class="bottom-section">
+<div aria-labelledby="download-label" class="download-history">
+<h3 id="download-label">Download History</h3>
 </div>
-
+<div aria-labelledby="login-status-label" class="login-status">
+<h3 id="login-status-label">Login Status</h3>
+<p>You are currently logged in as:</p>
+<a href="#">LOG OUT?</a>
+</div>
+</section>
+</main>
+</div>
 <footer>
-  <span>Copyright © 2013-2021 Colorlib - All Rights Reserved. Theme by</span>
-  <a href="#" aria-label="Colorlib homepage link">Colorlib</a>
-  <span>Powered by</span>
-  <a href="#" aria-label="WordPress homepage link">WordPress</a>
+<span>Copyright © 2013-2021 Colorlib - All Rights Reserved. Theme by</span>
+<a aria-label="Colorlib homepage link" href="#">Colorlib</a>
+<span>Powered by</span>
+<a aria-label="WordPress homepage link" href="#">WordPress</a>
 </footer>
 </body>
 </html>
-
