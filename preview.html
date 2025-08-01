@@ -1,1 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imagine - Freight & Logistics</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, blockquote, dl, dd, input, textarea, button {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f7faff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+    /* Helpers */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 15px;
+      padding-right: 15px;
+      width: 100%;
+    }
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px,1px,1px,1px);
+      white-space: nowrap;
+    }
+    .text-center {
+      text-align: center;
+    }
+    /* Custom Scrollbar for large screen */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #fda300;
+      border-radius: 20px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(33,29,29,0.9);
+      z-index: 9999;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      backdrop-filter: saturate(180%) blur(10px);
+    }
+    .header-inner {
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      color: #fda300;
+      font-weight: 700;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 0.06em;
+    }
+    .logo svg {
+      fill: #fda300;
+      width: 26px;
+      height: 26px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    nav > ul {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    nav > ul > li {
+      position: relative;
+    }
+    nav > ul > li > a {
+      color: white;
+      padding: 5px 0;
+      display: inline-block;
+      transition: color 0.3s;
+      font-weight: 600;
+    }
+    nav > ul > li > a:hover,
+    nav > ul > li > a.active {
+      color: #fda300;
+    }
+    /* Dropdown */
+    nav > ul > li.has-dropdown > a::after {
+      content: "▾";
+      font-size: 10px;
+      margin-left: 4px;
+      position: relative;
+      top: 1px;
+    }
+    nav > ul > li .dropdown {
+      position: absolute;
+      background: rgba(33,29,29,0.95);
+      top: 100%;
+      left: 0;
+      min-width: 140px;
+      border-radius: 3px;
+      padding: 10px 0;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: top center;
+      transform: scaleY(0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 999;
+    }
+    nav > ul > li:hover .dropdown,
+    nav > ul > li.show-dropdown .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scaleY(1);
+    }
+    nav > ul > li .dropdown a {
+      display: block;
+      padding: 8px 25px;
+      font-size: 13px;
+      color: white;
+      transition: background-color 0.2s;
+    }
+    nav > ul > li .dropdown a:hover {
+      background-color: #fda300;
+      color: #1a1a1a;
+    }
+
+    /* Header Right Icons */
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: white;
+    }
+    .header-icons button {
+      font-size: 18px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+    }
+    .header-icons button:hover {
+      opacity: 1;
+    }
+    .header-icons svg {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      fill: currentColor;
+    }
+
+    /* Hamburger menu for mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 22px;
+      height: 18px;
+      justify-content: space-between;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    /* MOBILE NAV */
+    @media (max-width: 992px) {
+      nav > ul {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(33,29,29,0.95);
+        flex-direction: column;
+        gap: 0;
+        padding: 30px 15px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 99999;
+      }
+      nav > ul.open {
+        transform: translateX(0);
+      }
+      nav > ul > li {
+        width: 100%;
+      }
+      nav > ul > li > a {
+        padding: 10px 10px;
+        border-bottom: 1px solid #3b3b3b;
+      }
+      nav > ul > li.has-dropdown > a::after {
+        content: "▶";
+        float: right;
+        transform: rotate(0);
+        transition: transform 0.3s ease;
+        margin-right: 0;
+      }
+      nav > ul > li.has-dropdown.open > a::after {
+        transform: rotate(90deg);
+      }
+      nav > ul > li .dropdown {
+        position: static;
+        background: none;
+        padding-left: 15px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        display: none;
+      }
+      nav > ul > li.has-dropdown.open > .dropdown {
+        display: block;
+      }
+      nav > ul > li .dropdown a {
+        padding: 8px 10px;
+        background: #2c2b2b;
+        border-radius: 3px;
+        font-size: 14px;
+      }
+      nav > ul > li .dropdown a:hover {
+        background-color: #fda300;
+        color: #1a1a1a;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .header-icons {
+        gap: 10px;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      max-height: 850px;
+      background: linear-gradient(rgba(15,16,19,0.55), rgba(15,16,19,0.75)), url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fcf6bf0c-01f2-44c2-84cc-81db987acd0f.png");
+      background-position: center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 0 15px;
+    }
+    .hero-content {
+      max-width: 720px;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      line-height: 1.25;
+      user-select: none;
+    }
+    .hero p {
+      font-weight: 400;
+      max-width: 525px;
+      margin: 0 auto 25px;
+      font-size: 15px;
+      opacity: 0.85;
+      color: #dedede;
+      line-height: 1.5;
+      user-select: none;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #fda300;
+      color: #1a1a1a;
+      font-weight: 600;
+      padding: 14px 40px;
+      font-size: 13px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgb(253 163 0 / 0.35);
+    }
+    .btn:focus-visible {
+      outline-offset: 3px;
+      outline-color: #e0a600;
+      outline-style: solid;
+      outline-width: 2px;
+    }
+    .btn:hover,
+    .btn:focus {
+      background-color: #cc8400;
+      color: black;
+      box-shadow: 0 5px 19px rgb(204 132 0 / 0.7);
+    }
+    /* Slider arrows container */
+    .slider-arrows {
+      position: absolute;
+      right: 25px;
+      bottom: 25px;
+      display: flex;
+      gap: 18px;
+      user-select: none;
+      z-index: 10;
+    }
+    .slider-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: rgba(253,163,0,0.9);
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      line-height: 0;
+    }
+    .slider-arrow:hover,
+    .slider-arrow:focus {
+      background-color: #cc8400;
+    }
+
+    /* SERVICES CARDS GRID */
+    .services {
+      padding: 50px 15px 60px;
+      background-color: #f7faff;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 7px 15px rgb(0 0 0 / 0.03);
+      padding: 20px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.25s ease;
+    }
+    .service-card:hover,
+    .service-card:focus-within {
+      box-shadow: 0 18px 40px rgb(253 163 0 / 0.28);
+      transform: translateY(-8px);
+      z-index: 5;
+    }
+    .service-icon {
+      width: 38px;
+      height: 38px;
+      background-color: #fda300;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 700;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      user-select: none;
+    }
+    .service-img {
+      border-radius: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      width: 100%;
+    }
+    .service-card h3 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #222;
+      user-select: text;
+      padding-left: 48px;
+    }
+    .service-card p {
+      font-size: 13px;
+      color: #7b7b7b;
+      user-select: text;
+      padding-left: 48px;
+      min-height: 62px;
+    }
+    .service-card button {
+      margin-top: auto;
+      align-self: flex-start;
+      background-color: #3c4a63;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+    }
+    .service-card button:hover,
+    .service-card button:focus {
+      background-color: #fda300;
+      color: #1a1a1a;
+      box-shadow: 0 5px 19px rgb(253 163 0 / 0.7);
+    }
+
+    /* GET A QUOTE + EXPERIENCE SECTION */
+    .quote-experience {
+      padding: 60px 15px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .get-quote {
+      flex-basis: 320px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 7px 15px rgb(0 0 0 / 0.02);
+      padding: 35px 30px;
+      user-select: none;
+    }
+    .get-quote h3 {
+      font-weight: 700;
+      font-size: 18px;
+      color: #3c4a63;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .get-quote label {
+      font-size: 13px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    .get-quote input,
+    .get-quote select,
+    .get-quote textarea {
+      width: 100%;
+      padding: 7px 12px;
+      border: 1px solid #d6d9e0;
+      border-radius: 3px;
+      font-size: 14px;
+      font-family: inherit;
+      margin-bottom: 18px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    .get-quote input:focus,
+    .get-quote select:focus,
+    .get-quote textarea:focus {
+      border-color: #fda300;
+      outline: none;
+    }
+    .get-quote textarea {
+      min-height: 88px;
+    }
+    .get-quote button {
+      width: 100%;
+      background-color: #3c4a63;
+      color: white;
+      padding: 13px 0;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    .get-quote button:hover,
+    .get-quote button:focus {
+      background-color: #fda300;
+      color: #1a1a1a;
+    }
+    .experience-text {
+      flex: 1 1 520px;
+      max-width: 560px;
+      color: #3c4a63;
+      user-select: none;
+    }
+    .experience-text h2 {
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #222;
+    }
+    .experience-text p {
+      font-size: 15px;
+      color: #555;
+      user-select: text;
+      margin-bottom: 24px;
+    }
+    .stats {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      user-select: none;
+      min-width: 80px;
+    }
+    .stat .count {
+      font-weight: 700;
+      font-size: 22px;
+      color: #fda300;
+      letter-spacing: 0.04em;
+      user-select: text;
+    }
+    .stat .label {
+      font-weight: 600;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* OUR SERVICE SECTION */
+    .our-service {
+      background-color: white;
+      padding: 70px 0 90px;
+    }
+    .our-service .container {
+      max-width: 1200px;
+    }
+    .section-title {
+      margin-bottom: 50px;
+      text-align: center;
+      user-select: none;
+    }
+    .section-title h3 {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 15px;
+      color: #3c4a63;
+      letter-spacing: 0.1em;
+    }
+    .section-title h2 {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 32px;
+      color: #222;
+    }
+
+    .service-desc {
+      max-width: 1100px;
+      margin: 0 auto 65px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .service-desc > div {
+      flex: 1 1 300px;
+    }
+    .service-desc .desc-text {
+      max-width: 440px;
+      user-select: none;
+    }
+    .service-desc .desc-text h4 {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 18px;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .service-desc .desc-text p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+      user-select: text;
+      line-height: 1.5;
+    }
+    .service-desc .desc-text button {
+      background-color: #3c4a63;
+      color: #fff;
+      border-radius: 3px;
+      padding: 11px 30px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 13px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .service-desc .desc-text button:hover,
+    .service-desc .desc-text button:focus {
+      background-color: #fda300;
+      color: #1a1a1a;
+      box-shadow: 0 5px 19px rgb(253 163 0 / 0.7);
+      outline: none;
+    }
+
+    /* Why choose us block */
+    .service-desc .desc-why {
+      background-color: #fda300;
+      padding: 30px 32px;
+      border-radius: 5px;
+      color: white;
+      max-width: 360px;
+      user-select: none;
+      box-shadow: 0 15px 25px rgb(253 163 0 / 0.25);
+      position: relative;
+    }
+    .service-desc .desc-why::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 0;
+      height: 100%;
+      width: 20px;
+      background: linear-gradient(178deg, #cc8700 0%, transparent 100%);
+      border-radius: 5px 0 0 5px;
+    }
+    .service-desc .desc-why h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      user-select: none;
+    }
+    .service-desc .desc-why ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 28px;
+      font-size: 14px;
+      line-height: 1.5;
+      user-select: text;
+    }
+    .service-desc .desc-why li {
+      padding-left: 25px;
+      position: relative;
+      margin-bottom: 12px;
+      user-select: text;
+    }
+    .service-desc .desc-why li::before {
+      content: "✓";
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      user-select: none;
+    }
+    .service-desc .desc-why button {
+      background-color: #3c4a63;
+      color: white;
+      border-radius: 3px;
+      padding: 10px 38px;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      user-select: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .service-desc .desc-why button:hover,
+    .service-desc .desc-why button:focus {
+      background-color: #2f3a52;
+    }
+
+    /* Features grid with image */
+    .features-with-image {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 45px;
+      flex-wrap: wrap;
+      padding-top: 80px;
+      user-select: none;
+    }
+    .features-with-image .image-wrap {
+      flex: 1 1 440px;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+      cursor: default;
+    }
+    .features-with-image .image-wrap img {
+      border-radius: 5px;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      user-select: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+    .features-list {
+      flex: 1 1 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      justify-content: center;
+      color: #3c4a63;
+      user-select: none;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .feature-icon {
+      font-weight: 700;
+      font-size: 22px;
+      color: #fda300;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background-color: #d78d00;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    .feature-text {
+      flex: 1;
+    }
+    .feature-text h4 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #222;
+    }
+    .feature-text p {
+      font-size: 13px;
+      color: #666;
+      user-select: text;
+      line-height: 1.5;
+    }
+
+    /* INFO ROW with Features & Image and Support Boxes */
+    .info-row {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 0 15px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      user-select: none;
+      justify-content: center;
+    }
+    .info-box {
+      background: white;
+      flex: 1 1 168px;
+      min-width: 168px;
+      min-height: 90px;
+      border-radius: 5px;
+      box-shadow: 0 7px 15px rgb(0 0 0 / 0.03);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .info-box:hover,
+    .info-box:focus-within {
+      box-shadow: 0 20px 30px rgb(253 163 0 / 0.3);
+      transform: translateY(-3px);
+      transition-duration: 0.25s;
+      outline: none;
+      user-select: none;
+    }
+    .info-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background-color: #fda300;
+      border-radius: 50%;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .info-text {
+      flex: 1;
+    }
+    .info-text p {
+      font-size: 14px;
+      color: #444;
+      user-select: text;
+    }
+    .info-image-wrapper {
+      flex: 1 1 320px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .info-image-wrapper img {
+      max-width: 320px;
+      max-height: 130px;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+      border-radius: 5px;
+    }
+
+    /* CALL TO ACTION BANNER */
+    .cta-banner {
+      background: url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/17345c1d-dd0f-4b92-8bce-1af78657dec5.png") center center/cover no-repeat;
+      position: relative;
+      padding: 55px 15px;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    .cta-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(33,29,29,0.75);
+      z-index: 0;
+    }
+    .cta-banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 17px;
+    }
+    .cta-banner button {
+      margin-top: 15px;
+      background-color: #fda300;
+      border: none;
+      padding: 11px 40px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      color: #1a1a1a;
+      letter-spacing: 0.07em;
+      user-select: none;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+    .cta-banner button:hover,
+    .cta-banner button:focus {
+      background-color: #cc8400;
+      box-shadow: 0 5px 19px rgb(204 132 0 / 0.7);
+      outline: none;
+    }
+
+    /* CLIENTS SAY TESTIMONIAL */
+    .testimonials {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 15px;
+      text-align: center;
+      user-select: none;
+    }
+    .testimonials h2 {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 20px;
+      color: #3c4a63;
+      margin-bottom: 40px;
+      letter-spacing: 3px;
+    }
+    .testimonial-avatars {
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin-bottom: 30px;
+    }
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #d5d9e1;
+      cursor: default;
+      transition: border-color 0.3s ease;
+      user-select: none;
+    }
+    .testimonial-avatar.active {
+      border-color: #fda300;
+    }
+    .testimonial-avatar img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      pointer-events: none;
+      user-drag: none;
+    }
+    .testimonial-content {
+      font-size: 14px;
+      color: #555;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 670px;
+      margin: 0 auto 25px;
+      user-select: text;
+    }
+    .testimonial-author {
+      font-weight: 700;
+      color: #3c4a63;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      user-select: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #1f2033;
+      padding-top: 60px;
+      padding-bottom: 25px;
+      color: #adb5c7;
+      font-size: 13px;
+      user-select: none;
+    }
+    footer a {
+      color: #adb5c7;
+      transition: color 0.3s ease;
+    }
+    footer a:hover,
+    footer a:focus {
+      color: #fda300;
+      outline: none;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .footer-column {
+      min-width: 180px;
+      flex: 1;
+    }
+    .footer-column h6 {
+      text-transform: uppercase;
+      font-weight: 600;
+      color: white;
+      font-size: 14px;
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
+    }
+    .footer-column ul {
+      list-style: none;
+    }
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+    .footer-column ul li a {
+      font-weight: 400;
+      font-size: 13px;
+    }
+    /* Newsletter form */
+    .newsletter-form {
+      display: flex;
+      max-width: 330px;
+      gap: 8px;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 3px;
+      border: none;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .newsletter-form button {
+      background-color: #fda300;
+      border-radius: 3px;
+      padding: 8px 18px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      user-select: none;
+      border: none;
+      color: #1a1a1a;
+      transition: background-color 0.25s ease;
+    }
+    .newsletter-form button:hover,
+    .newsletter-form button:focus {
+      background-color: #cc8400;
+      outline: none;
+    }
+    /* Footer social icons */
+    .footer-social {
+      margin-top: 30px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      user-select: none;
+    }
+    .footer-social a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: #2a2b40;
+      color: #7e7e7e;
+      font-size: 18px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    .footer-social a:hover,
+    .footer-social a:focus {
+      background-color: #fda300;
+      color: #1a1a1a;
+      outline: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 25px;
+      }
+      .services {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        padding-top: 40px;
+        padding-bottom: 40px;
+        gap: 16px;
+      }
+      .features-with-image {
+        flex-direction: column;
+        gap: 35px;
+      }
+      .features-list {
+        max-width: 100%;
+      }
+      .get-quote {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+      .experience-text {
+        max-width: 100%;
+      }
+      .info-row {
+        flex-direction: column;
+      }
+      .info-image-wrapper {
+        justify-content: center;
+        margin-top: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 20px;
+      }
+      .btn {
+        padding: 14px 26px;
+      }
+      .service-card h3,
+      .service-desc .desc-text h4,
+      .service-desc .desc-why h3 {
+        font-size: 14px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner container" role="banner">
+      <div class="logo" tabindex="0" aria-label="Imagine logo, Home">
+        <!-- Simple plane icon -->
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" >
+          <path d="M14.566 8.57 2.404 1.862a.22.22 0 0 0-.327.235l1.017 3.835L2.685 6.52A.664.664 0 0 0 3.3 7.04l2.467 1.856-2.316 1.692a.602.602 0 0 0-.26.482v1.41a.22.22 0 0 0 .307.21l6.391-3.91 3.676 1.983a.234.234 0 0 0 .36-.242z" />
+        </svg>
+        CARRIES
+      </div>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul id="nav-menu" tabindex="-1">
+          <li class="has-dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" aria-controls="dropdown-home" aria-haspopup="true" id="homeMenuLink">HOME</a>
+            <ul class="dropdown" id="dropdown-home" aria-label="submenu home" role="menu">
+              <li><a href="#" role="menuitem" tabindex="-1">Home 1</a></li>
+              <li><a href="#" role="menuitem" tabindex="-1">Home 2</a></li>
+              <li><a href="#" role="menuitem" tabindex="-1">Home 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#" tabindex="0">ABOUT</a></li>
+          <li><a href="#" tabindex="0">SERVICE</a></li>
+          <li><a href="#" tabindex="0">OFFER PACKAGES</a></li>
+          <li><a href="#" tabindex="0">BLOG</a></li>
+          <li><a href="#" tabindex="0">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons" aria-label="User and search actions">
+        <button aria-label="Search" title="Search" tabindex="0">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M21.71 20.29l-4.388-4.389A7.934 7.934 0 0 0 18 10a8 8 0 1 0-8 8 7.934 7.934 0 0 0 5.9-2.678l4.388 4.389a1 1 0 1 0 1.42-1.42zM10 16a6 6 0 1 1 6-6 6.007 6.007 0 0 1-6 6z"/></svg>
+        </button>
+        <button aria-label="User account" title="User account" tabindex="0">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5.005 5.005 0 0 0 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/></svg>
+        </button>
+        <button aria-label="Shopping Cart" title="Shopping Cart" tabindex="0">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M21 7a2 2 0 0 0-2-2H7l-1-3H2v2h2l3.6 7.59-1.35 2.45A1 1 0 0 0 6 17h12v-2H7.42a.342.342 0 0 1-.31-.17L7.1 14h9.45a1 1 0 0 0 .95-.68l2-6A1 1 0 0 0 21 7zM7.16 15.55A1.99 1.99 0 1 0 7 19a2 2 0 0 0 .16-3.45z"/></svg>
+        </button>
+      </div>
+      <div tabindex="0" role="button" aria-label="Toggle navigation menu" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-menu" >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" role="region" aria-label="Main banner with truck">
+      <div class="hero-content" tabindex="0">
+        <h1>WE MAKE STRONGEST SERVICE ABOVE THE WORLD</h1>
+        <p>Some representative placeholder content for the strong service slogan. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="hero-buttons">
+          <button class="btn" type="button">OUR SERVICE</button>
+          <button class="btn" type="button">GET A QUOTE</button>
+        </div>
+      </div>
+      <div class="slider-arrows" aria-label="Slider navigation">
+        <button class="slider-arrow" aria-label="Previous Slide" id="prevSlide"><</button>
+        <button class="slider-arrow" aria-label="Next Slide" id="nextSlide">></button>
+      </div>
+    </section>
+
+    <!-- Services Cards -->
+    <section class="services" role="region" aria-label="Freight services">
+      <article class="service-card" tabindex="0" aria-labelledby="oceanFreightTitle" aria-describedby="oceanFreightDesc">
+        <div class="service-icon" aria-hidden="true">⚓</div>
+        <img class="service-img" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8a3a525f-566b-42d4-994b-84a6e0eb5062.png" alt="Large cargo ship loaded with freight containers sailing the ocean" />
+        <h3 id="oceanFreightTitle">OCEAN FREIGHT</h3>
+        <p id="oceanFreightDesc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        <button type="button" aria-label="Read more about Ocean Freight">Read More</button>
+      </article>
+      <article class="service-card" tabindex="0" aria-labelledby="airFreightTitle" aria-describedby="airFreightDesc">
+        <div class="service-icon" aria-hidden="true">✈️</div>
+        <img class="service-img" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/49def1cf-4916-4804-b5e7-b237244b553c.png" alt="an airplane flying over clouds carrying cargo for air freight" />
+        <h3 id="airFreightTitle">AIR FREIGHT</h3>
+        <p id="airFreightDesc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        <button type="button" aria-label="Read more about Air Freight">Read More</button>
+      </article>
+      <article class="service-card" tabindex="0" aria-labelledby="streetFreightTitle" aria-describedby="streetFreightDesc">
+        <div class="service-icon" aria-hidden="true">🚛</div>
+        <img class="service-img" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/34616ebc-a41b-44f8-a595-1017bca8c4d5.png" alt="Truck on the highway transporting freight on street" />
+        <h3 id="streetFreightTitle">STREET FREIGHT</h3>
+        <p id="streetFreightDesc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        <button type="button" aria-label="Read more about Street Freight">Read More</button>
+      </article>
+    </section>
+
+    <!-- Get a Quote + Experience Section -->
+    <section class="quote-experience" role="region" aria-label="Get a Quote and Years of Experience">
+      <form class="get-quote" aria-labelledby="quoteTitle" aria-describedby="quoteDesc" tabindex="0" role="form" novalidate>
+        <h3 id="quoteTitle">GET A QUOTE</h3>
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name" />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" />
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="Phone" />
+        <label for="type">Type</label>
+        <select id="type" name="type" aria-label="Select freight type">
+          <option value="">Select Type</option>
+          <option value="ocean">Ocean Freight</option>
+          <option value="air">Air Freight</option>
+          <option value="street">Street Freight</option>
+        </select>
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country" placeholder="Country" />
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+        <button type="submit" aria-label="Send Quote Request">SEND</button>
+      </form>
+      <div class="experience-text" tabindex="0" role="article" aria-label="25 years of experience text and stats">
+        <h2>WE HAVE 25 YEARS EXPERIENCE IN THIS PASSION</h2>
+        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum.</p>
+        <div class="stats">
+          <div class="stat" aria-label="120 Projects Done">
+            <div class="count">120</div>
+            <div class="label">Projects Done</div>
+          </div>
+          <div class="stat" aria-label="100 Projects Done">
+            <div class="count">100</div>
+            <div class="label">Projects Done</div>
+          </div>
+          <div class="stat" aria-label="30 Projects Done">
+            <div class="count">30</div>
+            <div class="label">Projects Done</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Service Section -->
+    <section class="our-service" role="region" aria-label="Our Service Details">
+      <div class="container">
+        <div class="section-title">
+          <h3>OUR SERVICE</h3>
+          <h2>We offer quick & powerful logistics solution</h2>
+        </div>
+        <div class="service-desc">
+          <div class="desc-text" tabindex="0">
+            <h4>We offer quick & powerful logistics solution</h4>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            <button type="button">Learn More</button>
+          </div>
+          <div class="desc-why" tabindex="0" aria-label="Why choose us reasons">
+            <h3>Why Choose Us ?</h3>
+            <ul>
+              <li>Low pretended delivery truck contracts.</li>
+              <li>While the best routes along the highway.</li>
+              <li>Focus on punctuality & safety.</li>
+              <li>We create everything humanly possible.</li>
+            </ul>
+            <button type="button">Learn More</button>
+          </div>
+        </div>
+        <div class="features-with-image" aria-label="Warehouse and freight service details">
+          <div class="image-wrap" aria-hidden="true">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/141e0580-0ccf-4a5e-a875-c9a017e8698d.png" alt="Large warehouse interior with stacked boxes and metal storage racks" onerror="this.alt='Large warehouse with pallets of goods and people working in it'" />
+          </div>
+          <div class="features-list">
+            <div class="feature-item" tabindex="0">
+              <div class="feature-icon" aria-hidden="true">⚙️</div>
+              <div class="feature-text">
+                <h4>WARE HOUSE</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              </div>
+            </div>
+            <div class="feature-item" tabindex="0">
+              <div class="feature-icon" aria-hidden="true">🚚</div>
+              <div class="feature-text">
+                <h4>ROAD FREIGHT</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              </div>
+            </div>
+            <div class="feature-item" tabindex="0">
+              <div class="feature-icon" aria-hidden="true">🛳️</div>
+              <div class="feature-text">
+                <h4>SEA FREIGHT</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              </div>
+            </div>
+            <div class="feature-item" tabindex="0">
+              <div class="feature-icon" aria-hidden="true">✈️</div>
+              <div class="feature-text">
+                <h4>AIR FREIGHT</h4>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Info boxes -->
+        <div class="info-row" role="region" aria-label="Location, support, news and delivery info">
+          <div class="info-box" tabindex="0">
+            <div class="info-icon" aria-hidden="true">📍</div>
+            <div class="info-text">Our Location<br /><small>1600 Amphitheatre Parkway, CA</small></div>
+          </div>
+          <div class="info-box" tabindex="0">
+            <div class="info-icon" aria-hidden="true">⏰</div>
+            <div class="info-text">24/7 Support<br /><small>Lorem ipsum dolor sit amet consectetuer</small></div>
+          </div>
+          <div class="info-box" tabindex="0">
+            <div class="info-icon" aria-hidden="true">🆕</div>
+            <div class="info-text">Latest News<br /><small>Lorem ipsum dolor sit amet consectetuer</small></div>
+          </div>
+          <div class="info-box" tabindex="0">
+            <div class="info-icon" aria-hidden="true">🚀</div>
+            <div class="info-text">Fast Delivery<br /><small>Lorem ipsum dolor sit amet consectetuer</small></div>
+          </div>
+          <div class="info-image-wrapper" aria-hidden="true">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e3ed0ea3-ad5d-49f0-aa74-e11eb04418f9.png" alt="Freight boxes stacked beside a yellow forklift in a storage area" onerror="this.alt='Freight boxes and a forklift at warehouse'" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to action Banner -->
+    <section tabindex="0" class="cta-banner" role="region" aria-label="International Freight Service call to action banner">
+      <div class="cta-banner-content">
+        WE PROVIDE INTERNATIONAL FREIGHT & LOGISTICS SERVICE WORLDWIDE
+        <br />
+        <button type="button" aria-label="Get a quote call to action">GET A QUOTE</button>
+      </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="testimonials" aria-label="Client testimonials">
+      <h2>WHAT CLIENT'S SAY</h2>
+      <div class="testimonial-avatars" role="list">
+        <button class="testimonial-avatar active" aria-selected="true" role="listitem" aria-controls="testimonial1" tabindex="0" aria-label="Testimonial from Jabin Kane">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/318ab78b-cc88-4d06-9437-007ededd07e9.png" alt="Portrait of a professional smiling man in a suit" />
+        </button>
+        <button class="testimonial-avatar" aria-selected="false" role="listitem" aria-controls="testimonial2" tabindex="-1" aria-label="Testimonial from female client">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6ba28132-e13c-4f80-96d5-6b44c2d58374.png" alt="Portrait of a happy woman with red hair and business attire" />
+        </button>
+        <button class="testimonial-avatar" aria-selected="false" role="listitem" aria-controls="testimonial3" tabindex="-1" aria-label="Testimonial from male client">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/60ec398b-e29e-4049-b252-1df00642fb7e.png" alt="Portrait of a confident businessman with slight smile" />
+        </button>
+      </div>
+      <blockquote id="testimonial1" class="testimonial-content" role="region" aria-live="polite" tabindex="0">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      </blockquote>
+      <p class="testimonial-author">JABIN KANE<br/><small>CEO, Company Name, USA</small></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-container container">
+      <div class="footer-column" aria-label="About us">
+        <h6>About Us</h6>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p>Phone: +880 176 576 3783</p>
+        <p>Email: info@example.com</p>
+        <p>Office: 120 Street, NY, USA</p>
+      </div>
+      <div class="footer-column" aria-label="Latest tweets">
+        <h6>Latest Tweets</h6>
+        <ul>
+          <li>Check our logistics & warehouse services updates - <time datetime="2023-06-01">1 day ago</time></li>
+          <li>Special discounts available for new customers - <time datetime="2023-06-02">5 days ago</time></li>
+        </ul>
+      </div>
+      <div class="footer-column" aria-label="Customer service">
+        <h6>Customer Service</h6>
+        <ul>
+          <li><a href="#" tabindex="0">Support center</a></li>
+          <li><a href="#" tabindex="0">Service terms</a></li>
+          <li><a href="#" tabindex="0">Privacy policy</a></li>
+          <li><a href="#" tabindex="0">Return & refund</a></li>
+          <li><a href="#" tabindex="0">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column" aria-label="Gallery">
+        <h6>Gallery</h6>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fdbb5bee-8fa6-4dc4-9e99-8fd63d4a3939.png" alt="Gallery image of logistics warehouse" width="65" height="65" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5ee6fe29-e1b3-446a-8b0f-cc0c7c1b980a.png" alt="Gallery image of freight transport truck" width="65" height="65" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ecef12ef-8910-462c-abd5-47f97914a311.png" alt="Gallery image of airplane flying over clouds" width="65" height="65" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/55e675b7-033c-4251-af6b-46c77982878e.png" alt="Gallery image of cargo containers at port" width="65" height="65" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e78e17ec-85f3-4aea-b1f0-d1976270595c.png" alt="Gallery image of forklift moving pallets in warehouse" width="65" height="65" />
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/481f529d-5d29-4512-96e6-8e2f6503db16.png" alt="Gallery image of logistics workers preparing packages" width="65" height="65" />
+        </div>
+      </div>
+    </div>
+    <div class="footer-social" role="list" aria-label="Social media links">
+      <a href="#" role="listitem" aria-label="Facebook" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.877v-6.987H7.898v-2.89h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.466h-1.26c-1.242 0-1.63.773-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12"></path></svg>
+      </a>
+      <a href="#" role="listitem" aria-label="Twitter" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 0.86 4.48 4.48 0 0 0 1.98-2.48 10.43 10.43 0 0 1-3.2 1.22 4.52 4.52 0 0 0-7.66 4.13 12.77 12.77 0 0 1-9.27-4.7 4.48 4.48 0 0 0 1.4 6.06 4.52 4.52 0 0 1-2.05-.57v0.05a4.52 4.52 0 0 0 3.63 4.44 4.43 4.43 0 0 1-2.04.08 4.53 4.53 0 0 0 4.22 3.14A9 9 0 0 1 1 19a13 13 0 0 0 7 2c8.32 0 12.88-7 12.88-13v-0.59A9.15 9.15 0 0 0 23 3z"></path></svg>
+      </a>
+      <a href="#" role="listitem" aria-label="Instagram" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M7.75 2C4.812 2 2.5 4.312 2.5 7.25v9.5c0 2.937 2.312 5.25 5.25 5.25h8.5c2.937 0 5.25-2.313 5.25-5.25v-9.5C21.5 4.312 19.187 2 16.25 2h-8.5zm7.5 1.5c.75 0 1.013.02 1.368.071.337.048.572.106.756.227.294.17.504.385.728.61.223.223.44.435.61.727.121.19.179.43.227.757.05.356.07.617.07 1.367v5.875c0 .75-.02 1.013-.071 1.368-.049.34-.106.572-.227.757-.17.294-.39.505-.613.727-.23.228-.44.442-.737.613-.192.12-.432.179-.764.227-.36.05-.617.07-1.368.07h-5.875c-.75 0-1.013-.02-1.368-.071-.338-.048-.572-.106-.757-.227-.294-.17-.504-.39-.727-.613-.228-.23-.437-.44-.613-.736-.12-.196-.179-.436-.227-.764-.05-.36-.07-.618-.07-1.369v-5.875c0-.75.02-1.013.071-1.368.048-.337.106-.572.227-.757.17-.293.39-.504.613-.727.23-.228.44-.44.737-.61.192-.12.432-.178.764-.227C6.737 3.52 6.994 3.5 7.75 3.5v0zm-3.63 7.865a4.595 4.595 0 1 1 9.19 0 4.595 4.595 0 0 1-9.19 0zm7.06 0a2.46 2.46 0 1 0-4.92 0 2.46 2.46 0 0 0 4.92 0zm-4.48-4.796a1.05 1.05 0 1 1-2.096 0 1.05 1.05 0 0 1 2.096 0z"/></svg>
+      </a>
+      <a href="#" role="listitem" aria-label="LinkedIn" tabindex="0">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3.75 2a2.75 2.75 0 1 0 0 5.5 2.75 2.75 0 0 0 0-5.5zM2 8.625h3.5v12.375H2V8.625zm6 0h3.337v1.674H11v-1.674h-.663v-1.8h3.224v7.526h-2.488v-5.676h-.863v5.676H8v-7.526h4.822v.001z"/></svg>
+      </a>
+    </div>
+    <div class="container" style="margin-top: 30px; text-align: center; color:#7e7e7e;">
+      <small>Copyright © 2023 Imagine. All rights reserved. Terms and Privacy Policy.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation dropdown control - click on HOME to toggle menu on desktop and mobile
+    (function() {
+      const homeMenuLink = document.getElementById('homeMenuLink');
+      const homeDropdown = document.getElementById('dropdown-home');
+      const homeLi = homeMenuLink.parentElement;
+
+      // Toggle dropdown on click
+      homeMenuLink.addEventListener('click', e => {
+        e.preventDefault();
+        const expanded = homeLi.classList.toggle('show-dropdown');
+        homeMenuLink.setAttribute('aria-expanded', expanded);
+      });
+
+      // Close dropdown if clicking outside
+      document.addEventListener('click', e => {
+        if (!homeLi.contains(e.target)) {
+          homeLi.classList.remove('show-dropdown');
+          homeMenuLink.setAttribute('aria-expanded', false);
+        }
+      });
+
+      // Keyboard accessibility for HOME dropdown
+      homeMenuLink.addEventListener('keydown', e => {
+        // Open dropdown on enter/space
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          homeLi.classList.toggle('show-dropdown');
+          const expanded = homeLi.classList.contains('show-dropdown');
+          homeMenuLink.setAttribute('aria-expanded', expanded);
+          if (expanded) {
+            const firstMenuItem = homeDropdown.querySelector('a');
+            if (firstMenuItem) firstMenuItem.focus();
+          }
+        }
+        if(e.key === "Escape"){
+          homeLi.classList.remove('show-dropdown');
+          homeMenuLink.setAttribute('aria-expanded', false);
+          homeMenuLink.focus();
+        }
+      });
+
+      // Manage focus for dropdown submenu items
+      const dropdownLinks = homeDropdown.querySelectorAll('a');
+      dropdownLinks.forEach(link => {
+        link.addEventListener('keydown', e => {
+          if(e.key === 'Escape'){
+            homeLi.classList.remove('show-dropdown');
+            homeMenuLink.setAttribute('aria-expanded', false);
+            homeMenuLink.focus();
+          }
+        });
+      });
+    })();
+
+    // Hamburger mobile menu toggle
+    (function(){
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        if(expanded){
+          navMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded','false');
+        } else {
+          navMenu.classList.add('open');
+          hamburger.setAttribute('aria-expanded','true');
+        }
+      });
+
+      // Close mobile menu if clicking outside
+      document.addEventListener('click', e => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          navMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded','false');
+        }
+      });
+
+      // Close menu on nav link click (mobile)
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if(window.innerWidth <= 992){
+            navMenu.classList.remove('open');
+            hamburger.setAttribute('aria-expanded','false');
+          }
+        });
+      });
+
+      // Dropdown toggle for mobile within nav
+      navMenu.querySelectorAll('li.has-dropdown > a').forEach(toggle => {
+        toggle.addEventListener('click', e => {
+          if(window.innerWidth <= 992){
+            e.preventDefault();
+            const parentLi = toggle.parentElement;
+            parentLi.classList.toggle('open');
+          }
+        });
+      });
+    })();
+
+    // Testimonial avatar navigation and changing testimonial content
+    (function(){
+      const avatars = document.querySelectorAll('.testimonial-avatar');
+      const content = document.querySelector('.testimonial-content');
+      const author = document.querySelector('.testimonial-author');
+      let activeIndex = 0;
+
+      const testimonials = [
+        {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+          author: 'JABIN KANE',
+          company: 'CEO, Company Name, USA',
+          alt: 'Portrait of a professional smiling man in a suit'
+        },
+        {
+          text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+          author: 'MARIA SMITH',
+          company: 'Marketing Director, Company Name',
+          alt: 'Portrait of a happy woman with red hair and business attire'
+        },
+        {
+          text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          author: 'JAMES BROWN',
+          company: 'Managing Director, Company Name',
+          alt: 'Portrait of a confident businessman with slight smile'
+        }
+      ];
+      function setActiveTestimonial(index){
+        avatars.forEach((btn,i) => {
+          btn.classList.toggle('active', i === index);
+          btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
+          btn.tabIndex = i === index ? 0 : -1;
+        });
+        const t = testimonials[index];
+        content.innerHTML = t.text;
+        author.innerHTML = `${t.author}<br/><small>${t.company}</small>`;
+        activeIndex = index;
+      }
+      avatars.forEach((btn,i) => {
+        btn.addEventListener('click', e => {
+          setActiveTestimonial(i);
+        });
+        btn.addEventListener('keydown', e => {
+          if(e.key === 'ArrowRight'){
+            e.preventDefault();
+            let next = (i + 1) % avatars.length;
+            avatars[next].focus();
+            setActiveTestimonial(next);
+          }
+          else if(e.key === 'ArrowLeft'){
+            e.preventDefault();
+            let prev = (i - 1 + avatars.length) % avatars.length;
+            avatars[prev].focus();
+            setActiveTestimonial(prev);
+          }
+        });
+      });
+      setActiveTestimonial(0);
+    })();
+
+    // Simple hero slider arrows effect (just toggling background images as placeholder demonstration)
+    (function(){
+      const hero = document.querySelector('.hero');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      const images = [
+        'https://placehold.co/1920x850?text=Freight+Truck+On+Road',
+        'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/58dfbef0-d63f-4de2-b1b8-4a3c10605c82.png',
+        'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cc0b14c8-bcc5-41cf-909e-049fa37cef31.png'
+      ];
+      let current = 0;
+      function updateHero(){
+        hero.style.backgroundImage = `linear-gradient(rgba(15,16,19,0.55), rgba(15,16,19,0.75)), url("${images[current]}")`;
+      }
+      prevBtn.addEventListener('click', () => {
+        current = (current - 1 + images.length) % images.length;
+        updateHero();
+      });
+      nextBtn.addEventListener('click', () => {
+        current = (current + 1) % images.length;
+        updateHero();
+      });
+      updateHero();
+    })();
+
+  </script>
+</body>
+</html>
+
 
