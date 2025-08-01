@@ -1,1 +1,469 @@
 
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Carries Template - Colorlib</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+      /* Custom styles for slider arrows */
+      .arrow-btn {
+        @apply cursor-pointer w-8 h-8 bg-white rounded shadow-md flex items-center justify-center text-gray-700 hover:bg-blue-600 hover:text-white transition;
+      }
+      /* Hide scrollbar for scrollbar container */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    .container, .content, .wrapper {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+        .nav, .menu, .columns {
+            flex-direction: column !important;
+            text-align: center !important;
+        }
+        .sidebar, .aside {
+            display: none;
+        }
+    }
+    </style></head>
+<body class="bg-white font-sans text-gray-700">
+<!-- Top Blue Announcement Bar -->
+<div class="bg-blue-600 text-white text-sm flex items-center justify-between px-3 py-2" id="topbar">
+<div class="flex items-center space-x-2 max-w-7xl mx-auto w-full">
+<span class="truncate">Our free WordPress themes are downloaded over 5 MILLION times.</span>
+<a class="underline font-semibold hover:text-blue-200 whitespace-nowrap" href="#">Get them now!</a>
+<div class="flex space-x-4 ml-auto items-center text-white text-lg">
+<a aria-label="Facebook" class="hover:text-blue-300" href="https://www.facebook.com/colorlib"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.325v21.351c0 .733.592 1.324 1.325 1.324h11.495v-9.294h-3.13v-3.622h3.13v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.919.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.324-.591 1.324-1.324V1.326C24 .592 23.408 0 22.675 0z"></path></svg></a>
+<a aria-label="Instagram" class="hover:text-pink-400" href="https://www.instagram.com/itxx__asad_baba?utm_source=qr"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.206.058 2.003.25 2.48.415a4.92 4.92 0 0 1 1.675 1.008 4.92 4.92 0 0 1 1.008 1.675c.165.477.357 1.274.415 2.48.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.206-.25 2.003-.415 2.48a4.902 4.902 0 0 1-1.008 1.675 4.899 4.899 0 0 1-1.675 1.008c-.477.165-1.274.357-2.48.415-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.206-.058-2.003-.25-2.48-.415a4.922 4.922 0 0 1-1.675-1.008 4.922 4.922 0 0 1-1.008-1.675c-.165-.477-.357-1.274-.415-2.48C2.175 15.746 2.163 15.366 2.163 12s.012-3.584.07-4.85c.058-1.206.25-2.003.415-2.48a4.902 4.902 0 0 1 1.008-1.675A4.903 4.903 0 0 1 5.261 2.648c.477-.165 1.274-.357 2.48-.415C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.013 7.052.073 5.766.133 4.632.36 3.68.74a7.34 7.34 0 0 0-2.56 1.678A7.346 7.346 0 0 0 .74 4.98c-.38.953-.608 2.086-.668 3.372C.013 8.536 0 8.94 0 12c0 3.06.013 3.464.073 4.744.06 1.286.287 2.42.667 3.372a7.348 7.348 0 0 0 1.678 2.56 7.34 7.34 0 0 0 2.56 1.678c.952.38 2.086.608 3.372.668 1.28.06 1.684.073 4.744.073 3.06 0 3.464-.013 4.744-.073 1.286-.06 2.42-.287 3.372-.667a7.34 7.34 0 0 0 2.56-1.678 7.337 7.337 0 0 0 1.678-2.56c.38-.952.608-2.086.668-3.372.06-1.28.073-1.684.073-4.744 0-3.06-.013-3.464-.073-4.744-.06-1.286-.288-2.42-.668-3.372a7.334 7.334 0 0 0-1.678-2.56 7.34 7.34 0 0 0-2.56-1.678c-.952-.38-2.086-.608-3.372-.668C15.464.013 15.06 0 12 0z"></path>
+<circle cx="12" cy="12" r="3.6"></circle></svg></a>
+<a aria-label="LinkedIn" class="hover:text-blue-400" href="https://www.linkedin.com/in/asad-abbas-306395354?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=ios_app"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.039-1.852-3.039-1.853 0-2.136 1.446-2.136 2.942v5.666H9.354V9h3.415v1.561h.049c.476-.9 1.637-1.85 3.369-1.85 3.602 0 4.267 2.368 4.267 5.452v6.289zM5.337 7.433c-1.144 0-2.068-.927-2.068-2.068s.925-2.068 2.068-2.068 2.067.926 2.067 2.068-.923 2.068-2.067 2.068zM6.797 20.452H3.874V9h2.923v11.452zM22.225 0H1.771C.792 0 0 .77 0 1.72v20.559C0 23.23.792 24 1.771 24h20.451c.978 0 1.778-.77 1.778-1.721V1.72c0-.95-.8-1.72-1.775-1.72z"></path></svg></a>
+<a aria-label="RSS" class="hover:text-orange-500" href="https://x.com/asadabb77644281?s=21"><svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M6.12 17.994a2.553 2.553 0 1 0 0-5.106 2.553 2.553 0 0 0 0 5.106zm-3.339-6.961a9.584 9.584 0 0 1 9.578 9.578h2.613a12.192 12.192 0 0 0-12.191-12.192V10.9zM2.08 5.058v3.227a15.95 15.95 0 0 1 15.944 15.945h3.228C21.464 11.82 12.181 2.54 2.08 5.057z"></path></svg></a>
+</div>
+<button aria-label="Close top bar" class="ml-4 px-1 hover:text-blue-300 focus:outline-none" id="close-topbar" title="Close announcement bar">
+          ×
+        </button>
+</div>
+</div>
+<!-- Header -->
+<header class="border-b border-gray-300">
+<div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8">
+<a class="flex items-center text-2xl font-bold text-gray-900" href="#">
+          colorlib<span class="text-green-600 font-black">.</span>
+</a>
+<nav class="hidden md:flex space-x-6 font-medium text-gray-700">
+<a class="hover:text-blue-600" href="blog.html">Home</a>
+<a class="hover:text-blue-600" href="support.html">Support</a>
+<a class="hover:text-blue-600" href="freetheme.html">Free Themes</a>
+<a class="hover:text-blue-600" href="premium.html">Premium Themes</a>
+<a class="hover:text-blue-600" href="freewebsite.html">Website Templates</a>
+<a class="hover:text-blue-600" href="blog.html">Blog</a>
+<a class="hover:text-blue-600" href="blog.html">Account</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button aria-label="Search" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Hamburger mobile menu button -->
+<button aria-label="Toggle menu" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none" id="menu-btn">
+<svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Mobile nav menu -->
+<nav class="hidden md:hidden bg-white border-t border-gray-300" id="mobile-menu">
+<div class="px-4 py-2 space-y-2 font-medium text-gray-700">
+<a class="block hover:text-blue-600" href="blog.html">Home</a>
+<a class="block hover:text-blue-600" href="support.html">Support</a>
+<a class="block hover:text-blue-600" href="freetheme.html">Free Themes</a>
+<a class="block hover:text-blue-600" href="premium.html">
+            Premiummes theme</a>
+<a class="block hover:text-blue-600" href="freewebsite.html">Website Templates</a>
+<a class="block hover:text-blue-600" href="blog.html">Blog</a>
+<a class="block hover:text-blue-600" href="accounts.html">Account</a>
+</div>
+</nav>
+</header>
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-sm text-gray-600">
+<ol class="list-reset flex space-x-2">
+<li><a class="hover:text-blue-600" href="#">Home</a></li>
+<li><span>›</span></li>
+<li>
+<a class="hover:text-blue-600" href="https://colorlib.com/wp/templates/">HTML &amp; CSS Website Templates</a>
+</li>
+<li><span>›</span></li>
+<li>
+<a class="hover:text-blue-600" href="https://en.wikipedia.org/wiki/Business">Business</a>
+</li>
+<li><span>›</span></li>
+<li class="https://www.collinsdictionary.com/dictionary/english/carries">
+          Carries
+        </li>
+</ol>
+</nav>
+<!-- Main Title and Meta -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+<h1 class="text-3xl sm:text-4xl font-semibold text-gray-900 mb-3">
+        Carries
+      </h1>
+<div class="flex flex-wrap gap-x-6 text-sm text-gray-600 items-center">
+<div class="flex items-center space-x-1">
+<svg aria-hidden="true" class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.121 17.804A13.937 13.937 0 0112 15.75a13.94 13.94 0 016.879 2.054M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Aigars Silkalns</span>
+</div>
+<span class="hidden sm:inline">|</span>
+<div class="flex items-center space-x-1">
+<svg aria-hidden="true" class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Business, Transportation</span>
+</div>
+<span class="hidden sm:inline">|</span>
+<div class="flex items-center space-x-1">
+<svg aria-hidden="true" class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2M7 8h2a2 2 0 012 2v6a2 2 0 01-2 2H7m4-6h.01" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>0 Comments</span>
+</div>
+</div>
+</main>
+<!-- Hero Section with slider -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
+<div class="relative overflow-hidden rounded-md shadow-lg">
+<!-- Hero image -->
+<img alt="Large red semi-truck driving on highway at sunset with faint sunlight and scenic sky" class="w-full object-cover rounded-md" onerror="this.style.backgroundColor='#888'; this.alt='Image failed to load: Large truck on highway at sunset. Background color shown instead.'" src="image/background image.jpg"/>
+<!-- Overlay dark layer -->
+<div class="absolute inset-0 bg-black bg-opacity-60 rounded-md"></div>
+<!-- Overlay text container -->
+<div class="absolute inset-0 flex flex-col justify-center items-center px-6 text-center space-y-4 max-w-4xl mx-auto">
+<h2 class="text-white text-3xl sm:text-4xl font-bold leading-tight">
+            Welcome | Asad's Website
+          </h2>
+<p class="text-gray-300 max-w-xl">
+            My name is Asad, and I have a passion for web development, where I
+            create modern and responsive websites.
+          </p>
+<div class="flex space-x-4 mt-4">
+<a class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-semibold" href="#">OUR SERVICE</a>
+<a class="px-6 py-2 border border-white text-white rounded hover:bg-white hover:text-blue-600 transition font-semibold" href="#">GET A QUOTE</a>
+</div>
+</div>
+<!-- Slider arrows bottom right -->
+<div class="absolute bottom-3 right-3 flex items-center space-x-2">
+<button aria-label="Previous Slide" class="arrow-btn" title="Previous slide">
+            ❮
+          </button>
+<button aria-label="Next Slide" class="arrow-btn" title="Next slide">
+            ❯
+          </button>
+</div>
+<!-- Slide indicator bottom right -->
+<div class="absolute bottom-3 right-3 pl-12 text-white font-bold select-none">
+          1
+        </div>
+</div>
+</section>
+<!-- Template Details & Description -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Template Details -->
+<div class="space-y-3 border-r border-gray-300 pr-6">
+<h3 class="text-lg font-semibold mb-4">Template Details</h3>
+<div class="space-y-2 text-sm text-gray-700">
+<p><span class="font-semibold">Author:</span> Colorlib</p>
+<p><span class="font-semibold">Released:</span> JULY 2025</p>
+<p><span class="font-semibold">License:</span> CC BY 3.0</p>
+<p>
+<span class="font-semibold">Credits:</span> Images from Unsplash
+          </p>
+</div>
+<button class="mt-6 bg-purple-600 text-white text-sm px-4 py-2 rounded hover:bg-purple-700 font-semibold">
+          Preview
+        </button>
+</div>
+<!-- Description -->
+<div class="md:col-span-2 text-gray-700 text-justify text-sm sm:text-base leading-relaxed max-w-2xl">
+<h3 class="text-lg font-semibold mb-4">Description</h3>
+<p>
+          My name is Asad, and I am passionate about web development. I
+          specialize in creating modern, responsive, and user-friendly websites.
+          With skills in HTML, CSS, JavaScript, and frameworks, I bring ideas to
+          life on the web. I enjoy building both static and dynamic web
+          applications with clean and efficient code. Always eager to learn new
+          technologies, I strive to improve my skills continuously..
+        </p>
+<p class="mt-4">
+          My name is Asad, a passionate web designer who creates modern and
+          responsive website designs. I focus on user-friendly layouts that
+          combine creativity with functionality. I'm Asad, a passionate web
+          designer who creates modern, responsive, and user-friendly website
+          designs.
+        </p>
+</div>
+</section>
+<!-- Pricing Carries -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+<h3 class="text-xl font-semibold mb-6 border-b border-gray-300 pb-2">
+        Pricing Carries
+      </h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center text-gray-700">
+<!-- Single -->
+<div class="border border-gray-300 rounded shadow-md p-8">
+<h4 class="uppercase tracking-wider font-semibold mb-6">Single</h4>
+<p class="text-4xl font-extralight mb-6">$19</p>
+<ul class="mb-8 space-y-3 text-left text-sm">
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Premium Support</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Template Updates</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Support &amp; Updates</span><span class="italic ml-2">(for 1 year)</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<line stroke-linecap="round" stroke-linejoin="round" x1="18" x2="6" y1="6" y2="18"></line>
+<line stroke-linecap="round" stroke-linejoin="round" x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+<span>Access All Templates</span><span class="italic ml-2">No</span>
+</li>
+</ul>
+<button class="bg-blue-600 px-6 py-2 rounded text-white font-semibold hover:bg-blue-700 transition">
+            BUY NOW
+          </button>
+</div>
+<!-- Membership -->
+<div class="border border-gray-300 rounded shadow-md p-8">
+<h4 class="uppercase tracking-wider font-semibold mb-6">
+            Membership
+          </h4>
+<p class="text-4xl font-extralight mb-6">$129</p>
+<ul class="mb-8 space-y-3 text-left text-sm">
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Premium Support</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Template Updates</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Support &amp; Updates</span><span class="italic ml-2">(for 1 year)</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Access All Templates</span><span class="italic ml-2">(for 1 year)</span>
+</li>
+</ul>
+<button class="bg-blue-600 px-6 py-2 rounded text-white font-semibold hover:bg-blue-700 transition">
+            BUY NOW
+          </button>
+</div>
+<!-- Lifetime -->
+<div class="border border-gray-300 rounded shadow-md p-8">
+<h4 class="uppercase tracking-wider font-semibold mb-6">Lifetime</h4>
+<p class="text-4xl font-extralight mb-6">$349</p>
+<ul class="mb-8 space-y-3 text-left text-sm">
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Premium Support</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Template Updates</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Support &amp; Updates</span><span class="italic ml-2">(for life)</span>
+</li>
+<li class="flex items-center space-x-2">
+<svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Access All Templates</span><span class="italic ml-2">(for life)</span>
+</li>
+</ul>
+<button class="bg-blue-600 px-6 py-2 rounded text-white font-semibold hover:bg-blue-700 transition">
+            BUY NOW
+          </button>
+</div>
+</div>
+</section>
+<!-- Share This -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+<h3 class="mb-4 font-semibold text-lg">Share This</h3>
+<div class="flex flex-wrap gap-4">
+<a aria-label="Share on Facebook" class="bg-blue-700 text-white px-4 py-2 rounded flex items-center space-x-2 hover:bg-blue-800 transition" href="https://www.facebook.com/share/14LCJMPNTzC/?mibextid=wwXIfr">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.325v21.351c0 .733.592 1.324 1.325 1.324h11.495v-9.294h-3.13v-3.622h3.13v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.919.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.324-.591 1.324-1.324V1.326C24 .592 23.408 0 22.675 0z"></path>
+</svg>
+<span>Facebook</span>
+</a>
+<a aria-label="Share on Twitter" class="bg-black text-white px-4 py-2 rounded flex items-center space-x-2 hover:bg-gray-900 transition" href="https://x.com/asadabb77644281?s=21">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M23.953 4.569a10.005 10.005 0 01-2.825.775 4.932 4.932 0 002.163-2.723 9.86 9.86 0 01-3.127 1.195 4.916 4.916 0 00-8.37 4.482A13.936 13.936 0 011.671 3.149a4.916 4.916 0 001.523 6.56c-.996-.031-1.93-.306-2.75-.76v.076a4.914 4.914 0 003.946 4.812 4.902 4.902 0 01-2.747.104 4.913 4.913 0 004.577 3.414 9.843 9.843 0 01-6.102 2.105c-.396 0-.787-.023-1.173-.067a13.902 13.902 0 007.548 2.209c9.055 0 14.004-7.496 14.004-13.993 0-.213-.005-.425-.014-.636a9.936 9.936 0 002.46-2.548l-.047-.02z"></path>
+</svg>
+<span>Twitter</span>
+</a>
+<a aria-label="Share on Pinterest" class="bg-red-700 text-white px-4 py-2 rounded flex items-center space-x-2 hover:bg-red-800 transition" href="https://www.pinterest.com/">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12.004 1c-5.514 0-9.998 4.485-9.998 10 0 4.226 2.827 7.24 5.677 7.24 1.101 0 1.857-.718 1.857-1.593 0-.526-.337-1.375-.487-2.145-.164-.806-.336-1.655-.336-2.226 0-.533.287-.964.898-.964.671 0 1.05.505 1.05 1.113 0 .68-.432 1.698-.619 2.64-.176.79.373 1.431 1.103 1.431 1.33 0 2.354-1.326 2.354-3.24 0-1.672-1.2-2.842-2.909-2.842-2.006 0-3.223 1.375-3.223 2.8 0 .533.204 1.107.457 1.42.05.06.058.112.043.175-.047.19-.15.603-.17.686-.027.11-.095.134-.213.08-.8-.372-1.298-1.53-1.298-2.468 0-2.013 1.462-4.335 4.214-4.335 2.212 0 3.882 1.612 3.882 3.75 0 2.224-1.396 4.016-3.338 4.016-.648 0-1.263-.33-1.474-.72l-.4 1.528c-.145.56-.54 1.26-.81 1.685.61.19 1.256.292 1.929.292 5.51 0 9.994-4.484 9.994-10S17.514 1 12.004 1z"></path>
+</svg>
+<span>Pinterest</span>
+</a>
+<a aria-label="Share on LinkedIn" class="bg-blue-700 text-white px-4 py-2 rounded flex items-center space-x-2 hover:bg-blue-800 transition" href="https://www.linkedin.com/in/asad-abbas-306395354?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=ios_app">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.039-1.852-3.039-1.853 0-2.136 1.446-2.136 2.942v5.666H9.354V9h3.415v1.561h.049c.476-.9 1.637-1.85 3.369-1.85 3.602 0 4.267 2.368 4.267 5.452v6.289zM5.337 7.433c-1.144 0-2.068-.927-2.068-2.068s.925-2.068 2.068-2.068 2.067.926 2.067 2.068-.923 2.068-2.067 2.068zM6.797 20.452H3.874V9h2.923v11.452zM22.225 0H1.771C.792 0 0 .77 0 1.72v20.559C0 23.23.792 24 1.771 24h20.451c.978 0 1.778-.77 1.778-1.721V1.72c0-.95-.8-1.72-1.775-1.72z"></path>
+</svg>
+<span>LinkedIn</span>
+</a>
+</div>
+</section>
+<!-- Similar Templates -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+<h3 class="font-semibold text-xl mb-6 border-b border-gray-300 pb-2">
+        Similar Templates
+      </h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview showing creative group with dark themed design and green leaf background" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/DARK.jpg"/>
+</div>
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview depicting banking solutions with hand holding pen and documents background" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/TEMPLETE.jpg"/>
+</div>
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview showing clean clothing store with models and e-commerce style design" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/FASHION.jpg"/>
+</div>
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview showing counseling and therapy website with couple smiling and green theme" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/GAREEN.jpg"/>
+</div>
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview showing mortgage loan services with happy family and home interior" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/HOME.jpg"/>
+</div>
+<div class="rounded-md border border-gray-300 overflow-hidden shadow-sm hover:shadow-md cursor-pointer">
+<img alt="Website template preview showing creative agency with laptop and workspace theme in clean design" class="w-full h-36 object-cover" onerror="this.style.backgroundColor='#ccc';" src="image/HOME 2.jpg"/>
+</div>
+</div>
+</section>
+<!-- Footer CTA bar -->
+<section class="bg-gray-100 py-8 px-4 sm:px-6 lg:px-8 text-center flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto mb-0 rounded-t-md shadow-sm space-y-4 md:space-y-0">
+<p class="text-lg text-gray-800 font-semibold">
+        We change everything WordPress. One WordPress theme at a time.
+      </p>
+<a class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold whitespace-nowrap" href="#">Find out more! <span aria-hidden="true">→</span></a>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<h4 class="text-white font-semibold mb-4">Useful</h4>
+<ul class="space-y-2 text-sm">
+<li>
+<a class="hover:text-white" href="https://www.youtube.com">About Colorlib</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://www.facebook.com/share/14LCJMPNTzC/?mibextid=wwXIfr">Advertise</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://www.twitter.com">Squarespace Templates</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://www.instagram.com">WordPress Themes</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://www.linkedin.com">Website Templates</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://startbootstrap.com/templates">Bootstrap Templates</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://www.creative-tim.com/bootstrap-themes">Support Forum</a>
+</li>
+<li class="ml-4 text-xs text-gray-500">– Support Policy</li>
+<li>
+<a class="hover:text-white" href="https://startbootstrap.com/snippets/contact-form">Contact us</a>
+</li>
+<li>
+<a class="hover:text-white" href="https://bootstrapmade.com/demo/templates/Arsha/index.html">We Are Hiring!</a>
+</li>
+</ul>
+</div>
+<div class="md:col-span-2 flex flex-col justify-center items-start md:items-end space-y-2">
+<a class="text-3xl font-bold text-white flex items-center space-x-1" href="#">
+<span>colorlib ASAD</span><span class="text-green-400">.</span>
+</a>
+<p class="text-gray-400 text-sm max-w-md text-right">
+            We change everything WordPress. One WP theme at a time.
+          </p>
+</div>
+</div>
+<div class="border-t border-gray-700 mt-10 pt-6 text-center text-xs text-gray-500 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
+        Copyright © 2013 - 2025 colorlib.com | Powered by Delail HC | Privacy
+        Policy | Site Terms &amp; Disclosure | Hosted by Kinsta
+      </div>
+</footer>
+<script>
+      // Toggle mobile menu
+      document.getElementById("menu-btn").addEventListener("click", () => {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      });
+
+      // Close top bar
+      document.getElementById("close-topbar").addEventListener("click", () => {
+        const topbar = document.getElementById("topbar");
+        topbar.style.display = "none";
+      });
+    </script>
+</body>
+</html>
