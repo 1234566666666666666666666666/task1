@@ -1,1 +1,751 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imagine - Payment Details Step</title>
+
+  <!-- Google Fonts: Source Sans Pro & Roboto Slab -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+
+  <style>
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, blockquote, dl, dd {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: #664d9c;
+      cursor: pointer;
+      outline-offset: 2px;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    input, button {
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      background: none;
+      padding: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-style: none;
+    }
+
+    /* BODY AND FONT */
+    body {
+      font-family: 'Source Sans Pro', Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222222;
+      font-size: 15px;
+      line-height: 1.6;
+      /* base line-height for reading */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    main {
+      flex: 1 0 auto;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px 50px;
+    }
+
+    /* TOP NAV BAR */
+    header {
+      background-color: #fff;
+      padding: 25px 20px;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Logo */
+    .logo {
+      display: block;
+      width: 78px;
+      height: 44px;
+      background-color: #6e4d9c; /* purple */
+      color: white;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 44px;
+      text-align: center;
+      user-select: none;
+      flex-shrink: 0;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Progress bar container */
+    .progress {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      min-width: 260px;
+      max-width: 840px;
+    }
+
+    /* single step item */
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 13px;
+      color: #999;
+      user-select: none;
+      min-width: 90px;
+      line-height: 1.2;
+      position: relative;
+    }
+
+    /* icon container */
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #6e4d9c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
+      fill: #6e4d9c;
+      position: relative;
+      background-color: white;
+      flex-shrink: 0;
+      transition: background-color 0.3s ease;
+    }
+
+    /* active step */
+    .step.active .step-icon {
+      background-color: #6e4d9c;
+      border-color: #6e4d9c;
+      fill: white;
+    }
+    .step.active {
+      color: #6e4d9c;
+      font-weight: 700;
+    }
+
+    /* next step disabled style */
+    .step.disabled .step-icon {
+      border-color: #ddd;
+      fill: #ddd;
+    }
+    .step.disabled {
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    /* horizontal connecting line between steps */
+    .step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: -24px;
+      width: 48px;
+      height: 2px;
+      background-color: #6e4d9c;
+      z-index: -1;
+      transition: background-color 0.3s ease;
+    }
+    .step.active:not(:last-child)::after {
+      background-color: #6e4d9c;
+    }
+    .step.disabled:not(:last-child)::after {
+      background-color: #eaeaea;
+    }
+
+    /* Icons inside the circles size and stroke */
+    .step-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Specific disabled step icon circle and line */
+    .step.disabled + .step.disabled::after {
+      background-color: #eaeaea;
+    }
+
+    /* MAIN CONTENT HEADER */
+    .purchase-header {
+      text-align: center;
+      margin-top: 36px;
+      margin-bottom: 48px;
+      color: #6e4d9c;
+    }
+
+    .purchase-header h2 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .purchase-header p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+    }
+    .purchase-header p a {
+      color: #6e4d9c;
+      text-decoration: underline;
+    }
+
+    /* FORM + ORDER WRAPPER */
+    .checkout-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 376px;
+      gap: 32px;
+    }
+
+    /* FORM CONTAINER */
+    form {
+      background-color: #fff;
+      padding: 24px 24px 32px;
+      border: 1px solid #dedede;
+      border-radius: 2px;
+      box-shadow: none;
+      font-size: 14px;
+      color: #222;
+    }
+
+    form h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #222;
+      border-bottom: 1px solid #dedede;
+      padding-bottom: 10px;
+    }
+
+    /* form label container */
+    label {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* labels with inline small note */
+    .label-header {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 3px;
+      color: #222;
+    }
+
+    .label-info {
+      font-size: 12px;
+      font-weight: 400;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Required star */
+    .required-star {
+      color: #d02d2d;
+      margin-left: 2px;
+    }
+
+    /* INPUTS container for first and last name side by side */
+    .name-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    /* input fields */
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      border: 1px solid #c8c8c8;
+      border-radius: 2px;
+      font-size: 14px;
+      padding: 10px 12px;
+      background: #fff;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="email"]:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: #6e4d9c;
+      box-shadow: 0 0 8px rgba(110, 77, 156, 0.25);
+      background: #fff;
+    }
+
+    /* PAYPAL BUTTON */
+    .paypal-button {
+      margin-top: 28px;
+      background-color: #ffbc00;
+      border-radius: 4px;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #003087;
+      font-weight: 700;
+      font-size: 18px;
+      font-family: 'Roboto Slab', serif;
+      letter-spacing: 0.03em;
+      transition: background-color 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .paypal-button svg {
+      height: 20px;
+      width: auto;
+      margin-left: 10px;
+      margin-top: 2px;
+    }
+
+    .paypal-button:hover,
+    .paypal-button:focus {
+      background-color: #e6a800;
+      outline: none;
+    }
+
+    /* ORDER SUMMARY and EXTRA INFO panel */
+    .right-panels {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .order-summary, .extra-info {
+      background: #fff;
+      border: 1px solid #dedede;
+      border-radius: 2px;
+      padding: 20px 24px 24px;
+      font-size: 14px;
+      box-shadow: none;
+      color: #444;
+    }
+
+    /* order summary heading */
+    .order-summary h4 {
+      color: #6e4d9c;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 16px;
+      user-select: none;
+    }
+
+    /* order items */
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .order-item .remove-btn {
+      background: #edeff1;
+      border: 1px solid #dde1e4;
+      color: #999;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .order-item .remove-btn:hover,
+    .order-item .remove-btn:focus {
+      background-color: #d3d3d3;
+      color: #666;
+      outline: none;
+    }
+
+    .order-item .price {
+      min-width: 40px;
+      text-align: right;
+    }
+
+    /* totals & tax lines */
+    .order-summary .line {
+      border-top: 1px solid #dedede;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      padding-top: 12px;
+      color: #444;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .order-summary .tax {
+      font-weight: 400;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      margin-top: 0;
+      user-select: none;
+    }
+
+    /* total row */
+    .order-summary .total-row {
+      font-size: 18px;
+      color: #6e4d9c;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* EXTRA INFO heading */
+    .extra-info h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #6e4d9c;
+      margin-bottom: 14px;
+      user-select: none;
+    }
+
+    /* extra info list */
+    .extra-info ul {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+      color: #3f8b4a;
+      font-size: 13px;
+    }
+
+    .extra-info li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      color: #3f8b4a;
+      user-select: none;
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.3;
+    }
+
+    .extra-info li a {
+      color: #6e4d9c;
+      font-weight: 400;
+    }
+
+    /* green checkmark - CSS SVG background trick */
+    .extra-info li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%233f8b4a' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    /* badges container */
+    .extra-info .badges {
+      margin-top: 16px;
+      display: flex;
+      gap: 16px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* badges images with fallback styles */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-width: 72px;
+      height: 40px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      user-select: none;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .badge img {
+      display: block;
+      object-fit: contain;
+      max-height: 28px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #fff;
+      color: #777;
+      font-size: 13px;
+      text-align: center;
+      padding: 18px 20px;
+      border-top: 1px solid #ececec;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 915px) {
+      .checkout-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .right-panels {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        gap: 20px;
+        justify-content: center;
+      }
+      .progress {
+        gap: 20px;
+        min-width: auto;
+      }
+      .step {
+        font-size: 11px;
+        min-width: 70px;
+      }
+      .step:not(:last-child)::after {
+        width: 32px;
+        right: -16px;
+      }
+
+      form, .order-summary, .extra-info {
+        padding: 18px 16px 24px;
+      }
+
+      main {
+        padding: 16px 16px 40px;
+      }
+
+      .paypal-button {
+        font-size: 15px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner" role="banner">
+      <div class="logo" aria-label="Colorlib brand">colorlib.</div>
+
+      <nav class="progress" aria-label="Checkout progress">
+        <div class="step">
+          <div class="step-icon" aria-hidden="true">
+            <!-- Shopping Cart icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+          </div>
+          Choose Plan
+        </div>
+
+        <div class="step active" aria-current="step">
+          <div class="step-icon" aria-hidden="true">
+            <!-- Credit Card icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </div>
+          Payment Details
+        </div>
+
+        <div class="step disabled" aria-disabled="true" tabindex="-1">
+          <div class="step-icon" aria-hidden="true">
+            <!-- Download icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          Download Files
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="purchase-header" aria-label="Purchase header">
+      <h2>Complete Your Purchase</h2>
+      <p>You're <a href="#" target="_blank" rel="noopener noreferrer">5 minutes away</a> from having a template that amazes potential clients.</p>
+    </section>
+
+    <section class="checkout-wrapper">
+
+      <form aria-label="Personal information form" novalidate>
+        <h3>Step 2: Personal Info</h3>
+
+        <label for="email">
+          <div class="label-header">Email Address <span class="required-star">*</span></div>
+          <p class="label-info">We will send the purchase receipt to this address.</p>
+        </label>
+        <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" aria-required="true" />
+
+        <div class="name-row" style="margin-top:24px;">
+          <div style="flex: 1 1 0;">
+            <label for="firstName">
+              <div class="label-header">First Name <span class="required-star">*</span></div>
+              <p class="label-info">We will use this to personalize your account experience.</p>
+            </label>
+            <input type="text" id="firstName" name="firstName" placeholder="First name" required aria-required="true" autocomplete="given-name" />
+          </div>
+          <div style="flex: 1 1 0;">
+            <label for="lastName">
+              <div class="label-header">Last Name</div>
+              <p class="label-info">We will use this as well to personalize your account experience.</p>
+            </label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last name" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <button type="submit" class="paypal-button" aria-label="Pay with PayPal">
+          Pay
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 262" fill="#003087" aria-hidden="true" focusable="false">
+            <path d="M116.4 136.7c-2.2 13.3 7.9 19.5 21.3 16.4 13.3-3.1 22.4 0.4 26 10.2 3.6 9.7-1.5 21.2-8.5 25-7 3.9-21.2 5-32.5 1.1 12 4.5 29.2 1.3 38.5-10.6 9.3-11.8 11.5-32.4 5.4-44.1-6.2-11.8-15.8-17-30.3-14.7-14.5 2.3-20.4 10.3-22.4 16.7z" />
+            <path fill="#009cde" d="m144.6 143.6-.4.2c-7-.4-15.3-5.1-17.6-14-2.9-11 8.3-17.2 21.3-18.5 13-.8 23.5.2 28.8 8.8 4.6 7.3 2.5 18.5-5.6 23.9a17 17 0 0 1-6 3.3c6-1.5 12.6-5.3 15.7-10.9 3.2-6.1 3.3-15.5 0-23.7-4.3-11.4-18.1-17.5-30.7-16.2-13.6 1.3-26.6 8.2-31.2 25.2a21 21 0 0 0-2 8.8c0 8.2 9.7 14.5 20.4 16-.4-1.1-1-2.9-1-3.7z" />
+            <path fill="#012169" d="M71.4 85.9c-2.3 12.9-5.1 26.4-12.3 36.7-3 4.7-7 8-12.7 10-4.7 1.7-10.3 1.9-15.2.9h-2.3a19 19 0 0 1-4-2.6c-.2-.7-.7-3.6-.3-4.3 4.2-3.1 14.9-7.4 19.2-9.4 5.7-2.7 9-7.3 11-13.2 3-8.9 4.4-18 5-27.2.3-4.3 0-8.5-.5-12.1a26 26 0 0 0-7.4-14.9c-3.3-3.7-9.6-6.1-14-5.6-2.8.4-5.5 2.6-7.8 4-2.5 1.4-8.2 4-10 4.2-2.5.3-3.4-.9-3.6-3.4-.2-1.9 0-3.7 0-5.6 0-2.1.2-4.1 1-6.1.6-1.4 2.3-6.5 3.7-7.4A57 57 0 0 1 42.4 53a32 32 0 0 1 18-4.4c6.1 0 20.6 4.7 24.6 8.4 21.4 19.7-2.3 48.6-9.1 23.9z" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="right-panels" aria-label="Order summary and additional information">
+
+        <aside class="order-summary" aria-labelledby="order-summary-title">
+          <h4 id="order-summary-title">Your order summary</h4>
+
+          <div class="order-item">
+            <span>Carries</span>
+            <span class="price">$19.00</span>
+            <button type="button" class="remove-btn" aria-label="Remove Carries item from order">REMOVE</button>
+          </div>
+
+          <div class="line"><span>Subtotal:</span><span>$19.00</span></div>
+
+          <div class="tax" aria-label="Tax VAT information">
+            <span><strong>TAX: (VAT RO)</strong></span>
+            <span>[19%] $3.61</span>
+          </div>
+
+          <div class="order-summary total-row" aria-label="Total cost including tax">
+            <strong>Total:</strong>
+            <strong>$22.61</strong>
+          </div>
+        </aside>
+
+        <aside class="extra-info" aria-label="Extra reasons to choose Colorlib">
+          <h4>Even more reasons to choose Colorlib</h4>
+          <ul>
+            <li><a href="#">14-day money-back guarantee</a></li>
+            <li>550+ 5-star reviews</li>
+            <li>20,000+ happy clients</li>
+            <li>350,000+ active installs</li>
+          </ul>
+          <div class="badges" aria-hidden="true">
+            <div class="badge" title="Norton Secured logo">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5bebf5e0-ffca-4135-9535-29d7e1097f13.png" alt="Norton Secured badge with yellow checkmark and text powered by digicert" onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f4d5561d-ac45-4c00-ac6b-d5da54a8e352.png';" />
+            </div>
+            <div class="badge" title="McAfee Secure logo">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e2f486b-d67e-43f3-abcd-c0ba12720825.png" alt="McAfee Secure badge with red shield and white text" onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1c4b9ae-a2b5-4d82-9723-15e1409d92be.png';" />
+            </div>
+            <div class="badge" title="PayPal Verified logo">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fdad42a5-ba10-4e4a-a579-7e507c6d3c3f.png" alt="PayPal Verified gold seal badge" onerror="this.onerror=null; this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c58e53fc-2560-4ac4-ad2f-6422f0c0d3a5.png';" />
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    © 2017-2025 Colorlib. All rights reserved.
+  </footer>
+
+  <script>
+    // Remove button functionality simulates removing the item from order summary
+    document.querySelectorAll('.remove-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.order-item');
+        if (item) {
+          // For demo: Remove item and update totals
+          item.remove();
+
+          // Update subtotal, tax, and total dynamically with hardcoded single item price scenario
+          const subtotalElem = document.querySelector('.order-summary .line span:last-child');
+          const taxElem = document.querySelector('.order-summary .tax span:last-child');
+          const totalElem = document.querySelector('.order-summary .total-row strong:last-child');
+
+          if (subtotalElem && taxElem && totalElem) {
+            // Since only one item, removing means zero subtotal and zero tax
+            subtotalElem.textContent = '$0.00';
+            taxElem.textContent = '0';
+            totalElem.textContent = '$0.00';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
